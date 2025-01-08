@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouman Iftikhar - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+        
+        .section {
+            padding: 20px;
+            min-height: 100vh;
+            background-color: #32cd9c;
+        }
+
+        .section.blurred {
+            filter: blur(10px); /* Add blur effect */
+        }
+        
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            width: 100%;
+            position: fixed;
+        }
+            
+            .ClassMenuOpenBtn {
+                display: none;
+                position: fixed; /* Fixed positioning ensures it's always accessible */
+                top: 10px;
+                right: 10px;
+                z-index: 100000; /* Ensure it stays on top */
+                justify-content: flex-end;
+                align-items: center;
+                background: none;
+                color: white;
+                border: 0px solid #fff;
+                padding: 1px 6px;
+                font-size: 32px;
+                border-radius: 4px;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+          }
+            
+            .CloseMenuBtn {
+              display: none;
+              background: none;
+              text-align: center;
+              font-size: 32px;
+            }
+
+        header button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header button:hover {
+            background-color: #1abc9c;
+            /* transform: scale(1.1); */
+        }
+
+        header button.active {
+            background-color: #1abc9c;
+            font-weight: bold;
+        }
+
+        header a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header a:hover {
+            background-color: #1abc9c;
+        }
+
+        header a.active {
+            background-color: #1abc9c;
+            font-weight: bold;
+        }
+
+        .portfolio {
+          	/* border: 1px solid   #333; */
+        	gap: 40px;
+            padding: 40px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+        }
+
+        .profileInfo {
+          	/* border: 1px solid   #fff; */
+            background-color: none;
+            color: white;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .profileInfoiner {
+        	padding-right: 10%;
+        	padding-top: 10px;
+        }
+
+        .profileInfo h1, .profileInfo h2, .profileInfo p {
+            margin-bottom: 15px;
+        }
+
+        .profileInfo h1 {
+            font-size: 3rem;
+        }
+
+        .profileInfo h2 {
+            font-size: 2rem;
+        }
+
+        .profileInfo p {
+            font-size: 1.5rem;
+        }
+
+        .aDownloadCV {
+            background: #fff;
+            color: #8e44ad;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 10px;
+            border: 0.5px solid #fff;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .aDownloadCV:hover {
+            background: none;
+            color: #fff;
+        }
+        
+        .ContactMe {
+            background: none;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 10px;
+            border: 0.5px solid #fff;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .ContactMe:hover {
+            background: #fff;
+            color: #8e44ad;
+        }
+
+        .social-links {
+            /* border: 1px solid #333; */
+            gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px 10px;
+            border: 0.5px solid #fff;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #fff;
+            color: #8e44ad;
+        }
+
+        .SliderNdots {
+            background-color: none;
+            position: relative;
+            padding: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+
+        .slider {
+        	/* border: 1px solid #fff; */
+            width: 350px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;`
+            border-radius: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);/
+        }
+
+        .slider ul {
+            list-style: none;
+            transition: transform 1s ease;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 500px;
+            flex-shrink: 0;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+            /* transform: scale(10.1); */
+        }
+        
+        .slider img.active {
+          display: block;
+          opacity: 1;
+        }
+
+        .pagination-dots {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #fe6a5c;
+        }
+
+        .social-account {
+            gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-account a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-size: 4rem;
+            padding: 10px 15px;
+            /* border-bottom: 2px solid #8e44ad; */
+            border-radius: 0px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-account a:hover {
+            font-size: 5rem;
+            color: #8e44ad;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 950px) {
+            .section {
+                padding: 20px;
+                min-height: 100vh;
+                background-color: #32cd9c;
+            }
+            header {
+                background-color: #3498db;
+                color: white;
+                padding: 0px;
+                display: none;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: left;
+                gap: 0px;
+                height: 100%;
+                width: 100%;
+                z-index: 100000;
+                position: fixed;
+                top: ;
+                left: ;
+                transform: translateX(-100%); /* Hidden by default */
+                transition: transform 0.6s ease-in-out; /* Smooth transition */
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%); /* Header left se aayega */
+                }
+                to {
+                    transform: translateX(0); /* Final position */
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .slide-in {
+                animation: slideIn 0.6s forwards; /* Slide-in animation */
+            }
+            
+            .slide-out {
+                animation: slideOut 0.6s forwards; /* Slide-out animation */
+            }
+
+            header button {
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 0px;
+                cursor: pointer;
+                text-align: left;
+                border-bottom: 1px solid #fff;
+                outline: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            header button:hover {
+                background-color: #1abc9c;
+                /* transform: scale(1.1); */
+            }
+
+    		header a {
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 0px;
+                cursor: pointer;
+                text-align: left;
+                border-bottom: 1px solid #fff;
+                outline: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+    		}
+
+    		header a:hover {
+                background-color: #1abc9c;
+                /* transform: scale(1.1); */
+    		}
+
+            header a.active {
+                background-color: #1abc9c;
+                font-weight: bold;
+            }
+            
+            .ClassMenuOpenBtn {
+                display: flex;
+                position: fixed; /* Fixed positioning ensures it's always accessible */
+                top: 10px;
+                right: 10px;
+                z-index: 100000; /* Ensure it stays on top */
+                justify-content: flex-end;
+                align-items: center;
+                background: none;
+                color: white;
+                border: 0px solid #fff;
+                padding: 1px 6px;
+                font-size: 32px;
+                border-radius: 4px;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+          	}
+            
+            header .CloseMenuBtn {
+              background: black;
+              text-align: center;
+              font-size: 32px;
+            }
+            
+            .portfolio {
+                gap: 0px;
+                padding: 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                position: relative;
+                background: linear-gradient(135deg, #3498db, #8e44ad);
+                /* background: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(); */
+                /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
+                /* background-image: url('your-image.jpg'); /* Background image ka path */
+                /* background-size: cover; /* Image ko div ke hisaab se resize kare */
+                /* background-position: center; /* Image ko center kare */
+                /* background-repeat: no-repeat; /* Image repeat na kare */
+            }
+
+            .profileInfo {
+                order: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            	height: 100%;
+            	margin-top: 10px;
+            }
+            
+            .profileInfoiner {
+                padding-left: 10px;
+                padding-top: 0px;
+            }
+
+            .profileInfo h1, .profileInfo h2, .profileInfo p {
+                margin-bottom: 15px;
+            }
+
+            .portfolio h1 {
+                font-size: 1.7rem;
+            }
+
+            .portfolio h2 {
+                font-size: 1.4rem;
+            }
+
+            .portfolio p {
+                font-size: 1rem;
+            }
+
+            .social-links {
+                /* border: 1px solid #333; */
+                gap: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+            }
+
+            .social-links a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1.1rem;
+                padding: 8px 10px;
+                border: 0.5px solid #fff;
+                border-radius: 8px;
+                transition: background 0.3s, color 0.3s;
+            }
+
+            .social-links a:hover {
+                background: #fff;
+                color: #8e44ad;
+            }
+
+            .SliderNdots {
+                background-color: none;
+                position: relative;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                order: 1;
+                width: 100%;
+            }
+
+            .slider {
+                width: 100%;
+                height: 230px;
+                overflow: hidden;
+                border-radius: 0px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .slider ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style: none;
+                transition: transform 1s ease;
+            }
+
+            .slider img {
+                width: 100vw;
+                height: 230px;
+                flex-shrink: 0;
+                object-fit: cover;
+                /* transform: scale(8.1); */
+                object-position: 50% 20%;
+            }
+
+            .pagination-dots {
+                position: absolute;
+                bottom: 10px;
+                display: flex;
+                gap: 5px;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: #ddd;
+                cursor: pointer;
+            }
+
+            .dot.active {
+                background-color: #fe6a5c;
+            }
+
+            .experience h1, .education h1, .certification h1, .skills h1, .social-accounts h1 {
+                font-size: 1.5rem;
+            }
+
+            .experience-item p, .education-item p, .certification-item p, .skills-list li {
+                font-size: 0.9rem;
+            }
+
+            .experience-item h2, .education-item h2, .certification-item h2 {
+                font-size: 1rem;
+            }
+
+            .experience-item h5, .certification-item h5 {
+                width: 100%;
+                margin-top: 5px;
+                line-height: 1.5;
+                text-align: left;
+            }
+
+            .services-links a {
+                font-size: 1rem;
+                padding: 8px 10px;
+            }
+
+            .social-account a {
+                font-size: 4rem;
+                padding: 8px 10px;
+            }
+        
+        .experience h1, .education h1, .certification h1, .skills h1, .services h1, .social-accounts h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            margin-top: none;
+        	}
+        }
+        
+        .experience h1, .education h1, .certification h1, .skills h1, .services h1, .social-accounts h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        .experience, .education, .certification, .skills, .services, .social-accounts {
+            background: #fff;
+            color: #333;
+            border: 0; /* Pehle se set borders ko remove karne ke liye */
+            border-bottom: 12px solid; /* Border thickness set karen */
+            border-image: linear-gradient(135deg, #3498db, #8e44ad) 1;
+        }
+
+
+        .experience h1, .education h1, .certification h1, .skills h1, .services h1, .social-accounts h1 {
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .experience-item, .education-item, .certification-item, .skills-list {
+            margin-bottom: 20px;
+        }
+
+        .experience-item h2, .education-item h2, .certification-item h2 {
+            font-size: 1.2rem;
+            color: #8e44ad;
+        }
+
+        .experience-item p, .education-item p, .certification-item p, .skills-list li {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            line-height: 1.5;
+            text-align: left;
+        }
+        
+        .education-item h5 {
+            margin-top: 5px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .skills-list li {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        
+        .navigation-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column; /* Buttons ko column layout mein arrange kare */
+            gap: 10px;
+            z-index: 1000;
+            border-radius: 50%; /* Buttons ko round shape de */
+        }
+
+        .navigation-buttons button {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem; /* Icon size adjust kare */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 50%; /* Buttons ko round shape de */
+            background-color: #8e44ad;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navigation-buttons button:hover {
+            background-color: #3498db;
+            transform: scale(1.1); /* Hover effect ke liye button ko thoda bada kare */
+        }
+
+        .navigation-buttons button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+/* Media query for small screens */
+@media (max-width: 950px) {
+    .navigation-buttons button {
+        width: 40px; /* Button ki width adjust */
+        height: 40px; /* Button ki height adjust */
+        font-size: 1rem; /* Icon size chhota kare */
+    }
+        
+        .navigation-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            flex-direction: column; /* Buttons ko column layout mein arrange kare */
+            gap: 10px;
+            z-index: 1000;
+            border-radius: 50%; /* Buttons ko round shape de */
+        }
+    }
+        .VisitorForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+           
