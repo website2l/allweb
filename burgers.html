@@ -204,84 +204,7 @@
                         <!--- <p>Congratulations! You unlocked the secret content.</p> --->
              </div>
          </div>
-
-    <script type="text/plain">
-    const points = document.querySelectorAll('.point');
-    const secretBox = document.querySelector('.secret-box');
-    const mainContainer = document.getElementById('mainContainer');
-    const mouthwateringText = document.getElementById('mouthwatering');
-    const perfectInput = document.getElementById('perfectInput');
-    let clickOrder = [];
-
-    // Adjust input size based on its text
-    function adjustInputSize(input) {
-        const tempSpan = document.createElement('span');
-        tempSpan.style.visibility = 'hidden';
-        tempSpan.style.fontFamily = getComputedStyle(input).fontFamily;
-        tempSpan.style.fontSize = getComputedStyle(input).fontSize;
-        tempSpan.innerText = input.value;
-        document.body.appendChild(tempSpan);
-        input.style.width = `${tempSpan.offsetWidth + 2}px`; // Adjust width
-        input.style.height = `${tempSpan.offsetHeight}px`; // Adjust height
-        document.body.removeChild(tempSpan);
-    }
-
-    adjustInputSize(perfectInput);
-
-    // Functionality for point clicking
-    points.forEach(point => {
-        point.addEventListener('click', () => {
-            const pointNumber = point.getAttribute('data-point');
-            clickOrder.push(pointNumber);
-
-            if (clickOrder.join('') === '123') {
-                secretBox.style.display = 'flex';
-            } else if (clickOrder.length > 3) {
-                clickOrder = [];
-                secretBox.style.display = 'none';
-            }
-        });
-    });
-
-    // Functionality for copying "mouthwatering"
-    mouthwateringText.addEventListener('copy', () => {
-        secretBox.style.display = 'flex';
-    });
-
-    // Functionality for "perfect" input
-    perfectInput.addEventListener('click', () => {
-        perfectInput.removeAttribute('readonly');
-        perfectInput.focus();
-    });
-
-    perfectInput.addEventListener('input', () => {
-        if (perfectInput.value.trim() === '4') {
-            secretBox.style.display = 'flex';
-        } else {
-            secretBox.style.display = 'none';
-        }
-        adjustInputSize(perfectInput); // Adjust size while typing
-    });
-
-    perfectInput.addEventListener('blur', () => {
-        if (perfectInput.value.trim() !== '4') {
-            perfectInput.value = 'juicy fried';
-            perfectInput.setAttribute('readonly', 'true');
-        }
-        adjustInputSize(perfectInput); // Reset size if changed
-    });
-
-    // Hide secret-box and reset all states when clicking outside mainContainer
-    document.addEventListener('click', (event) => {
-        if (!mainContainer.contains(event.target)) {
-            secretBox.style.display = 'none';
-            perfectInput.value = 'juicy fried';
-            perfectInput.setAttribute('readonly', 'true');
-            adjustInputSize(perfectInput);
-            clickOrder = [];
-        }
-    });
-</script>
+    
 
           <script>
               const points = document.querySelectorAll('.point');
@@ -361,8 +284,84 @@
                   }
               });
           </script>
+    
+    <script type="text/plain">
+    const points = document.querySelectorAll('.point');
+    const secretBox = document.querySelector('.secret-box');
+    const mainContainer = document.getElementById('mainContainer');
+    const mouthwateringText = document.getElementById('mouthwatering');
+    const perfectInput = document.getElementById('perfectInput');
+    let clickOrder = [];
 
+    // Adjust input size based on its text
+    function adjustInputSize(input) {
+        const tempSpan = document.createElement('span');
+        tempSpan.style.visibility = 'hidden';
+        tempSpan.style.fontFamily = getComputedStyle(input).fontFamily;
+        tempSpan.style.fontSize = getComputedStyle(input).fontSize;
+        tempSpan.innerText = input.value;
+        document.body.appendChild(tempSpan);
+        input.style.width = `${tempSpan.offsetWidth + 2}px`; // Adjust width
+        input.style.height = `${tempSpan.offsetHeight}px`; // Adjust height
+        document.body.removeChild(tempSpan);
+    }
 
+    adjustInputSize(perfectInput);
+
+    // Functionality for point clicking
+    points.forEach(point => {
+        point.addEventListener('click', () => {
+            const pointNumber = point.getAttribute('data-point');
+            clickOrder.push(pointNumber);
+
+            if (clickOrder.join('') === '123') {
+                secretBox.style.display = 'flex';
+            } else if (clickOrder.length > 3) {
+                clickOrder = [];
+                secretBox.style.display = 'none';
+            }
+        });
+    });
+
+    // Functionality for copying "mouthwatering"
+    mouthwateringText.addEventListener('copy', () => {
+        secretBox.style.display = 'flex';
+    });
+
+    // Functionality for "perfect" input
+    perfectInput.addEventListener('click', () => {
+        perfectInput.removeAttribute('readonly');
+        perfectInput.focus();
+    });
+
+    perfectInput.addEventListener('input', () => {
+        if (perfectInput.value.trim() === '4') {
+            secretBox.style.display = 'flex';
+        } else {
+            secretBox.style.display = 'none';
+        }
+        adjustInputSize(perfectInput); // Adjust size while typing
+    });
+
+    perfectInput.addEventListener('blur', () => {
+        if (perfectInput.value.trim() !== '4') {
+            perfectInput.value = 'juicy fried';
+            perfectInput.setAttribute('readonly', 'true');
+        }
+        adjustInputSize(perfectInput); // Reset size if changed
+    });
+
+    // Hide secret-box and reset all states when clicking outside mainContainer
+    document.addEventListener('click', (event) => {
+        if (!mainContainer.contains(event.target)) {
+            secretBox.style.display = 'none';
+            perfectInput.value = 'juicy fried';
+            perfectInput.setAttribute('readonly', 'true');
+            adjustInputSize(perfectInput);
+            clickOrder = [];
+        }
+    });
+    </script>
 
 </body>
 </html>
