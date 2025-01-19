@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+        
+        .section {
+            padding: 20px;
+            min-height: 100vh;
+            background: #fff;
+            color: #333;
+            border: 0; /* Pehle se set borders ko remove karne ke liye */
+            border-bottom: 12px solid; /* Border thickness set karen */
+            border-image: linear-gradient(135deg, #3498db, #8e44ad) 1;
+        }
+
+        .section h1 {
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .ZingerAbout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            background: white;
+            gap: 10%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .ZingerAbout p {
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        .gradient-image {
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            aspect-ratio: 16/9; /* Optional: Image ratio */
+        }
+
+        #InputfieldValue {
+            border: none;
+            border-bottom: 0px solid black;
+            font-family: inherit;
+            font-size: inherit;
+            text-align: center;
+            display: inline-block;
+            width: auto; /* Auto-adjust width */
+        }
+
+        .secret-box {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .secret-box-recipy {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .secret-box-recipy a {
+            text-decoration: none;
+        }
+        
+        #ReciImageTag img {
+            width: 200px;
+            height: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        #hyperlinksContainer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Individual Button Styles */
+        .A1 {
+            background-color: #3498db;
+            color: white;
+            border: 2px solid #2980b9;
+        }
+
+        .A1:hover {
+            background-color: #2980b9;
+        }
+
+        .A2 {
+            background-color: #2ecc71;
+            color: white;
+            border: 2px solid #27ae60;
+        }
+
+        .A2:hover {
+            background-color: #27ae60;
+        }
+
+        .A3 {
+            background-color: #e74c3c;
+            color: white;
+            border: 2px solid #c0392b;
+        }
+
+        .A3:hover {
+            background-color: #c0392b;
+        }
+
+        .A4 {
+            background-color: #f1c40f;
+            color: white;
+            border: 2px solid #f39c12;
+        }
+
+        .A4:hover {
+            background-color: #f39c12;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1151px) {
+
+          .ZingerAbout {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-start;
+              align-items: center;
+              gap: 0px;
+          }
+          
+          .gradient-image {
+              width: 100%;
+              max-width: 100vw;
+              height: auto;
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              aspect-ratio: 16/9; /* Optional: Image ratio */
+              border-radius: 8px 8px 0px 0px;
+          }
+
+          .ZingerAbout p {
+              line-height: 1.5;
+              order: 2;
+              background: #fff;
+              padding-top: 15px;
+              padding-right: 15px;
+              border-radius: 0px 10px 0px 0px;
+          }
+        }
+    </style>
+</head>
+<body>
+
+	<div class="section zingerBurger" >
+        <h1>Zinger Burger</h1>
+        <div class="ZingerAbout"></div>
+        <p id="mainContainer">
+            <input type="text" id="InputfieldValue" value=""> <span id="contentCopy"></span>
+        </p>
+        <div class="gradient-image" id="gradientImage" style=""></div>
+    </div>
+    <div class="secret-box">
+        <div class="secret-box-recipy">
+            <h3 id="RespiName"></h3>
+            <div id="hyperlinksContainer"></div> <!-- Dynamic Links yahan add honge -->
+            <a id="ReciImageTag" href="">
+                <img id="ReciImage" src="" alt="Thumbnail Image" />
+            </a>
+            <table>
+                <tr>
+                    <th>Items</th>
+                    <th>Grams</th>
+                </tr>
+                <!-- Dynamic rows yahan insert honge -->
+            </table>
+        </div>
+    </div>
+
+<script>
+// Global variable to store selectedItem
+let selectedItem = null;
+
+// Data for Zinger Burger
+const datas = [
+    {
+        "backbroundImageValue": "background: linear-gradient(to left, rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU'); background-size: cover; background-position: center; background-repeat: no-repeat;",
+        "TiltId": "mniq",
+        "1stparagraph": "Zinger Burger ek crispy aur",
+        "2ndparagraph": "chicken patty ka laziz combination hai jo soft aur freshly toasted bun ke darmiyan serve hota hai. Is mein creamy mayonnaise, crunchy lettuce, aur flavorful spices ka perfect blend hota hai jo har bite ko irresistible banata hai. Ye burger apne unique texture aur ",
+        "3rdparagraph": "taste ki wajah se har fast-food lover ke liye ek favorite treat hai.",
+        "input1stValue": "juicy fried",
+        "input2ndValue": "pk2",
+        "contentCopyValue": "mouthwatering",
+        "1stHyperlinkBtnValue": "Ali , https://via.placeholder.com/800",
+        "2ndHyperlinkBtnValue": "Raju , https://via.placeholder.com/800",
+        "3rdHyperlinkBtnValue": "Kashif , https://via.placeholder.com/800",
+        "4thHyperlinkBtnValue": "Nouman , https://via.placeholder.com/800",
+        "item1": "Chilli Sauce , 6 kg",
+        "item2": "Zera , 50 gm",
+        "item3": "Salt , 170 gm",
+        "RespiNameValue": "Zinger Marination",
+        "RecpiImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU"
+    },
+    {
+        "backbroundImageValue": "background: linear-gradient(to left, rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU'); background-size: cover; background-position: center; background-repeat: no-repeat;",
+        "TiltId": "tday8",
+        "1stparagraph": "Zinger Burger ek crispy aur juicy",
+        "2ndparagraph": "chicken patty ka laziz combination hai jo soft aur freshly toasted bun ke darmiyan serve hota hai. Is mein creamy mayonnaise, crunchy lettuce, aur flavorful spices ka perfect blend hota hai jo har bite ko irresistible banata hai. Ye burger apne unique texture aur ",
+        "3rdparagraph": "taste ki wajah se har fast-food lover ke liye ek favorite treat hai.",
+        "input1stValue": "fried",
+        "input2ndValue": "pk1",
+        "contentCopyValue": "mouthwatering",
+        "1stHyperlinkBtnValue": "Ali , https://via.placeholder.com/800",
+        "2ndHyperlinkBtnValue": "Raju , https://via.placeholder.com/800",
+        "3rdHyperlinkBtnValue": "Kashif , https://via.placeholder.com/800",
+        "4thHyperlinkBtnValue": "Nouman , https://via.placeholder.com/800",
+        "item1": "Gol Grand Red Chilli , 6 kg",
+        "item2": "Dhania Pdr , 50 gm",
+        "item3": "China Salt , 50 gm",
+        "RespiNameValue": "Zinger Marination",
+        "RecpiImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU"
+    },
+];
+
+// Function to dynamically create hyperlinks from data
+function createHyperlinks(data) {
+    const container = document.getElementById('hyperlinksContainer');
+    container.innerHTML = ''; // Clear any existing links
+
+    let count = 1; // Counter for dynamic class names
+    for (const key in data) {
+        if (key.endsWith("HyperlinkBtnValue")) {
+            const hyperlinkValue = data[key];
+            if (hyperlinkValue) {
+                const [text, url] = hyperlinkValue.split(',').map(item => item.trim());
+                const anchorTag = document.createElement('a');
+                anchorTag.className = `A${count}`; // Dynamic class name
+                anchorTag.href = url;
+                anchorTag.textContent = text;
+                container.appendChild(anchorTag);
+                count++;
+            }
+        }
+    }
+}
+
+// Function to dynamically create table rows from data
+function createTableRows(data) {
+    const table = document.querySelector('table');
+    const tbody = table.querySelector('tbody') || document.createElement('tbody');
+    table.appendChild(tbody);
+
+    for (const key in data) {
+        if (key.startsWith("item")) {
+            const itemValue = data[key];
+            if (itemValue) {
+                const [itemName, itemWeight] = itemValue.split(',').map(item => item.trim());
+                const row = document.createElement('tr');
+                const itemCell = document.createElement('td');
+                const weightCell = document.createElement('td');
+                itemCell.textContent = itemName;
+                weightCell.textContent = itemWeight;
+                row.appendChild(itemCell);
+                row.appendChild(weightCell);
+                tbody.appendChild(row);
+            }
+        }
+    }
+}
+
+// Function to dynamically set RespiName
+function setRespiName(data) {
+    const respiNameElement = document.getElementById('RespiName');
+    if (data.RespiNameValue) {
+        respiNameElement.textContent = data.RespiNameValue;
+    }
+}
+
+// Function to dynamically set Recipe Image URL
+function setRecpiImage(data) {
+    const reciImageTag = document.getElementById('ReciImageTag');
+    const reciImage = document.getElementById('ReciImage');
+
+    if (data.RecpiImageURL) {
+        reciImageTag.href = data.RecpiImageURL; // Set <a> tag href
+        reciImage.src = data.RecpiImageURL;    // Set <img> tag src
+    }
+}
+
+// Function to extract TiltId from URL
+function getTiltIdFromUrl() {
+    const url = window.location.href;
+    const params = new URLSearchParams(new URL(url).search);
+    return params.get('item');
+}
+
+// Function to set the content on the page based on TiltId
+function setPageContent() {
+    const tiltId = getTiltIdFromUrl();
+    if (!tiltId) return;
+
+    const dataItem = datas.find(item => item.TiltId === tiltId);
+    if (dataItem) {
+        const gradientImage = document.getElementById('gradientImage');
+        gradientImage.style = dataItem.backbroundImageValue;
+
+        const mainContainer = document.getElementById('mainContainer');
+        const existingContent = mainContainer.innerHTML;
+        mainContainer.innerHTML = `${dataItem["1stparagraph"]} ${existingContent}`;
+
+        const inputField = document.getElementById('InputfieldValue');
+        inputField.value = dataItem.input1stValue;
+
+        const contentCopy = document.getElementById('contentCopy');
+        contentCopy.insertAdjacentText('beforebegin', ` ${dataItem["2ndparagraph"]} `);
+        contentCopy.innerText = dataItem.contentCopyValue;
+        contentCopy.insertAdjacentText('afterend', ` ${dataItem["3rdparagraph"]}`);
+        adjustInputSize(inputField);
+
+        selectedItem = dataItem;
+        setSelectedItem(dataItem);
+
+        createHyperlinks(dataItem);
+        createTableRows(dataItem);
+        setRespiName(dataItem);
+        setRecpiImage(dataItem);
+    }
+}
+
+// Function to adjust the size of the input field dynamically based on its content
+function adjustInputSize(input) {
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.fontFamily = getComputedStyle(input).fontFamily;
+    tempSpan.style.fontSize = getComputedStyle(input).fontSize;
+    tempSpan.innerText = input.value;
+    document.body.appendChild(tempSpan);
+    input.style.width = `${tempSpan.offsetWidth + 2}px`;
+    input.style.height = `${tempSpan.offsetHeight}px`;
+    document.body.removeChild(tempSpan);
+}
+
+// Function to handle selectedItem logic
+function setSelectedItem(selectedItem) {
+    if (selectedItem) {
+        document.getElementById('InputfieldValue').value = selectedItem.input1stValue;
+        document.getElementById('contentCopy').innerText = selectedItem.contentCopyValue;
+
+        const input2ndValue = selectedItem.input2ndValue;
+        const perfectInput = document.getElementById('InputfieldValue');
+        const secretBox = document.querySelector('.secret-box');
+
+        perfectInput.addEventListener('input', () => {
+            if (perfectInput.value.trim() === input2ndValue) {
+                secretBox.style.display = 'flex';
+            } else {
+                secretBox.style.display = 'none';
+            }
+        });
+
+        document.getElementById('contentCopy').addEventListener('copy', () => {
+            secretBox.style.display = 'flex';
+        });
+    }
+}
+
+// Hide secret-box and reset all states when clicking outside mainContainer
+const mainContainer = document.getElementById('mainContainer');
+document.addEventListener('click', (event) => {
+    const secretBox = document.querySelector('.secret-box');
+    const perfectInput = document.getElementById('InputfieldValue');
+
+    if (!mainContainer.contains(event.target)) {
+        secretBox.style.display = 'none';
+        if (selectedItem) {
+            perfectInput.value = selectedItem.input1stValue;
+        }
+        adjustInputSize(perfectInput);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', setPageContent);
+const perfectInput = document.getElementById('InputfieldValue');
+adjustInputSize(perfectInput);
+
+</script>
+
+
+
+</body>
+</html>
