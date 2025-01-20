@@ -98,16 +98,17 @@
         }
         
         .item-links a.GrillBurger {
-          color: #fff !important; /* Text color */
-          background-size: cover; /* Default background size */
-          background-position: center; /* Background ka position center kare */
-          background-attachment: scroll; /* Background scroll kare */
-          background-repeat: no-repeat; /* Background repeat nahi kare */
-          transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: cover;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
         }
         
         .item-links a.GrillBurger:hover {
-          transform: scale(1.1); /* Background zoom kare */
+          background-size: 120% 120%;
         }
         
         .item-links a.crispyFries {
