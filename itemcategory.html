@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiQ services Items Category</title>
+    <style>
+        .section {
+            padding: 20px;
+            min-height: 100vh;
+            background-color: #32cd9c;
+        }
+
+        .services {
+            background: #fff;
+            color: #333;
+            border: 0; /* Pehle se set borders ko remove karne ke liye */
+            border-bottom: 12px solid; /* Border thickness set karen */
+            border-image: linear-gradient(135deg, #3498db, #8e44ad) 1;
+        }
+
+        .services h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .services h1 {
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .item-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item-links a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            border: 2px solid #8e44ad;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+            height: 150px;
+            width: 250px;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-family: "Bebas Neue", serif;
+            font-weight: 400;
+        }
+
+        .item-links a:hover {
+            background: #8e44ad;
+            color: #fff;
+        }
+        
+        .item-links a.ZingerBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.ZingerBurger:hover {
+          background-size: 120% 120%;
+        }
+        
+        .item-links a.SamashBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 150% 150%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out, font-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.SamashBurger:hover {
+          background-size: 170% 170%;
+          /* font-size: 2.5rem; */
+        }
+        
+        .item-links a.GrillBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.GrillBurger:hover {
+          background-size: 120% 120%;
+        }
+        
+        .item-links a.crispyFries {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.crispyFries:hover {
+          background-size: 120% 120%;
+        }
+        
+        .item-links a.wings {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.wings:hover {
+          background-size: 120% 120%;
+        }
+        
+        .item-links a.desserts {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
+        }
+        
+        .item-links a.desserts:hover {
+          background-size: 120% 120%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 6th Div: Services -->
+    <div class="section services" id="services">
+        <!-- Default HTML -->
+        <h1 id="categories"></h1>
+        <div class="item-links"></div> <!-- Dynamic Links yahan add honge -->
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Data in required format
+        const datas = [
+          { 
+            "burgers": "Burgers , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU , https://allexampletemplate.blogspot.com",
+            "burger1": "Zinger Burger , mn7ni4Q , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU , file:///D:/New%20Text%20DocumentTwo.html",
+            "burger2": "Samash Burger , tday8 , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU , file:///D:/New%20Text%20DocumentTwo.html",
+            "burger3": "Grill Burger , cg5Geo95 , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU , https://website2l.github.io/allweb/burgers.html",
+          },
+          { "broasts": "Broasts , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh9GGjkNnEWjsuFXhKp7Hfj8A0HYsy-Nl4tA&usqp=CAU , https://allexampletemplate.blogspot.com" },
+          { "pastadishs": "Pastas , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4NQcbUb6QvARp-b69L7ULKzr3hxgh1C4rTQ&usqp=CAU , https://allexampletemplate.blogspot.com" },
+          { "crispyFries": "Crispy Fries , https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmxtTFDgvHN7sbwbBP5xibfRQ21Q13rf2cJw&usqp=CAU , https://allexampletemplate.blogspot.com" },
+          { "wings": "Wings , https://www.fit.nl/wp-content/uploads/2019/03/xchicken-wings-oven.jpg.pagespeed.ic.lKgOXlg4ds.webp , https://allexampletemplate.blogspot.com" },
+          { "desserts": "Desserts , https://www.foodandwine.com/thmb/byVZsChjc0hG9nU0CiUeESKZvxg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Angel-Food-Cake-with-Three-Berry-Compote-FT-RECIPE0323-541a780b871441e0ab14383ee38acc44.jpg , https://allexampletemplate.blogspot.com" }
+        ];
+        
+        // Function to dynamically generate categories and links
+        function generateDynamicContent(category) {
+            const categoryData = datas.find(data => data[category]); // Find selected category data
+            if (!categoryData) return; // If category not found, exit
+
+            const categoryDetails = categoryData[category].split(" , "); // Split data into title, image, and link
+            const title = categoryDetails[0];
+            const backgroundImage = categoryDetails[1];
+            const mainLink = categoryDetails[2];
+
+            // Update <h1> category title
+            const categoryHeader = document.getElementById('categories');
+            categoryHeader.textContent = title;
+
+            // Update item links dynamically
+            const itemLinksDiv = document.querySelector('.item-links');
+            itemLinksDiv.innerHTML = ""; // Clear existing links
+
+            // Loop through the additional items (if any)
+            for (const [key, value] of Object.entries(categoryData)) {
+                if (key === category) continue; // Skip the main category
+
+                const [itemTitle, uniqueID, itemImage, itemLink] = value.split(" , ");
+                const anchor = document.createElement('a');
+                anchor.id = `${category}Types`; // e.g., burgersTypes
+                anchor.className = itemTitle.replace(/\s+/g, ''); // e.g., Zinger-Burger
+                // Updated camelCase logic for className
+                //anchor.className = itemTitle
+                    //.toLowerCase() // Convert to lowercase
+                    //.replace(/\s+(.)/g, (_, char) => char.toUpperCase()) // Convert to camelCase
+                    //.replace(/\s+/g, ''); // Remove remaining spaces
+                // Updated camelCase logic for className
+                //anchor.className = itemTitle
+                    //.split(/\s+/)
+                    //.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    //.join('');
+
+                anchor.href = `${itemLink}?${itemTitle.toLowerCase().replace(/\s+/g, '-') + '=' + uniqueID}`; // Append uniqueID
+                anchor.style.backgroundImage = `
+                    linear-gradient(To left, rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)), 
+                    url('${itemImage}')
+                `;
+                anchor.textContent = itemTitle;
+
+                // Append to item-links div
+                itemLinksDiv.appendChild(anchor);
+            }
+        }
+
+        // Function to get category from URL
+        function getCategoryFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('categories'); // Get value of 'categories' parameter
+        }
+
+        // Get category from URL and render content
+        const selectedCategory = getCategoryFromURL();
+        if (selectedCategory) {
+            generateDynamicContent(selectedCategory);
+        } else {
+            document.getElementById('categories').textContent = "No category selected";
+        }
+    </script>
+</body>
+</html>
