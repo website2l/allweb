@@ -207,7 +207,7 @@
 
         const servicesContainer = document.querySelector(".services-links");
         // const baseURL = "https://website2l.github.io/allweb/NiQ-services-items-category.html";
-        const baseURL = "file:///D:/DocumentOne.html";
+        const baseURL = "https://website2l.github.io/allweb/NiQ-servies-items.html";
 
         servicesData.forEach(service => {
             // Check if the service's category matches the URL category
@@ -272,7 +272,7 @@ function updateServicesSection() {
                 if (service.category === category) {
                     // Convert name to lowercase and replace spaces with hyphens
                     const formattedName = service.name.toLowerCase().replace(/\s+/g, "-");
-                    const finalURL = `file:///C:/Users/hp/Desktop/New%20folder/A3.html?categories=${formattedName}`;
+                    const finalURL = `https://website2l.github.io/allweb/NiQ-servies-items.html?categories=${formattedName}`;
 
                     const aTag = document.createElement("a");
                     aTag.href = finalURL;
