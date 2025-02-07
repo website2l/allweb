@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NiQ Servies Item Content</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png" sizes="180x180">
     
     <!-- High-Resolution Icon for Web Apps -->
     <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png" sizes="1024x1024" type="image/png">
+    
     <style>
         * {
             margin: 0;
@@ -20,6 +21,231 @@
 
         body {
             background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+        }
+            
+            .ClassMenuOpenBtn {
+                display: none;
+                position: fixed; /* Fixed positioning ensures it's always accessible */
+                top: 10px;
+                right: 10px;
+                z-index: 100000; /* Ensure it stays on top */
+                justify-content: flex-end;
+                align-items: center;
+                background: none;
+                color: white;
+                border: 0px solid #fff;
+                padding: 1px 6px;
+                font-size: 32px;
+                border-radius: 4px;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+          }
+            
+            .CloseMenuBtn {
+              display: none;
+              background: none;
+              text-align: center;
+              font-size: 32px;
+            }
+
+        header button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header button:hover {
+            background-color: #1abc9c;
+            /* transform: scale(1.1); */
+        }
+
+        header button.active {
+            background-color: #1abc9c;
+            font-weight: bold;
+        }
+
+        header a {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        header a:hover {
+            background-color: #1abc9c;
+        }
+
+        header a.active {
+            background-color: #1abc9c;
+            font-weight: bold;
+        }
+        
+        /* header a[data-section="services"] {
+            background-color: #1abc9c;
+            font-weight: bold;
+        } */
+
+        /* Responsive Design */
+        @media screen and (max-width: 950px) {
+            .section {
+                padding: 20px;
+                min-height: 100vh;
+                background-color: #32cd9c;
+            }
+            header {
+                background-color: #3498db;
+                color: white;
+                padding: 0px;
+                display: none;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: left;
+                gap: 0px;
+                height: 100%;
+                width: 100%;
+                z-index: 100000;
+                position: fixed;
+                top: ;
+                left: ;
+                transform: translateX(-100%); /* Hidden by default */
+                transition: transform 0.6s ease-in-out; /* Smooth transition */
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%); /* Header left se aayega */
+                }
+                to {
+                    transform: translateX(0); /* Final position */
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+            
+            .slide-in {
+                animation: slideIn 0.6s forwards; /* Slide-in animation */
+            }
+            
+            .slide-out {
+                animation: slideOut 0.6s forwards; /* Slide-out animation */
+            }
+
+            header button {
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 0px;
+                cursor: pointer;
+                text-align: left;
+                border-bottom: 1px solid #fff;
+                outline: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            header button:hover {
+                background-color: #1abc9c;
+                /* transform: scale(1.1); */
+            }
+
+    		header a {
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 0px;
+                cursor: pointer;
+                text-align: left;
+                border-bottom: 1px solid #fff;
+                outline: none;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+    		}
+
+    		header a:hover {
+                background-color: #1abc9c;
+                /* transform: scale(1.1); */
+    		}
+
+            header a.active {
+                background-color: #1abc9c;
+                font-weight: bold;
+            }
+            
+            .ClassMenuOpenBtn {
+                display: flex;
+                position: fixed; /* Fixed positioning ensures it's always accessible */
+                top: 10px;
+                right: 10px;
+                z-index: 100000; /* Ensure it stays on top */
+                justify-content: flex-end;
+                align-items: center;
+                background: none;
+                color: white;
+                border: 0px solid #fff;
+                padding: 1px 6px;
+                font-size: 32px;
+                border-radius: 4px;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+          	}
+            
+            header .CloseMenuBtn {
+              background: black;
+              text-align: center;
+              font-size: 32px;
+            }
+        }
+        
+        .WhatsappScreenFloat {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+        	z-index: 1;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 4rem;
+            transition: background 0.3s, color 0.3s;
+            color: #fff;
+            background: #25D366;
+            font-size: 2rem; /* Icon size adjust kare */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, color;
+        }
+
+        .WhatsappScreenFloat:hover {
+            background-color: #fff;
+            color: #25D366;
         }
         
         .section {
@@ -37,6 +263,12 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
             font-size: 2rem;
+        }
+        
+        .section h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            margin-top: 40px;
         }
 
         .ZingerAbout {
@@ -206,6 +438,23 @@
     </style>
 </head>
 <body>
+	<a class="WhatsappScreenFloat" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    <button id="OpenMunBtn" class="ClassMenuOpenBtn">
+    	<i class="fa-solid fa-bars"></i>
+    </button>
+        
+    <header>
+        <button class="CloseMenuBtn" id="closeMenuBtn"><i class="fa-solid fa-x"></i></button>
+        <a href="https://allexampletemplate.blogspot.com/?section=portfolio" data-section="portfolio">Portfolio</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=experience" data-section="experience">Experience</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=education" data-section="education">Education</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=certification" data-section="certification">Certification</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=skills" data-section="skills">Skills</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=services" data-section="services">Services</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=social-accounts" data-section="social-accounts">Social Accounts</a>
+        <a href="https://allexampletemplate.blogspot.com/?section=contact" data-section="contact">Contact</a>
+        <!-- <button data-section="footer">Footer</button> -->
+    </header>
 
 	<div class="section zingerBurger" >
         <h1 id="ItemHeading"></h1>
@@ -231,6 +480,41 @@
             </table>
         </div>
     </div>
+
+    
+    <script>
+      // Buttons aur header elements ko select karte hain
+      const openMenuBtn = document.getElementById("OpenMunBtn");
+      const closeMenuBtn = document.getElementById("closeMenuBtn");
+      const header = document.querySelector("header");
+      const navLinks = document.querySelectorAll("header a"); // Sare <a> tags ko select karte hain
+      
+      // Open button click event
+      openMenuBtn.addEventListener("click", () => {
+          header.style.display = "flex";
+          header.classList.remove("slide-out");
+          header.classList.add("slide-in");
+          // openMenuBtn.style.display = "none";  Open button ko hide karte hain
+          closeMenuBtn.style.display = "block"; // Close button ko show karte hain
+      });
+      
+      // Close button click event
+      closeMenuBtn.addEventListener("click", () => {
+          header.classList.remove("slide-in");
+          header.classList.add("slide-out");
+          // closeMenuBtn.style.display = "none"; // Close button ko hide karte hain
+          openMenuBtn.style.display = "block"; // Open button ko show karte hain
+      });
+      
+      // <a> tag click event
+      navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+              header.classList.remove("slide-in");
+              header.classList.add("slide-out");
+              closeMenuBtn.style.display = "none"; // Close button ko hide karte hain
+          });
+      });
+    </script>
 
 <script>
 // Global variable to store selectedItem
@@ -499,8 +783,6 @@ document.addEventListener('DOMContentLoaded', setPageContent);
 const perfectInput = document.getElementById('InputfieldValue');
 adjustInputSize(perfectInput);
 </script>
-
-
 
 </body>
 </html>
