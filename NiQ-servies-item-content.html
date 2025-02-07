@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiQ Servies Item Content</title>
+    <title>NiQ services Items Category</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
@@ -34,426 +34,248 @@
             font-size: 2rem;
         }
 
-        .ZingerAbout {
+        .item-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: flex-start;
-            background: white;
-            gap: 10%;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .ZingerAbout p {
-            max-width: 600px;
-            line-height: 1.5;
-        }
-        .gradient-image {
-            border-radius: 8px;
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            aspect-ratio: 16/9; /* Optional: Image ratio */
-        }
-
-        #InputfieldValue {
-            border: none;
-            border-bottom: 0px solid black;
-            font-family: inherit;
-            font-size: inherit;
-            text-align: center;
-            display: inline-block;
-            width: auto; /* Auto-adjust width */
-        }
-
-        .secret-box {
-            display: none;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            min-height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
         }
 
-        .secret-box-recipy {
-            background: #fff;
-            padding: 20px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        .secret-box-recipy a {
+        .item-links a {
+            color: #8e44ad;
             text-decoration: none;
-        }
-        
-        #ReciImageTag img {
-            width: 200px;
-            height: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        #hyperlinksContainer a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            text-decoration: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            border: 2px solid #8e44ad;
             border-radius: 5px;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s, color 0.3s;
+            height: 150px;
+            width: 250px;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-family: "Bebas Neue", serif;
+            font-weight: 400;
         }
 
-        /* Individual Button Styles */
-        .A1 {
-            background-color: #3498db;
-            color: white;
-            border: 2px solid #2980b9;
+        .item-links a:hover {
+            background: #8e44ad;
+            color: #fff;
         }
-
-        .A1:hover {
-            background-color: #2980b9;
+        
+        .item-links a.ZingerBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
         }
-
-        .A2 {
-            background-color: #2ecc71;
-            color: white;
-            border: 2px solid #27ae60;
+        
+        .item-links a.ZingerBurger:hover {
+          background-size: 120% 120%;
         }
-
-        .A2:hover {
-            background-color: #27ae60;
+        
+        .item-links a.SamashBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: 100% 100%;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out, font-size 0.2s ease-in-out; /* Smooth transition */
         }
-
-        .A3 {
-            background-color: #e74c3c;
-            color: white;
-            border: 2px solid #c0392b;
+        
+        .item-links a.SamashBurger:hover {
+          background-size: 120% 120%;
+          /* font-size: 2.5rem; */
         }
-
-        .A3:hover {
-            background-color: #c0392b;
+        
+        .item-links a.GrillBurger {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: cover;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
         }
-
-        .A4 {
-            background-color: #f1c40f;
-            color: white;
-            border: 2px solid #f39c12;
+        
+        .item-links a.GrillBurger:hover {
+          background-size: 120% 120%;
         }
-
-        .A4:hover {
-            background-color: #f39c12;
+        
+        .item-links a.LavaCake {
+          color: #fff !important;
+          /* color: transparent; */
+          background-size: cover;
+          background-position: center;
+          background-attachment: scroll;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in-out; /* Smooth transition */
         }
-
-        /* Responsive Design */
-        @media screen and (max-width: 1151px) {
-
-          .ZingerAbout {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: flex-start;
-              align-items: center;
-              gap: 0px;
-          }
-          
-          .gradient-image {
-              width: 100%;
-              max-width: 100vw;
-              height: auto;
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              aspect-ratio: 16/9; /* Optional: Image ratio */
-              border-radius: 8px 8px 0px 0px;
-          }
-
-          .ZingerAbout p {
-              line-height: 1.5;
-              order: 2;
-              background: #fff;
-              padding-top: 15px;
-              padding-right: 15px;
-              border-radius: 0px 10px 0px 0px;
-          }
+        
+        .item-links a.LavaCake:hover {
+          background-size: 120% 120%;
         }
     </style>
 </head>
 <body>
-
-	<div class="section zingerBurger" >
-        <h1 id="ItemHeading"></h1>
-        <div class="ZingerAbout"></div>
-        <p id="mainContainer">
-            <input type="text" id="InputfieldValue" value=""> <span id="contentCopy"></span>
-        </p>
-        <div class="gradient-image" id="gradientImage" style=""></div>
-    </div>
-    <div class="secret-box">
-        <div class="secret-box-recipy">
-            <h3 id="RespiName"></h3>
-            <div id="hyperlinksContainer"></div> <!-- Dynamic Links yahan add honge -->
-            <a id="ReciImageTag" href="">
-                <img id="ReciImage" src="" alt="Thumbnail Image" />
-            </a>
-            <table>
-                <tr>
-                    <th>Items</th>
-                    <th>Grams</th>
-                </tr>
-                <!-- Dynamic rows yahan insert honge -->
-            </table>
-        </div>
+    <!-- 6th Div: Services -->
+    <div class="section services" id="services">
+        <!-- Default HTML -->
+        <h1 id="categories"></h1>
+        <div class="item-links"></div> <!-- Dynamic Links yahan add honge -->
     </div>
 
-<script>
-// Global variable to store selectedItem
-let selectedItem = null;
+    
 
-// Data for Zinger Burger
+    <!-- JavaScript -->
+    <script>
+        // Naya Updated JS Code
 const datas = [
-    {
-        "TiltId": "mn7ni4Q",
-        "ItemHdName": "Zinger Burger",
-        "ItemMarinationName": "Zinger Marination",
-        "backbroundImageValue": "background: linear-gradient(to left, rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU'); background-size: cover; background-position: center; background-repeat: no-repeat;",
-        "1stparagraph": "Zinger Burger ek crispy aur",
-        "2ndparagraph": "chicken patty ka laziz combination hai jo soft aur freshly toasted bun ke darmiyan serve hota hai. Is mein creamy mayonnaise, crunchy lettuce, aur flavorful spices ka perfect blend hota hai jo har bite ko irresistible banata hai. Ye burger apne unique texture aur ",
-        "3rdparagraph": "taste ki wajah se har fast-food lover ke liye ek favorite treat hai.",
-        "input1stValue": "juicy fried",
-        "input2ndValue": "pk2",
-        "contentCopyValue": "mouthwatering",
-        "1stHyperlinkBtnValue": "Ali , https://via.placeholder.com/800",
-        "2ndHyperlinkBtnValue": "Raju , https://via.placeholder.com/800",
-        "3rdHyperlinkBtnValue": "Kashif , https://via.placeholder.com/800",
-        "4thHyperlinkBtnValue": "Nouman , https://via.placeholder.com/800",
-        "item1": "Chilli Sauce , 6 kg",
-        "item2": "Zera , 50 gm",
-        "item3": "Salt , 170 gm",
-        "RespiNameValue": "Zinger Marination",
-        "RecpiImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU"
-    },
-    {
-        "TiltId": "tday8",
-        "ItemHdName": "Leg Pec",
-        "ItemMarinationName": "Leg Pec Marination",
-        "backbroundImageValue": "background: linear-gradient(to left, rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU'); background-size: cover; background-position: center; background-repeat: no-repeat;",
-        "1stparagraph": "Zinger Burger ek crispy aur juicy",
-        "2ndparagraph": "chicken patty ka laziz combination hai jo soft aur freshly toasted bun ke darmiyan serve hota hai. Is mein creamy mayonnaise, crunchy lettuce, aur flavorful spices ka perfect blend hota hai jo har bite ko irresistible banata hai. Ye burger apne unique texture aur ",
-        "3rdparagraph": "taste ki wajah se har fast-food lover ke liye ek favorite treat hai.",
-        "input1stValue": "fried",
-        "input2ndValue": "pk1",
-        "contentCopyValue": "mouthwatering",
-        "1stHyperlinkBtnValue": "Ali , https://via.placeholder.com/800",
-        "2ndHyperlinkBtnValue": "Raju , https://via.placeholder.com/800",
-        "3rdHyperlinkBtnValue": "Kashif , https://via.placeholder.com/800",
-        "4thHyperlinkBtnValue": "Nouman , https://via.placeholder.com/800",
-        "item1": "Gol Grand Red Chilli , 6 kg",
-        "item2": "Dhania Pdr , 50 gm",
-        "item3": "China Salt , 50 gm",
-        "RespiNameValue": "Zinger Marination",
-        "RecpiImageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU"
-    },
+  { 
+    category: "burgers",
+    name: "Zinger Burger",
+    TilId: "mn7ni4Q",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe7ILQSkTE4XlsM6yNsUIt4y-nIKOF9EdOgA&usqp=CAU",
+    gradient: "rgba(255, 0, 0, 0.3), rgba(100, 0, 0, 0.2)",
+  },
+  {
+    category: "burgers",
+    name: "Samash Burger",
+    TilId: "tday8",
+    image: "https://www.foodandwine.com/thmb/0SHv4wzGz7OBOcYtVbRWQeuR2CQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg",
+    gradient: "rgba(255, 0, 0, 0.3), rgba(100, 0, 0, 0.2)",
+  },
+  {
+    category: "burgers",
+    name: "Grill Burger",
+    TilId: "cg5Geo95",
+    image: "https://www.marionskitchen.com/wp-content/uploads/2019/10/Thai-Grilled-Chicken-Sandwich2.jpg",
+    gradient: "rgba(255, 0, 0, 0.3), rgba(100, 0, 0, 0.2)",
+  },
+  { 
+    category: "broasts",
+    name: "Crispy Broast",
+    TilId: "vh7W",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh9GGjkNnEWjsuFXhKp7Hfj8A0HYsy-Nl4tA&usqp=CAU",
+    gradient: "rgba(255, 0, 0, 0.3), rgba(100, 0, 0, 0.2)",
+  },
+  {
+    category: "broasts",
+    name: "Steam Broast",
+    TilId: "vh7W",
+    image: "https://static01.nyt.com/images/2021/09/22/dining/17Chicken1/merlin_194652204_57d57f32-c1b4-442a-bcac-9527ab617e35-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
+    gradient: "rgba(255, 0, 0, 0.3), rgba(100, 0, 0, 0.2)",
+  },
+  {
+    category: "cakes",
+    name: "Lava Cake",
+    TilId: "9oK7p",
+    image: "https://images.aws.nestle.recipes/resized/bd4b61de9035d59377d72c224a320cbd_Lava_Cake_1080_850.jpg",
+    gradient: "rgba(228, 43, 34, 0), rgba(228, 43, 34, 0.3)",
+  },
 ];
 
-// Function to dynamically create hyperlinks from data
-function createHyperlinks(data) {
-    const container = document.getElementById('hyperlinksContainer');
-    container.innerHTML = ''; // Clear any existing links
+// Function jo dynamic content generate karega
+function generateDynamicContent(category) {
+    const categoryData = datas.filter(item => item.category === category);
+    if (!categoryData.length) return;
+    
+    // ✅ Update <h1 id="categories"> with Category Name
+    const categoryHeader = document.getElementById("categories");
+    categoryHeader.textContent = category.charAt(0).toUpperCase() + category.slice(1); // First letter capital
 
-    let count = 1; // Counter for dynamic class names
-    for (const key in data) {
-        if (key.endsWith("HyperlinkBtnValue")) {
-            const hyperlinkValue = data[key];
-            if (hyperlinkValue) {
-                const [text, url] = hyperlinkValue.split(',').map(item => item.trim());
-                const anchorTag = document.createElement('a');
-                anchorTag.className = `A${count}`; // Dynamic class name
-                anchorTag.href = url;
-                anchorTag.textContent = text;
-                container.appendChild(anchorTag);
-                count++;
-            }
+    // ✅ Update items dynamically
+    const itemLinksDiv = document.querySelector(".item-links");
+    itemLinksDiv.innerHTML = "";
+
+    categoryData.forEach(item => {
+        const anchor = document.createElement("a");
+
+        // ✅ Generate Class Name (e.g., class="ZingerBurger", class="SamashBurger")
+        const className = item.name.replace(/\s+/g, ""); // Remove spaces
+        anchor.className = className; // Assign class name
+        
+        // anchor.href = `https://website2l.github.io/allweb/NiQ-servies-item-content.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.TilId}`;
+        
+        anchor.href = `file:///D:/DocumentTwo.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.TilId}`;
+        anchor.style.backgroundImage = `linear-gradient(To left, ${item.gradient}), url('${item.image}')`;
+        anchor.textContent = item.name;
+
+        itemLinksDiv.appendChild(anchor);
+    });
+}
+
+// URL se category extract karna
+function getCategoryFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("categories");
+}
+
+// Category select karke render karna
+const selectedCategory = getCategoryFromURL();
+if (selectedCategory) {
+    generateDynamicContent(selectedCategory);
+} else {
+    document.getElementById("categories").textContent = "No category selected";
+}
+    </script>
+
+    
+
+    <!-- JavaScript -->
+    <script type="text/plain">
+        document.addEventListener("DOMContentLoaded", async function () {
+    const sheetURL = "https://script.google.com/macros/s/AKfycbzIXiE91wo5ELKkRKerODYnsnZ8e1PZuCKz-hpuqfQEP-gWFJ_EyXBsMqjJH8Drw_DT/exec"; // Apni Web App URL yahan paste karein
+
+    try {
+        let response = await fetch(sheetURL);
+        let datas = await response.json(); // Google Sheet se JSON fetch karein
+        
+        function generateDynamicContent(category) {
+            const categoryData = datas.filter(item => item.category.toLowerCase() === category.toLowerCase());
+            if (!categoryData.length) return;
+            
+            document.getElementById("categories").textContent = category.charAt(0).toUpperCase() + category.slice(1);
+
+            const itemLinksDiv = document.querySelector(".item-links");
+            itemLinksDiv.innerHTML = "";
+
+            categoryData.forEach(item => {
+                const anchor = document.createElement("a");
+                const className = item.name.replace(/\s+/g, ""); 
+                anchor.className = className;
+                anchor.href = `file:///D:/DocumentTwo.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.tilId}`;
+                anchor.style.backgroundImage = `linear-gradient(To left, ${item.gradient}), url('${item.image}')`;
+                anchor.textContent = item.name;
+                itemLinksDiv.appendChild(anchor);
+            });
         }
-    }
-}
 
-// Function to dynamically create table rows from data
-function createTableRows(data) {
-    const table = document.querySelector('table');
-    const tbody = table.querySelector('tbody') || document.createElement('tbody');
-    table.appendChild(tbody);
-
-    for (const key in data) {
-        if (key.startsWith("item")) {
-            const itemValue = data[key];
-            if (itemValue) {
-                const [itemName, itemWeight] = itemValue.split(',').map(item => item.trim());
-                const row = document.createElement('tr');
-                const itemCell = document.createElement('td');
-                const weightCell = document.createElement('td');
-                itemCell.textContent = itemName;
-                weightCell.textContent = itemWeight;
-                row.appendChild(itemCell);
-                row.appendChild(weightCell);
-                tbody.appendChild(row);
-            }
+        function getCategoryFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get("categories");
         }
-    }
-}
 
-// Function to dynamically set RespiName based on ItemMarinationName
-function setRespiName(data) {
-    const respiNameElement = document.getElementById('RespiName');
-    if (data.ItemMarinationName) {
-        respiNameElement.textContent = data.ItemMarinationName; // Set marination name
-    }
-}
-
-// Function to dynamically set Recipe Image URL
-function setRecpiImage(data) {
-    const reciImageTag = document.getElementById('ReciImageTag');
-    const reciImage = document.getElementById('ReciImage');
-
-    if (data.RecpiImageURL) {
-        reciImageTag.href = data.RecpiImageURL; // Set <a> tag href
-        reciImage.src = data.RecpiImageURL;    // Set <img> tag src
-    }
-}
-
-// Function to extract TiltId from URL
-function getTiltIdFromUrl() {
-    const url = window.location.href;
-    const params = new URLSearchParams(new URL(url).search);
-    const tiltId = url.split('=').pop(); // Get the value after '=' sign, which is the TiltId
-    return tiltId;
-}
-
-// Function to set <h1> content based on TiltId
-function setItemHeading(dataItem) {
-    const itemHeading = document.getElementById('ItemHeading');
-    if (dataItem && dataItem.ItemHdName) {
-        itemHeading.textContent = dataItem.ItemHdName; // Set the heading text
-    } else {
-        itemHeading.textContent = "Default Heading"; // Fallback if no dataItem found
-    }
-}
-
-// Function to set the content on the page based on TiltId
-function setPageContent() {
-    const tiltId = getTiltIdFromUrl();
-    if (!tiltId) return;
-
-    const dataItem = datas.find(item => item.TiltId === tiltId);
-    if (dataItem) {
-        const gradientImage = document.getElementById('gradientImage');
-        gradientImage.style = dataItem.backbroundImageValue;
-
-        const mainContainer = document.getElementById('mainContainer');
-        const existingContent = mainContainer.innerHTML;
-        mainContainer.innerHTML = `${dataItem["1stparagraph"]} ${existingContent}`;
-
-        const inputField = document.getElementById('InputfieldValue');
-        inputField.value = dataItem.input1stValue;
-
-        const contentCopy = document.getElementById('contentCopy');
-        contentCopy.insertAdjacentText('beforebegin', ` ${dataItem["2ndparagraph"]} `);
-        contentCopy.innerText = dataItem.contentCopyValue;
-        contentCopy.insertAdjacentText('afterend', ` ${dataItem["3rdparagraph"]}`);
-        adjustInputSize(inputField);
-
-        selectedItem = dataItem;
-        setSelectedItem(dataItem);
-
-        createHyperlinks(dataItem);
-        createTableRows(dataItem);
-        setRespiName(dataItem);  // Set the marination name in <h3>
-        setRecpiImage(dataItem);
-
-        // Call setItemHeading() here
-        setItemHeading(dataItem);  // Update <h1> content based on dataItem
-    }
-}
-
-// Function to adjust the size of the input field dynamically based on its content
-function adjustInputSize(input) {
-    const tempSpan = document.createElement('span');
-    tempSpan.style.visibility = 'hidden';
-    tempSpan.style.fontFamily = getComputedStyle(input).fontFamily;
-    tempSpan.style.fontSize = getComputedStyle(input).fontSize;
-    tempSpan.innerText = input.value;
-    document.body.appendChild(tempSpan);
-    input.style.width = `${tempSpan.offsetWidth + 2}px`;
-    input.style.height = `${tempSpan.offsetHeight}px`;
-    document.body.removeChild(tempSpan);
-}
-
-// Function to handle selectedItem logic
-function setSelectedItem(selectedItem) {
-    if (selectedItem) {
-        document.getElementById('InputfieldValue').value = selectedItem.input1stValue;
-        document.getElementById('contentCopy').innerText = selectedItem.contentCopyValue;
-
-        const input2ndValue = selectedItem.input2ndValue;
-        const perfectInput = document.getElementById('InputfieldValue');
-        const secretBox = document.querySelector('.secret-box');
-
-        perfectInput.addEventListener('input', () => {
-            if (perfectInput.value.trim() === input2ndValue) {
-                secretBox.style.display = 'flex';
-            } else {
-                secretBox.style.display = 'none';
-            }
-        });
-
-        document.getElementById('contentCopy').addEventListener('copy', () => {
-            secretBox.style.display = 'flex';
-        });
-    }
-}
-
-// Hide secret-box and reset all states when clicking outside mainContainer
-const mainContainer = document.getElementById('mainContainer');
-document.addEventListener('click', (event) => {
-    const secretBox = document.querySelector('.secret-box');
-    const perfectInput = document.getElementById('InputfieldValue');
-
-    if (!mainContainer.contains(event.target)) {
-        secretBox.style.display = 'none';
-        if (selectedItem) {
-            perfectInput.value = selectedItem.input1stValue;
+        const selectedCategory = getCategoryFromURL();
+        if (selectedCategory) {
+            generateDynamicContent(selectedCategory);
+        } else {
+            document.getElementById("categories").textContent = "No category selected";
         }
-        adjustInputSize(perfectInput);
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
 });
-
-document.addEventListener('DOMContentLoaded', setPageContent);
-const perfectInput = document.getElementById('InputfieldValue');
-adjustInputSize(perfectInput);
-</script>
-
-
-
+    </script>
 </body>
 </html>
