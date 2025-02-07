@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiQ services Items</title>
+    <title>NiQ services Items Category</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
@@ -204,9 +204,7 @@ function generateDynamicContent(category) {
         const className = item.name.replace(/\s+/g, ""); // Remove spaces
         anchor.className = className; // Assign class name
         
-        // anchor.href = `https://website2l.github.io/allweb/NiQ-servies-item-content.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.TilId}`;
-        
-        anchor.href = `file:///D:/DocumentTwo.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.TilId}`;
+        anchor.href = `https://website2l.github.io/allweb/NiQ-servies-item-content.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.TilId}`;
         anchor.style.backgroundImage = `linear-gradient(To left, ${item.gradient}), url('${item.image}')`;
         anchor.textContent = item.name;
 
@@ -253,7 +251,7 @@ if (selectedCategory) {
                 const anchor = document.createElement("a");
                 const className = item.name.replace(/\s+/g, ""); 
                 anchor.className = className;
-                anchor.href = `file:///D:/DocumentTwo.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.tilId}`;
+                anchor.href = `https://website2l.github.io/allweb/NiQ-servies-item-content.html?${item.name.toLowerCase().replace(/\s+/g, "-")}=${item.tilId}`;
                 anchor.style.backgroundImage = `linear-gradient(To left, ${item.gradient}), url('${item.image}')`;
                 anchor.textContent = item.name;
                 itemLinksDiv.appendChild(anchor);
