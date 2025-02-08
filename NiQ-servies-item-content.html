@@ -739,6 +739,24 @@ function adjustInputSize(input) {
     input.style.height = `${tempSpan.offsetHeight}px`;
     document.body.removeChild(tempSpan);
 }
+          
+              adjustInputSize(perfectInput);
+          
+              // Functionality for point clicking
+              points.forEach(point => {
+                  point.addEventListener('click', () => {
+                      const pointNumber = point.getAttribute('data-point');
+                      clickOrder.push(pointNumber);
+          
+                      if (clickOrder.join('') === '123') {
+                          secretBox.style.display = 'flex';
+                          perfectInput.blur(); // Hide keyboard when secret-box is displayed
+                      } else if (clickOrder.length > 3) {
+                          clickOrder = [];
+                          secretBox.style.display = 'none';
+                      }
+                  });
+              });
 
 // Function to handle selectedItem logic
 function setSelectedItem(selectedItem) {
