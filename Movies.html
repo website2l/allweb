@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Movie Cards with Pagination</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+        #main-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #MoviesCardContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #MoviesCardContainer .MoviesCards {
+            width: 200px;
+            height: 325px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            border: 1px solid red;
+        }
+        
+        #MoviesCardContainer .MovieCardThumbnail {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+        #MoviesCardContainer .MovieCardThumbnail img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails {
+            width: 100%;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails p {
+        	font-style: italic;
+        	text-decoration: underline;
+        }
+        .pagination {
+            margin-top: 80px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            color: black;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+        .pagination a.active {
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+        }
+        .pagination .prev, .pagination .next {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .prev:hover, .pagination .next:hover {
+            background-color: #0056b3;
+        }
+        .pagination .last {
+            font-weight: bold;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .last:hover {
+            background-color: #e64a19;
+        }
+        #CategoryContainer {
+            display: flex;
+            flex-direction: row;
+        }
+        #CategoryContainer a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        /* CSS Classes */
+        .action-movies { background: #e63946; }
+        .action-movies:hover { background: #c32f3a; }
+        .love-movies { background: #f4a261; }
+        .love-movies:hover { background: #d48850; }
+        .comedy-movies { background: #2a9d8f; }
+        .comedy-movies:hover { background: #238478; }
+        .horror-movies { background: #6a0572; }
+        .horror-movies:hover { background: #500456; }
+        .sci-fi-movies { background: #457b9d; }
+        .sci-fi-movies:hover { background: #365f7a; }
+        .action-comedy-movies { background: #ff6f00; }
+        .action-comedy-movies:hover { background: #cc5800; }
+        .comedy-action-movies { background: #264653; }
+        .comedy-action-movies:hover { background: #1f3a44; }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+    	<div id="CategoryContainer"></div> <!-- Dynamic Category Links yahan add honge -->
+        <div id="MoviesCardContainer"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+        const movies = [
+    {
+        "tiltid": "a1b09j",
+        "title": "Nouman Iftikhar Qureshi",
+        "Mainimage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_K3nm3XTfNaWzoXgjhXR-YvxPi6ael6gplsqmM8mbFB9cKY-eWmAaKeSQNUcAmLdBOjuhcf9hqcvuGY6x8fqDh-FG53rz3_A-AYLzWmgtal_BCxIcoz9VKQTh1bSo_a5u_IhpoWNQ32p6V8Q9bcxcAN1gUOM4ouGZB1IMnoBEdHspw1s4Mx705EIN9rQ/s1600/Untitled.jpg",
+        "category": "action"
+    },
+    {
+        "tiltid": "gfx6tx9grokX7mak",
+        "title": "Salman Khan",
+        "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Salmanrampwalk.png",
+        "category": "love",
+    },
+    {
+        "tiltid": "coZ3ma8jtL",
+        "title": "Amir Khan",
+        "Mainimage": "https://static.abplive.com/wp-content/uploads/sites/2/2017/04/26115522/aamir-khan.jpg?impolicy=abp_cdn&imwidth=640",
+        "category": "comedy action",
+    },
+    {
+        "tiltid": "Th4s7noX",
+        "title": "Shahrukh Khan",
+        "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Shah_Rukh_Khan_graces_the_launch_of_the_new_Santro.jpg",
+        "category": "action",
+    },
+    {
+        "tiltid": "dPz3n5Y8",
+        "title": "Akshay Kumar",
+        "Mainimage": "https://i.pinimg.com/originals/e7/d3/22/e7d3227bd9c5ebe40ac7dc47c81e2496.jpg",
+        "category": "action comedy",
+    },
+    {
+        "tiltid": "uX6nr9Kt",
+        "title": "Ajay Devgn",
+        "Mainimage": "https://odishasambad.in/wp-content/uploads/2022/04/2022_3largeimg_1928851129.jpg",
+        "category": "horror",
+    },
+    {
+        "tiltid": "Rk4MnX9L",
+        "title": "Ranveer Singh",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "tZ5Xc9Br",
+        "title": "Ranbir Kapoor",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Hw7NbP6X",
+        "title": "Hrithik Roshan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "A9Jk7Xp5",
+        "title": "Amitabh Bachchan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Xk7LoZ6N",
+        "title": "Saif Ali Khan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "N3P5xX8R",
+        "title": "John Abraham",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Xp5L8RbM",
+        "title": "Arjun Kapoor",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Mq7X9Lt6",
+        "title": "Varun Dhawan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Lr6X9bN3",
+        "title": "Kartik Aaryan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Z7N5Lb3P",
+        "title": "Tiger Shroff",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "P7M9LoN6",
+        "title": "Irrfan Khan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "karnto123",
+        "title": "max pro Khan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "Tiger2Xpo",
+        "title": "Anadi Khan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "P7kj9oN6",
+        "title": "Dood Khan",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    {
+        "tiltid": "M7M9caseoN6",
+        "title": "Lal Pati",
+        "Mainimage": "https://via.placeholder.com/200",
+        "category": "action",
+    },
+    // Add remaining objects here...
+        ];
+    </script>
+
+    <script>
+
+        const moviesPerPage = 6;
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get("page")) || 1;
+        const totalPages = Math.ceil(movies.length / moviesPerPage);
+        const container = document.getElementById("MoviesCardContainer");
+        const pagination = document.getElementById("pagination");
+
+        function renderMovies() {
+            container.innerHTML = "";
+            let start = (currentPage - 1) * moviesPerPage;
+            let end = start + moviesPerPage;
+            let paginatedMovies = movies.slice(start, end);
+
+            paginatedMovies.forEach(movie => {
+                const movieCard = document.createElement("a");
+                movieCard.className = "MoviesCards";
+                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+                movieCard.innerHTML = `
+            	<div class="MovieCardThumbnail">
+                    <img src="${movie.Mainimage}" alt="${movie.title}">
+                </div>
+            	<div class="MovieCardDetails">
+                    <h3>${movie.title}</h3>
+                    <p>${movie.category}</p>
+                </div>
+                `;
+                container.appendChild(movieCard);
+            });
+        }
+
+        function renderPagination() {
+            pagination.innerHTML = "";
+
+            // Previous Button
+            if (currentPage > 1) {
+                pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+            }
+
+            // Page Numbers - Only 4 Buttons
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + 3);
+            
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `<a href="?page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+            }
+
+            // Next Button
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?page=${currentPage + 1}" class="next">Next &gt;</a>`;
+            }
+
+            // Last Page Button
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?page=${totalPages}" class="last">Last ${totalPages}</a>`;
+            }
+        }
+
+        renderMovies();
+        renderPagination();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const categoryContainer = document.getElementById("CategoryContainer");
+    const baseUrl = "https://website2l.github.io/allweb/NiQ-services-items-category.html?category=";
+
+    // Unique categories collect karna
+    const uniqueCategories = new Set(movies.map(movie => movie.category.toLowerCase().trim()));
+
+    uniqueCategories.forEach(category => {
+        const categoryUrl = category.replace(/\s+/g, "-");
+        const className = category.replace(/\s+/g, "-") + "-movies";
+
+        const displayText = category
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+        const link = document.createElement("a");
+        link.href = baseUrl + categoryUrl;
+        link.className = className;
+        link.textContent = displayText;
+
+        categoryContainer.appendChild(link);
+    });
+});
+    </script>
+    
+    <script type="text/plain">
+        // ✅ Step 2: Pehle Categories Add Karo
+        const uniqueCategories = new Set();
+        const categoryContainer = document.getElementById("CategoryContainer");
+        const baseUrl = "https://website2l.github.io/allweb/NiQ-services-items-category.html?category=";
+
+        movies.forEach(movie => {
+            let categoryName = movie.category.toLowerCase().trim();
+            if (!uniqueCategories.has(categoryName)) {
+                uniqueCategories.add(categoryName);
+                const categoryUrl = categoryName.replace(/\s+/g, "-");
+                const className = categoryName.replace(/\s+/g, "-") + "-movies";
+                const displayText = movie.category.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+
+                const link = document.createElement("a");
+                link.href = baseUrl + categoryUrl;
+                link.className = className;
+                link.textContent = displayText;
+                categoryContainer.appendChild(link);
+            }
+        });
+
+        // ✅ Step 3: Ab Movies Pagination Render Karo
+        const moviesPerPage = 6;
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get("page")) || 1;
+        const totalPages = Math.ceil(movies.length / moviesPerPage);
+        const container = document.getElementById("MoviesCardContainer");
+        const pagination = document.getElementById("pagination");
+
+        function renderMovies() {
+            container.innerHTML = "";
+            let start = (currentPage - 1) * moviesPerPage;
+            let end = start + moviesPerPage;
+            let paginatedMovies = movies.slice(start, end);
+
+            paginatedMovies.forEach(movie => {
+                const movieCard = document.createElement("a");
+                movieCard.className = "MoviesCards";
+                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+                movieCard.innerHTML = `
+                    <div class="MovieCardThumbnail">
+                        <img src="${movie.Mainimage}" alt="${movie.title}">
+                    </div>
+                    <div class="MovieCardDetails">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.category}</p>
+                    </div>
+                `;
+                container.appendChild(movieCard);
+            });
+        }
+
+        function renderPagination() {
+            pagination.innerHTML = "";
+            if (currentPage > 1) {
+                pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+            }
+
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + 3);
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `<a href="?page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+            }
+
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?page=${currentPage + 1}" class="next">Next &gt;</a>`;
+            }
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?page=${totalPages}" class="last">Last ${totalPages}</a>`;
+            }
+        }
+
+        renderMovies();
+        renderPagination();
+    </script>
+</body>
+</html>
