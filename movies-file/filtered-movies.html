@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Movies</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+        #main-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #MoviesCardContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #MoviesCardContainer .MoviesCards {
+            width: 200px;
+            height: 325px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            border: 1px solid red;
+        }
+        
+        #MoviesCardContainer .MovieCardThumbnail {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+        #MoviesCardContainer .MovieCardThumbnail img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails {
+            width: 100%;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails p {
+        	font-style: italic;
+        	text-decoration: underline;
+        }
+        .pagination {
+            margin-top: 80px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            color: black;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+        .pagination a.active {
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+        }
+        .pagination .prev, .pagination .next {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .prev:hover, .pagination .next:hover {
+            background-color: #0056b3;
+        }
+        .pagination .last {
+            font-weight: bold;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .last:hover {
+            background-color: #e64a19;
+        }
+        #CategoryContainer {
+            display: flex;
+            flex-direction: row;
+        }
+        #CategoryContainer a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        /* CSS Classes */
+        .action-movies { background: #e63946; }
+        .action-movies:hover { background: #c32f3a; }
+        .love-movies { background: #f4a261; }
+        .love-movies:hover { background: #d48850; }
+        .comedy-movies { background: #2a9d8f; }
+        .comedy-movies:hover { background: #238478; }
+        .horror-movies { background: #6a0572; }
+        .horror-movies:hover { background: #500456; }
+        .sci-fi-movies { background: #457b9d; }
+        .sci-fi-movies:hover { background: #365f7a; }
+        .action-comedy-movies { background: #ff6f00; }
+        .action-comedy-movies:hover { background: #cc5800; }
+        .comedy-action-movies { background: #264653; }
+        .comedy-action-movies:hover { background: #1f3a44; }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+    	<div id="CategoryContainer"></div> <!-- Dynamic Category Links yahan add honge -->
+        <div id="MoviesCardContainer"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
+
+    <script>
+        // URL Se Category Extract Karna Aur Hyphen (-) Ko Space ( ) Se Replace Karna
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get("category")?.toLowerCase().replace(/-/g, " ") || "";
+
+        // Movies Filter Karna Jo Selected Category Se Match Karain
+        const filteredMovies = movies.filter(movie => movie.category.toLowerCase() === selectedCategory);
+
+        const container = document.getElementById("MoviesCardContainer");
+        const pagination = document.getElementById("pagination");
+        const moviesPerPage = 3; // Tumhari Pehli JS Ke Mutabiq
+        let currentPage = parseInt(urlParams.get("page")) || 1;
+        const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+
+        function renderMovies() {
+            container.innerHTML = "";
+            if (filteredMovies.length === 0) {
+                container.innerHTML = "<p>No movies found for this category.</p>";
+                return;
+            }
+
+            let start = (currentPage - 1) * moviesPerPage;
+            let end = start + moviesPerPage;
+            let paginatedMovies = filteredMovies.slice(start, end);
+
+            paginatedMovies.forEach(movie => {
+                const movieCard = document.createElement("a");
+                movieCard.className = "MoviesCards";
+                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+                movieCard.innerHTML = `
+                    <div class="MovieCardThumbnail">
+                        <img src="${movie.Mainimage}" alt="${movie.title}">
+                    </div>
+                    <div class="MovieCardDetails">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.category}</p>
+                    </div>
+                `;
+                container.appendChild(movieCard);
+            });
+        }
+
+        function renderPagination() {
+            pagination.innerHTML = "";
+
+            if (filteredMovies.length === 0) return;
+
+            // Previous Button
+            if (currentPage > 1) {
+                pagination.innerHTML += `<a href="?category=${selectedCategory.replace(/\s/g, "-")}&page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+            }
+
+            // Page Numbers - Same as Pehle Wala Logic (Sirf 4 Page Buttons)
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + 3);
+            
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `<a href="?category=${selectedCategory.replace(/\s/g, "-")}&page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+            }
+
+            // Next Button
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?category=${selectedCategory.replace(/\s/g, "-")}&page=${currentPage + 1}" class="next">Next &gt;</a>`;
+            }
+
+            // Last Page Button
+            if (currentPage < totalPages) {
+                pagination.innerHTML += `<a href="?category=${selectedCategory.replace(/\s/g, "-")}&page=${totalPages}" class="last">Last ${totalPages}</a>`;
+            }
+        }
+
+        renderMovies();
+        renderPagination();
+    </script>
+
+</body>
+</html>
