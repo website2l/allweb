@@ -218,5 +218,6 @@
           align-items: center;
           flex-wrap: nowrap;
           overflow: auto;
+            border-radius: 5px;
         }
         }
