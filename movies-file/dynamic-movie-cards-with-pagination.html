@@ -12,9 +12,9 @@
     <!-- High-Resolution Icon for Web Apps -->
     <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png" sizes="1024x1024" type="image/png">
 
-    <link rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/home.css">
+    <link rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/home">
     
-    <style type="text/plain">
+    <style>
         /* General Styling */
         body {
             font-family: Arial, sans-serif;
@@ -137,9 +137,42 @@
         .action-comedy-movies:hover { background: #cc5800; }
         .comedy-action-movies { background: #264653; }
         .comedy-action-movies:hover { background: #1f3a44; }
+        
+        .SearchBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid red;
+            outline: none;
+            border-radius: 5px 0px 0px 5px;
+            margin-right: 0px;
+            margin-left: 0px;
+            font-size: 16px;
+            width: 300px; /* Adjusted width for mobile */
+        }
+
+        .search-btn {
+            padding: 12px 5px;
+            border: none;
+            background-color: #ddd;
+            border-radius: 0px 5px 5px 0px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-btn:hover {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
+    <div class="SearchBox">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button class="search-btn" onclick="searchBtn()">Search</button>
+    </div>
     <div id="main-container">
     	<div id="CategoryContainer"></div> <!-- Dynamic Category Links yahan add honge -->
         <div id="MoviesCardContainer"></div>
@@ -240,6 +273,20 @@
         categoryContainer.appendChild(link);
     });
 });
+    </script>
+
+    <script>
+    function searchBtn() {
+    let searchInput = document.getElementById("searchInput").value.trim();
+    if (searchInput) {
+        let formattedQuery = searchInput.replace(/\s+/g, "+");
+        let baseUrl = "file:///C:/Users/hp/Downloads/textFile%20(2).html";
+        let finalUrl = `${baseUrl}?search=${formattedQuery}`;
+        window.location.href = finalUrl; // Same tab mein open karega
+    } else {
+        alert("Please enter a search query!");
+    }
+}
     </script>
     
     <script type="text/plain">
