@@ -1,11 +1,10 @@
-
         const movies = [
     {
-        "tiltid": "Xt3sY45",
-        "title": "Sivaji: The Boss (2007)",
-        "Mainimage": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/sivaji-the-boss-et00000056-1703755835.jpg",
-        "category": "comedy action",
-        "description": "<p>Sivaji: The Boss is a 2007 Indian Tamil-language Hindi-language action film co-written and directed by S. Shankar and produced by AVM Productions. The film stars Rajinikanth in the titular role alongside Shriya Saran, Vivek and Suman playing pivotal roles with an ensemble supporting cast. In the film, Sivaji is a software systems architect, who returns to India from the US in order to provide free medical treatment and education, but has to face hurdles from the system and Aathisheshan, an influential political leader.</p><br><p>Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125—160 crore worldwide. It emerged as one of the highest-grossing Indian films at the time of its release and went on to win a National Film Award, three Filmfare Awards and two Vijay Awards. The film was converted into 3D and released on 12 December 2012 as Sivaji 3D. The runtime of the 3D version was shorter than the original, cut to 155 minutes. It also emerged as the first Tamil film to enter the 100 crore club in the history of Kollywood.</p><table><tr><td><span class='bold'>Directed by</span></td><td>S. Shankar</td></tr><tr><td><span class='bold'>Written by</span></td><td>S. Shankar (Story & Screenplay) Sujatha (Dialogues)</td></tr><tr><td><span class='bold'>Produced by</span></td><td>M. S. Guhan M. Saravanan</td></tr><tr><td><span class='bold'>Starring</span></td><td>Rajnikanth Shriya Saran Vivek Suman</td></tr><tr><td><span class='bold'>Cinematography</span></td><td>K. V. Anand</td></tr><tr><td><span class='bold'>Edited by</span></td><td>Anthony</td></tr><tr><td><span class='bold'>Music by</span></td><td>A. R. Rahman</td></tr><tr><td><span class='bold'>Production company</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Distributed by</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Release dates</span></td><td>14 June 2007 (premiere) 15 June 2007 (India)</td></tr><tr><td><span class='bold'>Running time</span></td><td>188 minutes</td></tr><tr><td><span class='bold'>Country</span></td><td>India</td></tr><tr><td><span class='bold'>Language</span></td><td>Tamil</td></tr><tr><td><span class='bold'>Budget</span></td><td>₹60-89 crore</td></tr><tr><td><span class='bold'>Box office</span></td><td>₹125—160 crore</td></tr></table>",
+        "tiltid": "a1b09j",
+        "title": "Nouman Iftikhar Qureshi",
+        "Mainimage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_K3nm3XTfNaWzoXgjhXR-YvxPi6ael6gplsqmM8mbFB9cKY-eWmAaKeSQNUcAmLdBOjuhcf9hqcvuGY6x8fqDh-FG53rz3_A-AYLzWmgtal_BCxIcoz9VKQTh1bSo_a5u_IhpoWNQ32p6V8Q9bcxcAN1gUOM4ouGZB1IMnoBEdHspw1s4Mx705EIN9rQ/s1600/Untitled.jpg",
+        "category": "action",
+        "description": "",
         "keywords": ""
     },
     {
@@ -78,6 +77,14 @@
         "Mainimage": "https://via.placeholder.com/200",
         "category": "action",
         "description": "",
+        "keywords": ""
+    },
+    {
+        "tiltid": "Xt3sY45",
+        "title": "Sivaji: The Boss (2007)",
+        "Mainimage": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/sivaji-the-boss-et00000056-1703755835.jpg",
+        "category": "comedy action",
+        "description": "<p>Sivaji: The Boss is a 2007 Indian Tamil-language Hindi-language action film co-written and directed by S. Shankar and produced by AVM Productions. The film stars Rajinikanth in the titular role alongside Shriya Saran, Vivek and Suman playing pivotal roles with an ensemble supporting cast. In the film, Sivaji is a software systems architect, who returns to India from the US in order to provide free medical treatment and education, but has to face hurdles from the system and Aathisheshan, an influential political leader.</p><br><p>Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125—160 crore worldwide. It emerged as one of the highest-grossing Indian films at the time of its release and went on to win a National Film Award, three Filmfare Awards and two Vijay Awards. The film was converted into 3D and released on 12 December 2012 as Sivaji 3D. The runtime of the 3D version was shorter than the original, cut to 155 minutes. It also emerged as the first Tamil film to enter the 100 crore club in the history of Kollywood.</p><table><tr><td><span class='bold'>Directed by</span></td><td>S. Shankar</td></tr><tr><td><span class='bold'>Written by</span></td><td>S. Shankar (Story & Screenplay) Sujatha (Dialogues)</td></tr><tr><td><span class='bold'>Produced by</span></td><td>M. S. Guhan M. Saravanan</td></tr><tr><td><span class='bold'>Starring</span></td><td>Rajnikanth Shriya Saran Vivek Suman</td></tr><tr><td><span class='bold'>Cinematography</span></td><td>K. V. Anand</td></tr><tr><td><span class='bold'>Edited by</span></td><td>Anthony</td></tr><tr><td><span class='bold'>Music by</span></td><td>A. R. Rahman</td></tr><tr><td><span class='bold'>Production company</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Distributed by</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Release dates</span></td><td>14 June 2007 (premiere) 15 June 2007 (India)</td></tr><tr><td><span class='bold'>Running time</span></td><td>188 minutes</td></tr><tr><td><span class='bold'>Country</span></td><td>India</td></tr><tr><td><span class='bold'>Language</span></td><td>Tamil</td></tr><tr><td><span class='bold'>Budget</span></td><td>₹60-89 crore</td></tr><tr><td><span class='bold'>Box office</span></td><td>₹125—160 crore</td></tr></table>",
         "keywords": ""
     },
     {
