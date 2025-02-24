@@ -4,13 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Search with Pagination</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png" sizes="180x180">
+    
+    <!-- High-Resolution Icon for Web Apps -->
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png" sizes="1024x1024" type="image/png">
+
+    <link rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/home">
+    
     <style>
-        .MoviesCards { display: block; text-decoration: none; margin: 10px; padding: 10px; border: 1px solid #ccc; }
-        .MovieCardThumbnail img { width: 100px; height: auto; }
-        .MovieCardDetails { margin-top: 5px; }
-        .pagination { margin-top: 20px; text-align: center; }
-        .pagination a { margin: 0 5px; padding: 8px 12px; border: 1px solid #000; text-decoration: none; }
-        .pagination a.active { background-color: black; color: white; }
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+        #main-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #MoviesCardContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        #MoviesCardContainer .MoviesCards {
+            width: 200px;
+            height: 325px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            border: 1px solid red;
+        }
+        
+        #MoviesCardContainer .MovieCardThumbnail {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+        #MoviesCardContainer .MovieCardThumbnail img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails {
+            width: 100%;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails p {
+        	font-style: italic;
+        	text-decoration: underline;
+        }
+        .pagination {
+            margin-top: 80px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            color: black;
+        }
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+        .pagination a.active {
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+        }
+        .pagination .prev, .pagination .next {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .prev:hover, .pagination .next:hover {
+            background-color: #0056b3;
+        }
+        .pagination .last {
+            font-weight: bold;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 8px;
+        }
+        .pagination .last:hover {
+            background-color: #e64a19;
+        }
+        #CategoryContainer {
+            display: flex;
+            flex-direction: row;
+        }
+        #CategoryContainer a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        /* CSS Classes */
+        .action-movies { background: #e63946; }
+        .action-movies:hover { background: #c32f3a; }
+        .love-movies { background: #f4a261; }
+        .love-movies:hover { background: #d48850; }
+        .comedy-movies { background: #2a9d8f; }
+        .comedy-movies:hover { background: #238478; }
+        .horror-movies { background: #6a0572; }
+        .horror-movies:hover { background: #500456; }
+        .sci-fi-movies { background: #457b9d; }
+        .sci-fi-movies:hover { background: #365f7a; }
+        .action-comedy-movies { background: #ff6f00; }
+        .action-comedy-movies:hover { background: #cc5800; }
+        .comedy-action-movies { background: #264653; }
+        .comedy-action-movies:hover { background: #1f3a44; }
+        
+        .SearchBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid red;
+            outline: none;
+            border-radius: 5px 0px 0px 5px;
+            margin-right: 0px;
+            margin-left: 0px;
+            font-size: 16px;
+            width: 300px; /* Adjusted width for mobile */
+        }
+
+        .search-btn {
+            padding: 12px 5px;
+            border: none;
+            background-color: #ddd;
+            border-radius: 0px 5px 5px 0px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-btn:hover {
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
