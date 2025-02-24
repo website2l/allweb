@@ -139,6 +139,7 @@
             justify-content: flex-start;
             align-items: center;
             flex-wrap: nowrap;
+            border-radius: 5px;
             gap: 5px;
         }
         #CategoryContainer a {
