@@ -458,15 +458,13 @@
         <div class="pagination" id="pagination"></div>
     </div>
     
-    <!--- <script src="file:///G:/New%20folder%20(2)/MoviesData.js"></script> --->
-    
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
 
     <script>
         window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const hasFilterParam = urlParams.has("search") || urlParams.has("category") || 
-                           urlParams.has("channel") || urlParams.has("keywords");
+    const hasFilterParam = urlParams.has("?search=") || urlParams.has("?category=") || 
+                           urlParams.has("?channel=") || urlParams.has("?keywords=");
 
     const mainContainer = document.getElementById("main-container");
     const filteredMainContainer = document.getElementById("filtered-main-container");
@@ -663,7 +661,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById("CategoryContainer");
-const baseUrl = "file:///C:/Users/hp/Downloads/textFile%20(1).html?category=";
+const baseUrl = "https://website2l.github.io/allweb/movies-file/all-in-one.html?category=";
 
 // Unique categories collect karne ke liye Set use karein
 const uniqueCategories = new Set(movies.map(movie => movie.category));
@@ -685,7 +683,7 @@ uniqueCategories.forEach(category => {
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const channelContainer = document.getElementById("ChannelContainer");
-            const baseUrl = "file:///C:/Users/hp/Downloads/textFile%20(1).html?channel=";
+            const baseUrl = "https://website2l.github.io/allweb/movies-file/all-in-one.html?channel=";
 
             // Unique channels collect karna
             const uniqueChannels = new Set();
@@ -755,27 +753,7 @@ uniqueCategories.forEach(category => {
     let searchInput = document.getElementById("searchInput").value.trim();
     if (searchInput) {
         let formattedQuery = searchInput.replace(/\s+/g, "+");
-        let baseUrl = "file:///C:/Users/hp/Downloads/textFile%20(1).html";
-        let finalUrl = `${baseUrl}?search=${formattedQuery}`;
-        window.location.href = finalUrl; // Same tab mein open karega
-    } else {
-        alert("Please enter a search query!");
-    }
-}
-
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        searchBtn();
-    }
-});
-    </script>
-
-    <script>
-    function searchBtn() {
-    let searchInput = document.getElementById("searchInput").value.trim();
-    if (searchInput) {
-        let formattedQuery = searchInput.replace(/\s+/g, "+");
-        let baseUrl = "file:///C:/Users/hp/Downloads/textFile%20(1).html";
+        let baseUrl = "https://website2l.github.io/allweb/movies-file/all-in-one.html";
         let finalUrl = `${baseUrl}?search=${formattedQuery}`;
         window.location.href = finalUrl; // Same tab mein open karega
     } else {
