@@ -15,7 +15,7 @@
         "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Salmanrampwalk.png",
         "category": "Love",
         "description": "Salman Khan (born December 27, 1965, Indore, Madhya Pradesh, India) is an Indian actor, film producer, and television host whose iconic roles, blockbuster hits, and mass appeal have earned him the status of a megastar in Bollywood. Over the years, he has become an inextricable part of popular culture in India. Khan, who started out as a model and actor in the late 1980s, has appeared in more than 100 movies and boasts a career spanning almost four decades. Along with actors Shah Rukh Khan and Aamir Khan, Salman Khan is one of the three most successful male stars of Bollywood since the 1990s. Members of his die-hard fan base affectionately address him as Bhai (Hindi: “Brother”) or Bhaijaan (a respectful and loving address for “brother” in Urdu).",
-        "keywords": "Salman Khan, Action Movies",
+        "keywords": "Salman Khan , Action Movies",
         "channel": "Ullu",
     },
     {
