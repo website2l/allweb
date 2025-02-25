@@ -201,7 +201,8 @@
                 lowerCaseQueryWords.some(word =>
                     movie.title.toLowerCase().includes(word) ||
                     movie.description.toLowerCase().includes(word) ||
-                    movie.keywords.toLowerCase().includes(word)
+                    movie.keywords.toLowerCase().includes(word) ||
+                    movie.category.toLowerCase().includes(word)
                 )
             );
 
