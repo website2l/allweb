@@ -176,8 +176,107 @@
     </div>
 
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
-
+    
     <script>
+    const moviesPerPage = 2; // 🔹 Ek page par 2 movies show hongi
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // ✅ Accepts both `search` and `keywords`
+    const searchQuery = urlParams.get("search") || urlParams.get("keywords");
+    let currentPage = parseInt(urlParams.get("page")) || 1;
+
+    const container = document.getElementById("MoviesCardContainer");
+    const pagination = document.getElementById("pagination");
+
+    function renderMovies() {
+        container.innerHTML = "";
+
+        if (!searchQuery) {
+            container.innerHTML = "<p>Please enter a search query in the URL.</p>";
+            return;
+        }
+
+        const lowerCaseQueryWords = decodeURIComponent(searchQuery).toLowerCase().split(" ");
+
+        // 🔥 Filter movies based on search OR keywords
+        const filteredMovies = movies.filter(movie =>
+            lowerCaseQueryWords.some(word =>
+                movie.title.toLowerCase().includes(word) ||
+                movie.description.toLowerCase().includes(word) ||
+                movie.keywords.toLowerCase().includes(word) ||
+                movie.category.toLowerCase().includes(word)
+            )
+        );
+
+        if (filteredMovies.length === 0) {
+            container.innerHTML = "<p>No results found!</p>";
+            return;
+        }
+
+        const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        const start = (currentPage - 1) * moviesPerPage;
+        const end = start + moviesPerPage;
+        const paginatedMovies = filteredMovies.slice(start, end);
+
+        paginatedMovies.forEach(movie => {
+            const movieCard = document.createElement("a");
+            movieCard.className = "MoviesCards";
+            movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+            movieCard.innerHTML = `
+                <div class="MovieCardThumbnail">
+                    <img src="${movie.Mainimage}" alt="${movie.title}">
+                </div>
+                <div class="MovieCardDetails">
+                    <h3>${movie.title}</h3>
+                    <p>${movie.category}</p>
+                </div>
+            `;
+            container.appendChild(movieCard);
+        });
+
+        renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+        pagination.innerHTML = "";
+
+        if (totalPages <= 1) return;
+
+        const queryParam = searchQuery ? `search=${searchQuery}` : `keywords=${searchQuery}`;
+
+        // 🔹 Previous Button
+        if (currentPage > 1) {
+            pagination.innerHTML += `<a href="?${queryParam}&page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+        }
+
+        // 🔹 Page Numbers (Max 4 buttons)
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(totalPages, startPage + 3);
+        if (endPage - startPage < 3) {
+            startPage = Math.max(1, endPage - 3);
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            pagination.innerHTML += `<a href="?${queryParam}&page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+        }
+
+        // 🔹 Next Button
+        if (currentPage < totalPages) {
+            pagination.innerHTML += `<a href="?${queryParam}&page=${currentPage + 1}" class="next">Next &gt;</a>`;
+        }
+
+        // 🔹 Last Page Button
+        if (currentPage < totalPages) {
+            pagination.innerHTML += `<a href="?${queryParam}&page=${totalPages}" class="last">Last ${totalPages}</a>`;
+        }
+    }
+
+    renderMovies();
+    </script>
+
+    <script type="text/plain">
         const moviesPerPage = 2; // 🔹 Ek page par 2 movies show hongi
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get("search");
