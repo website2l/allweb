@@ -249,7 +249,7 @@
     <script>
         const moviesPerPage = 2;
         const urlParams = new URLSearchParams(window.location.search);
-        const searchQuery = urlParams.get("search") || urlParams.get("category") || urlParams.get("keywords");
+        const searchQuery = urlParams.get("search") || urlParams.get("category") || urlParams.get("keywords") || urlParams.get("channel");
         let currentPage = parseInt(urlParams.get("page")) || 1;
 
         const container = document.getElementById("MoviesCardContainer");
@@ -275,7 +275,8 @@
                     movie.title.toLowerCase().includes(word) ||
                     movie.description.toLowerCase().includes(word) ||
                     normalizeText(movie.category).includes(normalizeText(word)) ||
-                    movie.keywords.toLowerCase().includes(word)
+                    movie.keywords.toLowerCase().includes(word) ||
+                    movie.channel.toLowerCase().includes(word)
                 );
 
                 matchingMovies.forEach(movie => {
@@ -325,9 +326,10 @@
             let searchParam = queryParams.get("search") ? `search=${queryParams.get("search")}&` : "";
             let keywordsParam = queryParams.get("keywords") ? `keywords=${queryParams.get("keywords")}&` : "";
             let categoryParam = queryParams.get("category") ? `category=${queryParams.get("category")}&` : "";
+            let channelParam = queryParams.get("channel") ? `channel=${queryParams.get("channel")}&` : "";
 
             if (currentPage > 1) {
-                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
             }
 
             let startPage = Math.max(1, currentPage - 1);
@@ -337,15 +339,15 @@
             }
 
             for (let i = startPage; i <= endPage; i++) {
-                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
             }
 
             if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${currentPage + 1}" class="next">Next &gt;</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${currentPage + 1}" class="next">Next &gt;</a>`;
             }
 
             if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${totalPages}" class="last">Last ${totalPages}</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${totalPages}" class="last">Last ${totalPages}</a>`;
             }
         }
 
