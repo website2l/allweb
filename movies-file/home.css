@@ -130,3 +130,28 @@
           .ullu-movies:hover { background: #d48850; }
           .green-tv-movies { background: #2a9d8f; }
           .green-tv-movies:hover { background: #238478; }
+
+          /* Responsive Design */
+          @media screen and (max-width: 940px) {
+          #MoviesCardContainer {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+          }
+          .CategoryBtnBox {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow: auto;
+          }
+          .ChannelBtnBox {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow: auto;
+          }
+          }
