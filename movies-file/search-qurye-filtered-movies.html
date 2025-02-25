@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Search with Pagination</title>
+    <title>Movie Search & Filter</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Apple Touch Icon -->
@@ -29,6 +29,12 @@
             align-items: center;
             flex-direction: column;
             justify-content: space-between;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         #MoviesCardContainer {
             display: flex;
@@ -142,10 +148,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 10px;
         }
         input[type="text"] {
+            background: #f4a261;
+            color: #fff;
             padding: 10px;
-            border: 1px solid red;
+            border: 0px;
             outline: none;
             border-radius: 5px 0px 0px 5px;
             margin-right: 0px;
@@ -153,137 +162,52 @@
             font-size: 16px;
             width: 300px; /* Adjusted width for mobile */
         }
+        input[type="text"]:hover {
+          background: #d48850;
+        }
 
         .search-btn {
-            padding: 12px 5px;
+            padding: 10px 5px;
             border: none;
-            background-color: #ddd;
+            color: #fff;
+            background-color: #264653;
             border-radius: 0px 5px 5px 0px;
             cursor: pointer;
             font-size: 16px;
         }
 
         .search-btn:hover {
-            background-color: #ccc;
+            background-color: #1f3a44;
         }
     </style>
 </head>
 <body>
-
+    <div class="SearchBox">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button class="search-btn" onclick="searchBtn()">Search</button>
+    </div>
+    <div class="CategoryBtnBox">
+    	  <div id="CategoryContainer"></div> <!-- Dynamic Category Links yahan add honge -->
+    </div>
     <div id="main-container">
-        <div id="MoviesCardContainer"></div> <!-- Dynamic Links Yahan Add Honge -->
-        <div class="pagination" id="pagination"></div> <!-- Pagination Added -->
+        <div id="MoviesCardContainer"></div>
+        <div class="pagination" id="pagination"></div>
     </div>
 
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
-    
+
     <script>
-    const moviesPerPage = 2; // 🔹 Ek page par 2 movies show hongi
-    const urlParams = new URLSearchParams(window.location.search);
-
-    // ✅ Accepts both `search` and `keywords`
-    const searchQuery = urlParams.get("search") || urlParams.get("keywords");
-    let currentPage = parseInt(urlParams.get("page")) || 1;
-
-    const container = document.getElementById("MoviesCardContainer");
-    const pagination = document.getElementById("pagination");
-
-    function renderMovies() {
-        container.innerHTML = "";
-
-        if (!searchQuery) {
-            container.innerHTML = "<p>Please enter a search query in the URL.</p>";
-            return;
-        }
-
-        const lowerCaseQueryWords = decodeURIComponent(searchQuery).toLowerCase().split(" ");
-
-        // 🔥 Filter movies based on search OR keywords
-        const filteredMovies = movies.filter(movie =>
-            lowerCaseQueryWords.some(word =>
-                movie.title.toLowerCase().includes(word) ||
-                movie.description.toLowerCase().includes(word) ||
-                movie.keywords.toLowerCase().includes(word) ||
-                movie.category.toLowerCase().includes(word)
-            )
-        );
-
-        if (filteredMovies.length === 0) {
-            container.innerHTML = "<p>No results found!</p>";
-            return;
-        }
-
-        const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
-        if (currentPage > totalPages) currentPage = totalPages;
-
-        const start = (currentPage - 1) * moviesPerPage;
-        const end = start + moviesPerPage;
-        const paginatedMovies = filteredMovies.slice(start, end);
-
-        paginatedMovies.forEach(movie => {
-            const movieCard = document.createElement("a");
-            movieCard.className = "MoviesCards";
-            movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
-            movieCard.innerHTML = `
-                <div class="MovieCardThumbnail">
-                    <img src="${movie.Mainimage}" alt="${movie.title}">
-                </div>
-                <div class="MovieCardDetails">
-                    <h3>${movie.title}</h3>
-                    <p>${movie.category}</p>
-                </div>
-            `;
-            container.appendChild(movieCard);
-        });
-
-        renderPagination(totalPages);
-    }
-
-    function renderPagination(totalPages) {
-        pagination.innerHTML = "";
-
-        if (totalPages <= 1) return;
-
-        const queryParam = searchQuery ? `search=${searchQuery}` : `keywords=${searchQuery}`;
-
-        // 🔹 Previous Button
-        if (currentPage > 1) {
-            pagination.innerHTML += `<a href="?${queryParam}&page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
-        }
-
-        // 🔹 Page Numbers (Max 4 buttons)
-        let startPage = Math.max(1, currentPage - 1);
-        let endPage = Math.min(totalPages, startPage + 3);
-        if (endPage - startPage < 3) {
-            startPage = Math.max(1, endPage - 3);
-        }
-
-        for (let i = startPage; i <= endPage; i++) {
-            pagination.innerHTML += `<a href="?${queryParam}&page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
-        }
-
-        // 🔹 Next Button
-        if (currentPage < totalPages) {
-            pagination.innerHTML += `<a href="?${queryParam}&page=${currentPage + 1}" class="next">Next &gt;</a>`;
-        }
-
-        // 🔹 Last Page Button
-        if (currentPage < totalPages) {
-            pagination.innerHTML += `<a href="?${queryParam}&page=${totalPages}" class="last">Last ${totalPages}</a>`;
-        }
-    }
-
-    renderMovies();
-    </script>
-
-    <script type="text/plain">
-        const moviesPerPage = 2; // 🔹 Ek page par 2 movies show hongi
+        const moviesPerPage = 2;
         const urlParams = new URLSearchParams(window.location.search);
-        const searchQuery = urlParams.get("search");
+        const searchQuery = urlParams.get("search") || urlParams.get("category") || urlParams.get("keywords");
         let currentPage = parseInt(urlParams.get("page")) || 1;
 
         const container = document.getElementById("MoviesCardContainer");
         const pagination = document.getElementById("pagination");
+
+        function normalizeText(text) {
+            return text.toLowerCase().replace(/[-\s]+/g, " ");
+        }
 
         function renderMovies() {
             container.innerHTML = "";
@@ -295,15 +219,21 @@
 
             const lowerCaseQueryWords = decodeURIComponent(searchQuery).toLowerCase().split(" ");
 
-            // 🔥 Filter movies based on search
-            const filteredMovies = movies.filter(movie =>
-                lowerCaseQueryWords.some(word =>
+            let filteredMovies = [];
+            lowerCaseQueryWords.forEach(word => {
+                let matchingMovies = movies.filter(movie =>
                     movie.title.toLowerCase().includes(word) ||
                     movie.description.toLowerCase().includes(word) ||
-                    movie.keywords.toLowerCase().includes(word) ||
-                    movie.category.toLowerCase().includes(word)
-                )
-            );
+                    normalizeText(movie.category).includes(normalizeText(word)) ||
+                    movie.keywords.toLowerCase().includes(word)
+                );
+
+                matchingMovies.forEach(movie => {
+                    if (!filteredMovies.some(m => m.tiltid === movie.tiltid)) {
+                        filteredMovies.push(movie);
+                    }
+                });
+            });
 
             if (filteredMovies.length === 0) {
                 container.innerHTML = "<p>No results found!</p>";
@@ -341,12 +271,15 @@
 
             if (totalPages <= 1) return;
 
-            // 🔹 Previous Button
+            let queryParams = new URLSearchParams(window.location.search);
+            let searchParam = queryParams.get("search") ? `search=${queryParams.get("search")}&` : "";
+            let keywordsParam = queryParams.get("keywords") ? `keywords=${queryParams.get("keywords")}&` : "";
+            let categoryParam = queryParams.get("category") ? `category=${queryParams.get("category")}&` : "";
+
             if (currentPage > 1) {
-                pagination.innerHTML += `<a href="?search=${searchQuery}&page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
             }
 
-            // 🔹 Page Numbers (Max 4 buttons)
             let startPage = Math.max(1, currentPage - 1);
             let endPage = Math.min(totalPages, startPage + 3);
             if (endPage - startPage < 3) {
@@ -354,21 +287,39 @@
             }
 
             for (let i = startPage; i <= endPage; i++) {
-                pagination.innerHTML += `<a href="?search=${searchQuery}&page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
             }
 
-            // 🔹 Next Button
             if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?search=${searchQuery}&page=${currentPage + 1}" class="next">Next &gt;</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${currentPage + 1}" class="next">Next &gt;</a>`;
             }
 
-            // 🔹 Last Page Button
             if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?search=${searchQuery}&page=${totalPages}" class="last">Last ${totalPages}</a>`;
+                pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}page=${totalPages}" class="last">Last ${totalPages}</a>`;
             }
         }
 
         renderMovies();
+    </script>
+
+    <script>
+    function searchBtn() {
+    let searchInput = document.getElementById("searchInput").value.trim();
+    if (searchInput) {
+        let formattedQuery = searchInput.replace(/\s+/g, "+");
+        let baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html";
+        let finalUrl = `${baseUrl}?search=${formattedQuery}`;
+        window.location.href = finalUrl; // Same tab mein open karega
+    } else {
+        alert("Please enter a search query!");
+    }
+}
+
+document.getElementById("searchInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        searchBtn();
+    }
+});
     </script>
 
 </body>
