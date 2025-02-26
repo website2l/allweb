@@ -1,0 +1,78 @@
+
+        body, table, td {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .header img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .content h2 {
+            color: #222;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .content p {
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .blog-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .blog-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .cta-button {
+            display: block;
+            width: 200px;
+            text-align: center;
+            background-color: #ff6600;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px auto 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        .social-links img {
+            width: 30px;
+            margin: 0 5px;
+        }
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            .cta-button {
+                
+            }
+        }
