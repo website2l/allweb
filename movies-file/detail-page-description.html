@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Description</title>
+    <link id="dynamicCSS" rel="stylesheet" href=""> <!-- Dynamic CSS Load Hoga -->
+    <style>
+    </style>
+</head>
+<body>
+
+    <div class="DescriptionBox">
+        <div id="DescriptionContainer">Loading description...</div>
+    </div>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
+
+    <script>
+        function getTILTidFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const movieParam = params.get("movie");
+            if (movieParam) {
+                const parts = movieParam.split("/watchV=");
+                return parts.length > 1 ? parts[1] : null;
+            }
+            return null;
+        }
+
+        function displayDescription() {
+            const tiltid = getTILTidFromURL();
+            const movie = movies.find(m => m.tiltid === tiltid);
+            const descriptionContainer = document.getElementById("DescriptionContainer");
+            const dynamicCSS = document.getElementById("dynamicCSS");
+
+            if (movie) {
+                descriptionContainer.innerHTML = movie.description;
+                dynamicCSS.href = movie.descriptionDesignCSS; // CSS File Change Ho Rahi Hai
+            } else {
+                descriptionContainer.innerHTML = "<p>Description not found.</p>";
+            }
+        }
+
+        window.onload = displayDescription;
+    </script>
+
+</body>
+</html>
