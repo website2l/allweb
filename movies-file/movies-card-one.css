@@ -73,6 +73,7 @@
           #MoviesCardContainer .MovieCardDetails p {
               font-style: italic;
               text-decoration: underline;
+            text-transform: lowercase;
           }
           .pagination {
               margin-top: 15px;
