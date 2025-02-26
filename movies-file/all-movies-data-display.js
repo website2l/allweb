@@ -15,7 +15,7 @@
             paginatedMovies.forEach(movie => {
                 const movieCard = document.createElement("a");
                 movieCard.className = "MoviesCards";
-                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+                movieCard.href = `https://website2l.github.io/allweb/movies-file/detail-page-description.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
                 movieCard.innerHTML = `
             	<div class="MovieCardThumbnail">
                     <img src="${movie.Mainimage}" alt="${movie.title}">
