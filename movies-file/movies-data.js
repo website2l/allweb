@@ -16,22 +16,18 @@
         "title": "Salman Khan",
         "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Salmanrampwalk.png",
         "category": "Love",
-        "description": `<div id="movieCard" style="border: 1px solid gray; padding: 0; margin: 0; border-radius:8px; overflow: hidden; font-family: Arial, sans-serif;">
-    <!-- Shimmer loading for image -->
-    <div class="image skeleton skeleton-image"></div>
-    
-    <!-- Shimmer loading for heading -->
-    <div class="skeleton skeleton-heading"></div>
-    
+        "description": `
+
+<div id="movieCard" style="border: 1px solid gray; padding: 0; margin: 0; border-radius:8px; overflow: hidden; font-family: Arial, sans-serif;">
     <!-- Actual content (hidden during loading) -->
-    <img src="https://img.youtube.com/vi/Ppf8rIZ1zZk/maxresdefault.jpg" alt="Thumbnail Image" style="display:none; width: 100%; height: auto;" />
+    <img src="https://img.youtube.com/vi/Ppf8rIZ1zZk/maxresdefault.jpg" alt="Thumbnail Image" style="display:block; width: 100%; height: auto;" />
     <div style="padding:5px;">
-        <h1 style="display:none; font-size: 24px; cursor: pointer; color: #007BFF;">
+        <h1 style="display:block; font-size: 24px; cursor: pointer; color: #007BFF;">
             PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog
         </h1>
     </div>
 </div>`,
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.css",
+        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan",
         "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js",
         "keywords": "Salman Khan , Action Movies",
         "channel": "NiQ",
@@ -42,8 +38,6 @@
         "Mainimage": "https://static.abplive.com/wp-content/uploads/sites/2/2017/04/26115522/aamir-khan.jpg?impolicy=abp_cdn&imwidth=640",
         "category": "Comedy Action",
         "description": `<div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-    <!-- Shimmer loading for iframe -->
-    <div class="skeleton skeleton-iframe"></div>
     
       <iframe 
           src="https://www.youtube.com/embed/Ppf8rIZ1zZk" 
@@ -58,14 +52,10 @@
 </div>
 
 <h2 style="border-radius: 8px; height: 0px; overflow: hidden; padding-bottom: 56.25%; position: relative; text-align: left; width: 100%;">
-    <!-- Shimmer loading for heading -->
-    <div class="skeleton skeleton-heading"></div>
-
-    <!-- Actual heading (hidden during loading) -->
-    <span style="display:none; font-family: arial;">PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog</span>
+    <span style="display:block; font-family: arial;">PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog</span>
 </h2>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.css",
-        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
+        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video",
         "keywords": "Yaadon, Baaraat, Holi, Madhosh, Manzil",
         "channel": "",
     },
