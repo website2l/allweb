@@ -1,12 +1,4 @@
 
-    // Simulating content load after 2 seconds
-    setTimeout(function() {
-        document.querySelector('.skeleton-image').style.display = 'none';
-        document.querySelector('.skeleton-heading').style.display = 'none';
-        document.querySelector('img').style.display = 'block';
-        document.querySelector('h1').style.display = 'block';
-    }, 2000);
-    
 // bentoJS coding
 let clickCountmovieCard = 0;
 let timerActive = false; // timer ko check karne ke liye flag
