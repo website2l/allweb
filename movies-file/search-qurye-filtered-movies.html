@@ -20,229 +20,26 @@
     <!-- CSS File Importe -->
     <link rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/home.css">
     
-    <style>
-          #main-container {
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-          }
-          #MoviesCardContainer {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-          }
-          #MoviesCardContainer .MoviesCards {
-              background-color: #f4f4f4;
-              color: Black;
-              border-radius: 8px;
-              cursor: pointer;
-              text-decoration: none;
-              display: flex;
-              justify-content: space-between;
-              flex-direction: column;
-              align-items: center;
-              overflow: hidden;
-              border: 0px;
-              margin-top: 5px;
-              width: 340px;
-              flex: 0 0 340px; /* prevent shrinking and ensure fixed width */
-          }
-          #MoviesCardContainer .MovieCardThumbnail {
-              width: 100%;
-              height: 250px;
-              flex-shrink: 0;
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: flex-start;
-          }
-          #MoviesCardContainer .MovieCardThumbnail img {
-              width: 340px;
-              height: auto;
-              flex-shrink: 0;
-              object-fit: cover;
-              /*border-radius: 5px;*/
-              transition: transform 0.3s;
-              margin-top: -30px; /* Adjust margin to move image up */
-          }
-          #MoviesCardContainer .MoviesCards:hover .MovieCardThumbnail img {
-              transform: scale(1.2);
-          }
-          #MoviesCardContainer .MovieCardDetails {
-              width: 100%;
-              padding: 10px;
-              box-sizing: border-box;
-              border-radius: 0px 0px 8px 8px;
-              display: flex;
-              justify-content: end;
-              flex-direction: column;
-              align-items: center;
-              height: 80%;
-              z-index: 1;
-              border-bottom: 1px solid red;
-              border-left: 1px solid red;
-              border-right: 1px solid red;
-          }
-          #MoviesCardContainer .MovieCardDetails:hover {
-              cursor: pointer;
-          }
-          #MoviesCardContainer .MovieCardDetails:hover ~ .MovieCardThumbnail img {
-              transform: scale(1.2);
-          }
-          #MoviesCardContainer .MovieCardDetails p {
-              font-style: italic;
-              text-decoration: underline;
-          }
-          .pagination {
-              margin-top: 15px;
-          }
-          .pagination a {
-              margin: 0 5px;
-              padding: 5px 10px;
-              text-decoration: none;
-              border: 1px solid #ddd;
-              border-radius: 50%;
-              color: black;
-          }
-          .pagination a:hover {
-              background-color: #ddd;
-          }
-          .pagination a.active {
-              font-weight: bold;
-              color: white;
-              background-color: #007bff;
-          }
-          .pagination .prev, .pagination .next {
-              font-weight: bold;
-              background-color: #007bff;
-              color: white;
-              border-radius: 8px;
-          }
-          .pagination .prev:hover, .pagination .next:hover {
-              background-color: #0056b3;
-          }
-          .pagination .last {
-              font-weight: bold;
-              background-color: #ff5722;
-              color: white;
-              border-radius: 8px;
-          }
-          .pagination .last:hover {
-              background-color: #e64a19;
-          }
-          /* Responsive Design */
-          @media screen and (max-width: 940px) {
-          #MoviesCardContainer {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
-              gap: 10px;
-          }
-          .KeywordsBtnBox {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            overflow: auto;
-          }
-          }
+    <!-- CSS movies-card-one File Importe -->
+    <link type="text/css" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-one.css">
+    
+    <!-- CSS movies-card-two File Importe -->
+    <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-two.css">
+    
+    <!-- CSS movies-card-3rd File Importe -->
+    <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-3rd.css">
+    
+    <!-- CSS movies-card-4th File Importe -->
+    <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-4th.css">
+    
+    <!-- CSS movies-card-5th File Importe -->
+    <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-5th.css">
+    
+    <style type="text/plain">
     </style>
     <style type="text/plain">
-        #main-container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: space-between;
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #MoviesCardContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        #MoviesCardContainer .MoviesCards {
-            width: 200px;
-            height: 325px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            text-decoration: none;
-            color: black;
-            border: 1px solid red;
-        }
-        
-        #MoviesCardContainer .MovieCardThumbnail {
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
-        }
-        #MoviesCardContainer .MovieCardThumbnail img {
-            width: 100%;
-            height: auto;
-        }
-        
-        #MoviesCardContainer .MovieCardDetails {
-            width: 100%;
-        }
-        
-        #MoviesCardContainer .MovieCardDetails p {
-        	font-style: italic;
-        	text-decoration: underline;
-            text-transform: lowercase;
-        }
-        .pagination {
-            margin-top: 80px;
-        }
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            text-decoration: none;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            color: black;
-        }
-        .pagination a:hover {
-            background-color: #ddd;
-        }
-        .pagination a.active {
-            font-weight: bold;
-            color: white;
-            background-color: #007bff;
-        }
-        .pagination .prev, .pagination .next {
-            font-weight: bold;
-            background-color: #007bff;
-            color: white;
-            border-radius: 8px;
-        }
-        .pagination .prev:hover, .pagination .next:hover {
-            background-color: #0056b3;
-        }
-        .pagination .last {
-            font-weight: bold;
-            background-color: #ff5722;
-            color: white;
-            border-radius: 8px;
-        }
-        .pagination .last:hover {
-            background-color: #e64a19;
-        }
+    </style>
+    <style type="text/plain">
     </style>
 </head>
 <body>
@@ -256,12 +53,23 @@
     <div class="ChannelBtnBox">
     	  <div id="ChannelContainer"></div> <!-- Dynamic Channel Links yahan add honge -->
     </div>
+    <div class="KeywordsBtnBox">
+        <div id="KeywordsContainer"></div> <!-- Dynamic keywords yahan add hongi -->
+    </div>
     <div id="main-container">
         <div id="MoviesCardContainer"></div> <!-- Dynamic Movies Links yahan add honge -->
         <div class="pagination" id="pagination"></div>
     </div>
-
+    
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/search-bar.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/category.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/channel.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/keywords.js"></script>
 
     <script>
         const moviesPerPage = 2;
@@ -369,26 +177,6 @@
         }
 
         renderMovies();
-    </script>
-
-    <script>
-    function searchBtn() {
-    let searchInput = document.getElementById("searchInput").value.trim();
-    if (searchInput) {
-        let formattedQuery = searchInput.replace(/\s+/g, "+");
-        let baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html";
-        let finalUrl = `${baseUrl}?search=${formattedQuery}`;
-        window.location.href = finalUrl; // Same tab mein open karega
-    } else {
-        alert("Please enter a search query!");
-    }
-}
-
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        searchBtn();
-    }
-});
     </script>
 
 </body>
