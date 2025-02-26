@@ -14,6 +14,7 @@
         <div id="DescriptionContainer">Loading description...</div>
     </div>
     
+    <script id="dynamicJS" src=""></script>
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
 
     <script>
@@ -32,10 +33,12 @@
             const movie = movies.find(m => m.tiltid === tiltid);
             const descriptionContainer = document.getElementById("DescriptionContainer");
             const dynamicCSS = document.getElementById("dynamicCSS");
+            const dynamicJS = document.getElementById("dynamicJS");
 
             if (movie) {
                 descriptionContainer.innerHTML = movie.description;
-                dynamicCSS.href = movie.descriptionDesignCSS; // CSS File Change Ho Rahi Hai
+                dynamicCSS.href = movie.detailPageDesignCSS; // CSS File Change Ho Rahi Hai
+                dynamicJS.href = movie.detailPageJS; // JS File Change Ho Rahi Hai
             } else {
                 descriptionContainer.innerHTML = "<p>Description not found.</p>";
             }
