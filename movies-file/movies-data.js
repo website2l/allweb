@@ -1,4 +1,5 @@
-        const movies = [
+
+          const movies = [
     {
         "tiltid": "a1b09j",
         "title": "Nouman Iftikhar Qureshi",
@@ -15,20 +16,56 @@
         "title": "Salman Khan",
         "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Salmanrampwalk.png",
         "category": "Love",
-        "description": `<p>Sivaji: The Boss is a 2007 Indian Tamil-language Hindi-language action film co-written and directed by S. Shankar and produced by AVM Productions. The film stars Rajinikanth in the titular role alongside Shriya Saran, Vivek and Suman playing pivotal roles with an ensemble supporting cast. In the film, Sivaji is a software systems architect, who returns to India from the US in order to provide free medical treatment and education, but has to face hurdles from the system and Aathisheshan, an influential political leader.</p><br><p>Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125—160 crore worldwide. It emerged as one of the highest-grossing Indian films at the time of its release and went on to win a National Film Award, three Filmfare Awards and two Vijay Awards. The film was converted into 3D and released on 12 December 2012 as Sivaji 3D. The runtime of the 3D version was shorter than the original, cut to 155 minutes. It also emerged as the first Tamil film to enter the 100 crore club in the history of Kollywood.</p><table><tr><td><span class='bold'>Directed by</span></td><td>S. Shankar</td></tr><tr><td><span class='bold'>Written by</span></td><td>S. Shankar (Story & Screenplay) Sujatha (Dialogues)</td></tr><tr><td><span class='bold'>Produced by</span></td><td>M. S. Guhan M. Saravanan</td></tr><tr><td><span class='bold'>Starring</span></td><td>Rajnikanth Shriya Saran Vivek Suman</td></tr><tr><td><span class='bold'>Cinematography</span></td><td>K. V. Anand</td></tr><tr><td><span class='bold'>Edited by</span></td><td>Anthony</td></tr><tr><td><span class='bold'>Music by</span></td><td>A. R. Rahman</td></tr><tr><td><span class='bold'>Production company</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Distributed by</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Release dates</span></td><td>14 June 2007 (premiere) 15 June 2007 (India)</td></tr><tr><td><span class='bold'>Running time</span></td><td>188 minutes</td></tr><tr><td><span class='bold'>Country</span></td><td>India</td></tr><tr><td><span class='bold'>Language</span></td><td>Tamil</td></tr><tr><td><span class='bold'>Budget</span></td><td>₹60-89 crore</td></tr><tr><td><span class='bold'>Box office</span></td><td>₹125—160 crore</td></tr></table>`,
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-2nd.css",
-        "detailPageJS": "",
+        "description": `<div id="movieCard" style="border: 1px solid gray; padding: 0; margin: 0; border-radius:8px; overflow: hidden; font-family: Arial, sans-serif;">
+    <!-- Shimmer loading for image -->
+    <div class="image skeleton skeleton-image"></div>
+    
+    <!-- Shimmer loading for heading -->
+    <div class="skeleton skeleton-heading"></div>
+    
+    <!-- Actual content (hidden during loading) -->
+    <img src="https://img.youtube.com/vi/Ppf8rIZ1zZk/maxresdefault.jpg" alt="Thumbnail Image" style="display:none; width: 100%; height: auto;" />
+    <div style="padding:5px;">
+        <h1 style="display:none; font-size: 24px; cursor: pointer; color: #007BFF;">
+            PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog
+        </h1>
+    </div>
+</div>`,
+        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.css",
+        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js",
         "keywords": "Salman Khan , Action Movies",
-        "channel": "Ullu",
+        "channel": "NiQ",
     },
     {
         "tiltid": "coZ3ma8jtL",
         "title": "Amir Khan",
         "Mainimage": "https://static.abplive.com/wp-content/uploads/sites/2/2017/04/26115522/aamir-khan.jpg?impolicy=abp_cdn&imwidth=640",
         "category": "Comedy Action",
-        "description": "",
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-3rd.css",
-        "detailPageJS": "",
+        "description": `<div class="iframe-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+    <!-- Shimmer loading for iframe -->
+    <div class="skeleton skeleton-iframe"></div>
+    
+      <iframe 
+          src="https://www.youtube.com/embed/Ppf8rIZ1zZk" 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" 
+          scrolling="no" 
+          frameborder="0" 
+          allowfullscreen="true">
+      </iframe>
+
+    <!-- Tendo-box iframe ke half mein display ho ga aur gole mask-image ke sath -->
+    <div class="tendo-box" style="position: absolute; bottom: 0; right: 0; width: 32%; height: 15%; background-color: rgba(0, 0, 0, 0.0); "></div>
+</div>
+
+<h2 style="border-radius: 8px; height: 0px; overflow: hidden; padding-bottom: 56.25%; position: relative; text-align: left; width: 100%;">
+    <!-- Shimmer loading for heading -->
+    <div class="skeleton skeleton-heading"></div>
+
+    <!-- Actual heading (hidden during loading) -->
+    <span style="display:none; font-family: arial;">PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog</span>
+</h2>`,
+        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.css",
+        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
         "keywords": "Yaadon, Baaraat, Holi, Madhosh, Manzil",
         "channel": "",
     },
