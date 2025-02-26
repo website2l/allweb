@@ -30,50 +30,7 @@
             PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog
         </h1>
     </div>
-</div>
-
-<script>
-    // Simulating content load after 2 seconds
-    setTimeout(function() {
-        document.querySelector('.skeleton-image').style.display = 'none';
-        document.querySelector('.skeleton-heading').style.display = 'none';
-        document.querySelector('img').style.display = 'block';
-        document.querySelector('h1').style.display = 'block';
-    }, 2000);
-    
-// bentoJS coding
-let clickCountmovieCard = 0;
-let timerActive = false; // timer ko check karne ke liye flag
-
-function resetClicks() {
-    clickCountmovieCard = 0;
-    timerActive = false; // reset karte waqt timer ko bhi stop karna hai
-}
-
-function startTimer() {
-    timerActive = true; // timer shuru hone par flag ko true karenge
-    setTimeout(() => {
-        resetClicks(); // 15 seconds ke baad clicks reset ho jayenge
-    }, 15000); // 15000ms = 15 seconds
-}
-
-function handlemovieCardClick() {
-    clickCountmovieCard++;
-
-    if (clickCountmovieCard === 1) {
-        window.open('https://www.cpmrevenuegate.com/i5w7tfr9r0?key=fce180a281beb7fedb4e1a0fb0558828', '_blank');
-    } else if (clickCountmovieCard === 2) {
-        window.open('', '_blank');
-        if (!timerActive) {
-            startTimer(); // timer sirf 2nd click ke baad shuru hoga
-        }
-    } else if (clickCountmovieCard > 2 && timerActive) {
-        window.open('', '_blank'); // 2nd click ke baad sirf doosra URL open hoga
-    }
-}
-
-document.getElementById('movieCard').addEventListener('click', handlemovieCardClick);
-</script>`,
+</div>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.css",
         "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js",
         "keywords": "Salman Khan , Action Movies",
@@ -106,17 +63,7 @@ document.getElementById('movieCard').addEventListener('click', handlemovieCardCl
 
     <!-- Actual heading (hidden during loading) -->
     <span style="display:none; font-family: arial;">PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog</span>
-</h2>
-
-<script>
-    // Simulating content load after 2 seconds
-    setTimeout(function() {
-        document.querySelector('.skeleton-iframe').style.display = 'none';
-        document.querySelector('.skeleton-heading').style.display = 'none';
-        document.querySelector('iframe').style.display = 'block';
-        document.querySelector('h2 span').style.display = 'block';
-    }, 2000);
-</script>`,
+</h2>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.css",
         "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
         "keywords": "Yaadon, Baaraat, Holi, Madhosh, Manzil",
