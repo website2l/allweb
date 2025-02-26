@@ -1,0 +1,109 @@
+
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #MoviesCardContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        #MoviesCardContainer .MoviesCards {
+            background-color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 250px; /* fixed width */
+            height: 350px; /* fixed height */
+            overflow: hidden; /* hide overflow */
+            flex: 0 0 250px; /* prevent shrinking and ensure fixed width */
+        }
+        #MoviesCardContainer .MovieCardThumbnail {
+            position: relative;
+            height: 100%; /* full height of the card */
+            width: 100%; /* full width of the card */
+            overflow: hidden; /* hide overflow */
+            border-radius: 5px;
+        }
+        #MoviesCardContainer .MovieCardThumbnail img {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        #MoviesCardContainer .MoviesCards:hover .MovieCardThumbnail img {
+            transform: scale(1.2);
+        }
+        #MoviesCardContainer .MovieCardDetails {
+            position: absolute;
+            color: #fff;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 0px;
+            box-sizing: border-box;
+            border-radius: 0 0 5px 5px;
+        }
+        #MoviesCardContainer .MovieCardDetails p {
+            font-style: italic;
+            text-transform: lowercase;
+            text-decoration: underline;
+        }
+          .pagination {
+              margin-top: 15px;
+          }
+          .pagination a {
+              margin: 0 5px;
+              padding: 5px 10px;
+              text-decoration: none;
+              border: 1px solid #ddd;
+              border-radius: 50%;
+              color: black;
+          }
+          .pagination a:hover {
+              background-color: #ddd;
+          }
+          .pagination a.active {
+              font-weight: bold;
+              color: white;
+              background-color: #007bff;
+          }
+          .pagination .prev, .pagination .next {
+              font-weight: bold;
+              background-color: #007bff;
+              color: white;
+              border-radius: 8px;
+          }
+          .pagination .prev:hover, .pagination .next:hover {
+              background-color: #0056b3;
+          }
+          .pagination .last {
+              font-weight: bold;
+              background-color: #ff5722;
+              color: white;
+              border-radius: 8px;
+          }
+          .pagination .last:hover {
+              background-color: #e64a19;
+          }
+          /* Responsive Design */
+          @media screen and (max-width: 940px) {
+          #MoviesCardContainer {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+          }
+          }
