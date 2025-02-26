@@ -1,0 +1,120 @@
+
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #MoviesCardContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            padding: 0px;
+        }
+
+        #MoviesCardContainer .MoviesCards {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center; /* Center items horizontally */
+            background-color: #fff;
+            border-radius: 5px;
+            cursor: pointer; /* Add cursor pointer for indicating clickable */
+            text-decoration: none; /* Remove default underline */
+            padding: 0px 15px 0px 0px;
+            border: 4px solid #EAE69F;
+            flex: 0 0 250px; /* prevent shrinking and ensure fixed width */
+        }
+
+        #MoviesCardContainer .MoviesCards:hover {
+            transform: translateY(-1px); 
+        }
+
+        #MoviesCardContainer .MovieCardThumbnail {
+        	width: 100%;
+            height: auto;
+        }
+
+        #MoviesCardContainer .MovieCardThumbnail img {
+        	width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+        
+        #MoviesCardContainer .MovieCardDetails {
+        	width: 100%;
+        }
+
+        #MoviesCardContainer .MovieCardDetails h3 {
+            width: 100%; 
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 0.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            text-align: center;
+        }
+
+        #MoviesCardContainer .MovieCardDetails p {
+            text-align: left; 
+            width: 100%; 
+            padding: 0px 0px; 
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            /*font-weight: 900;*/
+            text-decoration: underline;
+        }
+          .pagination {
+              margin-top: 15px;
+          }
+          .pagination a {
+              margin: 0 5px;
+              padding: 5px 10px;
+              text-decoration: none;
+              border: 1px solid #ddd;
+              border-radius: 50%;
+              color: black;
+          }
+          .pagination a:hover {
+              background-color: #ddd;
+          }
+          .pagination a.active {
+              font-weight: bold;
+              color: white;
+              background-color: #007bff;
+          }
+          .pagination .prev, .pagination .next {
+              font-weight: bold;
+              background-color: #007bff;
+              color: white;
+              border-radius: 8px;
+          }
+          .pagination .prev:hover, .pagination .next:hover {
+              background-color: #0056b3;
+          }
+          .pagination .last {
+              font-weight: bold;
+              background-color: #ff5722;
+              color: white;
+              border-radius: 8px;
+          }
+          .pagination .last:hover {
+              background-color: #e64a19;
+          }
+          /* Responsive Design */
+          @media screen and (max-width: 940px) {
+          #MoviesCardContainer {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+          }
+          }
