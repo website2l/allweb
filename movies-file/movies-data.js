@@ -16,9 +16,7 @@
         "title": "Salman Khan",
         "Mainimage": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Salmanrampwalk.png",
         "category": "Love",
-        "description": `
-
-<div id="movieCard" style="border: 1px solid gray; padding: 0; margin: 0; border-radius:8px; overflow: hidden; font-family: Arial, sans-serif;">
+        "description": `<div id="movieCard" style="border: 1px solid gray; padding: 0; margin: 0; border-radius:8px; overflow: hidden; font-family: Arial, sans-serif;">
     <!-- Actual content (hidden during loading) -->
     <img src="https://img.youtube.com/vi/Ppf8rIZ1zZk/maxresdefault.jpg" alt="Thumbnail Image" style="display:block; width: 100%; height: auto;" />
     <div style="padding:5px;">
