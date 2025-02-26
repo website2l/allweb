@@ -1,0 +1,110 @@
+
+        /* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Main Description Box */
+.DescriptionBox {
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: auto;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+    position: relative;
+}
+
+/* Hover Effect */
+.DescriptionBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading Style */
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff6f61;
+    text-shadow: 0px 0px 10px rgba(255, 111, 97, 0.4);
+}
+
+/* Paragraph Styling */
+#DescriptionContainer p {
+    line-height: 1.8;
+    font-size: 18px;
+    text-align: justify;
+    color: #555;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 2px solid #ff6f61;
+}
+
+td {
+    padding: 14px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Bold Text */
+.bold {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+/* Alternate Row Styling */
+tr:nth-child(odd) {
+    background: rgba(255, 111, 97, 0.1);
+}
+
+/* Gradient Button */
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6f61, #ff9068);
+    color: white;
+    padding: 14px 35px;
+    font-size: 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: bold;
+    box-shadow: 0px 0px 15px rgba(255, 111, 97, 0.4);
+}
+
+.button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px rgba(255, 111, 97, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .DescriptionBox {
+        padding: 20px;
+    }
+
+    table, td {
+        font-size: 14px;
+    }
+}
