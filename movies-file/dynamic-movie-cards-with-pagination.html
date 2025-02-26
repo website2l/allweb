@@ -20,280 +20,15 @@
     <!-- CSS File Importe -->
     <link rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/home.css">
     
-    <style>
-          #main-container {
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-          }
-          #MoviesCardContainer {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-          }
-          #MoviesCardContainer .MoviesCards {
-              background-color: #f4f4f4;
-              color: Black;
-              border-radius: 8px;
-              cursor: pointer;
-              text-decoration: none;
-              display: flex;
-              justify-content: space-between;
-              flex-direction: column;
-              align-items: center;
-              overflow: hidden;
-              border: 0px;
-              margin-top: 5px;
-              width: 340px;
-              flex: 0 0 340px; /* prevent shrinking and ensure fixed width */
-          }
-          #MoviesCardContainer .MovieCardThumbnail {
-              width: 100%;
-              height: 250px;
-              flex-shrink: 0;
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: flex-start;
-          }
-          #MoviesCardContainer .MovieCardThumbnail img {
-              width: 340px;
-              height: auto;
-              flex-shrink: 0;
-              object-fit: cover;
-              /*border-radius: 5px;*/
-              transition: transform 0.3s;
-              margin-top: -30px; /* Adjust margin to move image up */
-          }
-          #MoviesCardContainer .MoviesCards:hover .MovieCardThumbnail img {
-              transform: scale(1.2);
-          }
-          #MoviesCardContainer .MovieCardDetails {
-              width: 100%;
-              padding: 10px;
-              box-sizing: border-box;
-              border-radius: 0px 0px 8px 8px;
-              display: flex;
-              justify-content: end;
-              flex-direction: column;
-              align-items: center;
-              height: 80%;
-              z-index: 1;
-              border-bottom: 1px solid red;
-              border-left: 1px solid red;
-              border-right: 1px solid red;
-          }
-          #MoviesCardContainer .MovieCardDetails:hover {
-              cursor: pointer;
-          }
-          #MoviesCardContainer .MovieCardDetails:hover ~ .MovieCardThumbnail img {
-              transform: scale(1.2);
-          }
-          #MoviesCardContainer .MovieCardDetails p {
-              font-style: italic;
-              text-decoration: underline;
-          }
-          .pagination {
-              margin-top: 15px;
-          }
-          .pagination a {
-              margin: 0 5px;
-              padding: 5px 10px;
-              text-decoration: none;
-              border: 1px solid #ddd;
-              border-radius: 50%;
-              color: black;
-          }
-          .pagination a:hover {
-              background-color: #ddd;
-          }
-          .pagination a.active {
-              font-weight: bold;
-              color: white;
-              background-color: #007bff;
-          }
-          .pagination .prev, .pagination .next {
-              font-weight: bold;
-              background-color: #007bff;
-              color: white;
-              border-radius: 8px;
-          }
-          .pagination .prev:hover, .pagination .next:hover {
-              background-color: #0056b3;
-          }
-          .pagination .last {
-              font-weight: bold;
-              background-color: #ff5722;
-              color: white;
-              border-radius: 8px;
-          }
-          .pagination .last:hover {
-              background-color: #e64a19;
-          }
-          .KeywordsBtnBox {
-            margin-top: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: nowrap;
-          }
-          #KeywordsContainer {
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-              flex-wrap: nowrap;
-              border-radius: 5px;
-              gap: 5px;
-          }
-          #KeywordsContainer a {
-              display: inline-block;
-              flex-shrink: 0;
-              margin: 5px;
-              margin-left: 0px;
-              padding: 10px 15px;
-              text-decoration: none;
-              color: white;
-              font-weight: bold;
-              border-radius: 5px;
-              transition: background 0.3s ease-in-out;
-          }
-          /* Responsive Design */
-          @media screen and (max-width: 940px) {
-          #MoviesCardContainer {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
-              gap: 10px;
-          }
-          .KeywordsBtnBox {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            overflow: auto;
-          }
-          }
+    <!-- CSS movies-card-one File Importe -->
+    <link type="text/css"rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-one.css">
+    
+    <!-- CSS movies-card-two File Importe -->
+    <link type="text/plain"rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-two.css">
+    
+    <style type="text/css">
     </style>
     <style type="text/plain">
-        #main-container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: space-between;
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #MoviesCardContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        #MoviesCardContainer .MoviesCards {
-            width: 200px;
-            height: 325px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            text-align: center;
-            text-decoration: none;
-            color: black;
-            border: 1px solid red;
-        }
-        
-        #MoviesCardContainer .MovieCardThumbnail {
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
-        }
-        #MoviesCardContainer .MovieCardThumbnail img {
-            width: 100%;
-            height: auto;
-        }
-        
-        #MoviesCardContainer .MovieCardDetails {
-            width: 100%;
-        }
-        
-        #MoviesCardContainer .MovieCardDetails p {
-        	font-style: italic;
-        	text-decoration: underline;
-            text-transform: lowercase;
-        }
-        .pagination {
-            margin-top: 80px;
-        }
-        .pagination a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            text-decoration: none;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            color: black;
-        }
-        .pagination a:hover {
-            background-color: #ddd;
-        }
-        .pagination a.active {
-            font-weight: bold;
-            color: white;
-            background-color: #007bff;
-        }
-        .pagination .prev, .pagination .next {
-            font-weight: bold;
-            background-color: #007bff;
-            color: white;
-            border-radius: 8px;
-        }
-        .pagination .prev:hover, .pagination .next:hover {
-            background-color: #0056b3;
-        }
-        .pagination .last {
-            font-weight: bold;
-            background-color: #ff5722;
-            color: white;
-            border-radius: 8px;
-        }
-        .pagination .last:hover {
-            background-color: #e64a19;
-        }
-          /* Responsive Design */
-          @media screen and (max-width: 940px) {
-          #MoviesCardContainer {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
-              gap: 10px;
-          }
-          .CategoryBtnBox {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            overflow: auto;
-          }
-          .ChannelBtnBox {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: nowrap;
-            overflow: auto;
-          }
-          }
     </style>
 </head>
 <body>
@@ -301,14 +36,14 @@
         <input type="text" id="searchInput" placeholder="Search...">
         <button class="search-btn" onclick="searchBtn()">Search</button>
     </div>
-    <div class="KeywordsBtnBox">
-        <div id="KeywordsContainer"></div> <!-- Dynamic keywords yahan add hongi -->
-    </div>
     <div class="CategoryBtnBox">
     	  <div id="CategoryContainer"></div> <!-- Dynamic Category Links yahan add honge -->
     </div>
     <div class="ChannelBtnBox">
     	  <div id="ChannelContainer"></div> <!-- Dynamic Channel Links yahan add honge -->
+    </div>
+    <div class="KeywordsBtnBox">
+        <div id="KeywordsContainer"></div> <!-- Dynamic keywords yahan add hongi -->
     </div>
     <div id="main-container">
         <div id="MoviesCardContainer"></div> <!-- Dynamic Movies Links yahan add honge -->
@@ -316,330 +51,35 @@
     </div>
     
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/all-movies-data-display.js"></script>
+    
+    <script type="text/plain" src="https://website2l.github.io/allweb/movies-file/main-all-movies-data-display.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/search-bar.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/category.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/channel.js"></script>
+    
+    <script src="https://website2l.github.io/allweb/movies-file/keywords.js"></script>
 
     <script>
-        const moviesPerPage = 6;
-        const urlParams = new URLSearchParams(window.location.search);
-        let currentPage = parseInt(urlParams.get("page")) || 1;
-        const totalPages = Math.ceil(movies.length / moviesPerPage);
-        const container = document.getElementById("MoviesCardContainer");
-        const pagination = document.getElementById("pagination");
-
-        function renderMovies() {
-            container.innerHTML = "";
-            let start = (currentPage - 1) * moviesPerPage;
-            let end = start + moviesPerPage;
-            let paginatedMovies = movies.slice(start, end);
-
-            paginatedMovies.forEach(movie => {
-                const movieCard = document.createElement("a");
-                movieCard.className = "MoviesCards";
-                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
-                movieCard.innerHTML = `
-            	<div class="MovieCardThumbnail">
-                    <img src="${movie.Mainimage}" alt="${movie.title}">
-                </div>
-            	<div class="MovieCardDetails">
-                    <h3>${movie.title}</h3>
-                    <p>${movie.category}</p>
-                </div>
-                `;
-                container.appendChild(movieCard);
-            });
-        }
-
-        function renderPagination() {
-            pagination.innerHTML = "";
-
-            // Previous Button
-            if (currentPage > 1) {
-                pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
-            }
-
-            // Page Numbers - Only 4 Buttons
-            let startPage = Math.max(1, currentPage - 1);
-            let endPage = Math.min(totalPages, startPage + 3);
-            
-            if (endPage - startPage < 3) {
-                startPage = Math.max(1, endPage - 3);
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                pagination.innerHTML += `<a href="?page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
-            }
-
-            // Next Button
-            if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?page=${currentPage + 1}" class="next">Next &gt;</a>`;
-            }
-
-            // Last Page Button
-            if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?page=${totalPages}" class="last">Last ${totalPages}</a>`;
-            }
-        }
-
-        renderMovies();
-        renderPagination();
-    </script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const keywordsContainer = document.getElementById("KeywordsContainer");
-        const baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html?keywords=";
-
-        // Unique keywords collect karna
-        const uniqueKeywords = new Set();
-        
-        movies.forEach(movie => {
-            movie.keywords.split(',').forEach(kw => {
-                const trimmedKeyword = kw.trim();
-                if (trimmedKeyword) uniqueKeywords.add(trimmedKeyword);
-            });
-        });
-
-        // Optional background aur hover color automatic generate karti hai yahan se start hoti hai
-        function getRandomHexColor(brightness = 150) {
-            let r = Math.floor(Math.random() * brightness);
-            let g = Math.floor(Math.random() * brightness);
-            let b = Math.floor(Math.random() * brightness);
-            return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-        }
-
-        function darkenHexColor(hex, percent) {
-            let r = parseInt(hex.substring(1, 3), 16);
-            let g = parseInt(hex.substring(3, 5), 16);
-            let b = parseInt(hex.substring(5, 7), 16);
-
-            r = Math.max(0, Math.floor(r * (1 - percent / 100)));
-            g = Math.max(0, Math.floor(g * (1 - percent / 100)));
-            b = Math.max(0, Math.floor(b * (1 - percent / 100)));
-
-            return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-        }
-        // Yahan se end hoti hai
-
-        uniqueKeywords.forEach(keyword => {
-            const encodedKeyword = encodeURIComponent(keyword); // URL mein "%20" use hoga
-            const className = keyword.toLowerCase().replace(/\s+/g, "-") + "-movies"; // Class name mein "-" use hoga
-
-            const link = document.createElement("a");
-            link.href = baseUrl + encodedKeyword;
-            link.className = className;
-            link.textContent = keyword; // EXACT same format as given in data
-
-            // **Random HEX colors apply hota hai yahan se start hoti hai**
-            const bgColor = getRandomHexColor(220);  // Normal brightness
-            const hoverColor = darkenHexColor(bgColor, 15); // Darker shade for hover
-
-            link.style.backgroundColor = bgColor;
-
-            // **Hover par color dark karna**
-            link.addEventListener("mouseenter", function() {
-                link.style.backgroundColor = hoverColor;
-                link.style.color = "#fff";
-            });
-
-            link.addEventListener("mouseleave", function() {
-                link.style.backgroundColor = bgColor;
-                link.style.color = "#fff";
-            });
-            // Yahan se end hoti hai
-
-            keywordsContainer.appendChild(link);
-        });
-    });
-</script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    const container = document.getElementById("CategoryContainer");
-const baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html?category=";
-
-// Unique categories collect karne ke liye Set use karein
-const uniqueCategories = new Set(movies.map(movie => movie.category));
-
-uniqueCategories.forEach(category => {
-    const encodedCategory = encodeURIComponent(category); // URL encoding
-    const className = category.toLowerCase().replace(/\s+/g, "-") + "-movies"; // CSS class formatting
-
-    const link = document.createElement("a");
-    link.href = baseUrl + encodedCategory;
-    link.className = className;
-    link.textContent = category; // Original category name
-
-    container.appendChild(link);
-});
-});
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const channelContainer = document.getElementById("ChannelContainer");
-            const baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html?channel=";
-
-            // Unique channels collect karna
-            const uniqueChannels = new Set();
-            
-            movies.forEach(movie => {
-                movie.channel.split(',').forEach(ch => {
-                    const trimmedChannel = ch.trim();
-                    if (trimmedChannel) uniqueChannels.add(trimmedChannel);
-                });
-            });
-
-			// optional ye coding automaticlly background and background hover generate karti hai Yiahan se start hoti hai
-            function getRandomHexColor(brightness = 150) {
-                let r = Math.floor(Math.random() * brightness);
-                let g = Math.floor(Math.random() * brightness);
-                let b = Math.floor(Math.random() * brightness);
-                return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-            }
-
-            function darkenHexColor(hex, percent) {
-                let r = parseInt(hex.substring(1, 3), 16);
-                let g = parseInt(hex.substring(3, 5), 16);
-                let b = parseInt(hex.substring(5, 7), 16);
-
-                r = Math.max(0, Math.floor(r * (1 - percent / 100)));
-                g = Math.max(0, Math.floor(g * (1 - percent / 100)));
-                b = Math.max(0, Math.floor(b * (1 - percent / 100)));
-
-                return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-            }
-			// Yiahan se end hoti hai
-
-            uniqueChannels.forEach(channel => {
-                const encodedChannel = encodeURIComponent(channel); // URL mein "%20" use hoga
-                const className = channel.toLowerCase().replace(/\s+/g, "-") + "-movies"; // Class name mein "-" use hoga
-
-                const link = document.createElement("a");
-                link.href = baseUrl + encodedChannel;
-                link.className = className;
-                link.textContent = channel; // EXACT same format as given in data
-
-                // **Random HEX colors apply hota hai yiahan se start hoti hai**
-                const bgColor = getRandomHexColor(220);  // Normal brightness
-                const hoverColor = darkenHexColor(bgColor, 15); // Darker shade for hover
-
-                link.style.backgroundColor = bgColor;
-
-                // **Hover par color dark karna**
-                link.addEventListener("mouseenter", function() {
-                    link.style.backgroundColor = hoverColor;
-                    link.style.color = "#fff";
-                });
-
-                link.addEventListener("mouseleave", function() {
-                    link.style.backgroundColor = bgColor;
-                    link.style.color = "#fff";
-                });
-				// Yiahan se end hoti hai
-
-                channelContainer.appendChild(link);
-            });
-        });
     </script>
 
     <script>
-    function searchBtn() {
-    let searchInput = document.getElementById("searchInput").value.trim();
-    if (searchInput) {
-        let formattedQuery = searchInput.replace(/\s+/g, "+");
-        let baseUrl = "https://website2l.github.io/allweb/movies-file/search-qurye-filtered-movies.html";
-        let finalUrl = `${baseUrl}?search=${formattedQuery}`;
-        window.location.href = finalUrl; // Same tab mein open karega
-    } else {
-        alert("Please enter a search query!");
-    }
-}
+    </script>
 
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        searchBtn();
-    }
-});
+    <script>
+    </script>
+
+    <script type="text/javascript">
     </script>
     
     <script type="text/plain">
-        // ✅ Step 2: Pehle Categories Add Karo
-        const uniqueCategories = new Set();
-        const categoryContainer = document.getElementById("CategoryContainer");
-        const baseUrl = "https://website2l.github.io/allweb/NiQ-services-items-category.html?category=";
-
-        movies.forEach(movie => {
-            let categoryName = movie.category.toLowerCase().trim();
-            if (!uniqueCategories.has(categoryName)) {
-                uniqueCategories.add(categoryName);
-                const categoryUrl = categoryName.replace(/\s+/g, "-");
-                const className = categoryName.replace(/\s+/g, "-") + "-movies";
-                const displayText = movie.category.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-
-                const link = document.createElement("a");
-                link.href = baseUrl + categoryUrl;
-                link.className = className;
-                link.textContent = displayText;
-                categoryContainer.appendChild(link);
-            }
-        });
-
-        // ✅ Step 3: Ab Movies Pagination Render Karo
-        const moviesPerPage = 6;
-        const urlParams = new URLSearchParams(window.location.search);
-        let currentPage = parseInt(urlParams.get("page")) || 1;
-        const totalPages = Math.ceil(movies.length / moviesPerPage);
-        const container = document.getElementById("MoviesCardContainer");
-        const pagination = document.getElementById("pagination");
-
-        function renderMovies() {
-            container.innerHTML = "";
-            let start = (currentPage - 1) * moviesPerPage;
-            let end = start + moviesPerPage;
-            let paginatedMovies = movies.slice(start, end);
-
-            paginatedMovies.forEach(movie => {
-                const movieCard = document.createElement("a");
-                movieCard.className = "MoviesCards";
-                movieCard.href = `https://website2l.github.io/allweb/NiQ-services-items-category.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
-                movieCard.innerHTML = `
-                    <div class="MovieCardThumbnail">
-                        <img src="${movie.Mainimage}" alt="${movie.title}">
-                    </div>
-                    <div class="MovieCardDetails">
-                        <h3>${movie.title}</h3>
-                        <p>${movie.category}</p>
-                    </div>
-                `;
-                container.appendChild(movieCard);
-            });
-        }
-
-        function renderPagination() {
-            pagination.innerHTML = "";
-            if (currentPage > 1) {
-                pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
-            }
-
-            let startPage = Math.max(1, currentPage - 1);
-            let endPage = Math.min(totalPages, startPage + 3);
-            if (endPage - startPage < 3) {
-                startPage = Math.max(1, endPage - 3);
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                pagination.innerHTML += `<a href="?page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
-            }
-
-            if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?page=${currentPage + 1}" class="next">Next &gt;</a>`;
-            }
-            if (currentPage < totalPages) {
-                pagination.innerHTML += `<a href="?page=${totalPages}" class="last">Last ${totalPages}</a>`;
-            }
-        }
-
-        renderMovies();
-        renderPagination();
     </script>
 </body>
 </html>
