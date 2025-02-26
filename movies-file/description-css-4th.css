@@ -1,0 +1,118 @@
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1e1e2e;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Main Description Box */
+        .DescriptionBox {
+            max-width: 900px;
+            background: rgba(30, 30, 46, 0.9);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 30px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .DescriptionBox:hover {
+            border-color: #ff69b4;
+            box-shadow: 0px 0px 30px rgba(255, 105, 180, 0.8);
+            transform: translateY(-5px);
+        }
+
+        /* Glowing Border Effect */
+        .DescriptionBox::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        /* Heading Style */
+        h1 {
+            font-size: 34px;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 0px 0px 10px rgba(255, 105, 180, 0.8);
+        }
+
+        /* Paragraph Styling */
+        #DescriptionContainer p {
+            line-height: 1.8;
+            font-size: 18px;
+            text-align: justify;
+            color: #ddd;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 15px rgba(255, 105, 180, 0.5);
+        }
+
+        table, th, td {
+            border: 2px solid #ff69b4;
+        }
+
+        td {
+            padding: 14px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        /* Bold Text */
+        .bold {
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+        /* Alternate Row Styling */
+        tr:nth-child(odd) {
+            background: rgba(255, 105, 180, 0.2);
+        }
+
+        /* Glowing Button */
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0px 0px 15px rgba(255, 105, 180, 0.8);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 25px rgba(255, 105, 180, 1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .DescriptionBox {
+                padding: 20px;
+            }
+
+            table, td {
+                font-size: 14px;
+            }
+        }
