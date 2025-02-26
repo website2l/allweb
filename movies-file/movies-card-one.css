@@ -1,17 +1,17 @@
 
-          #main-container {
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-          }
-          #MoviesCardContainer {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-          }
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #MoviesCardContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
           #MoviesCardContainer .MoviesCards {
               background-color: #f4f4f4;
               color: Black;
@@ -31,7 +31,6 @@
           #MoviesCardContainer .MovieCardThumbnail {
               width: 100%;
               height: 250px;
-              flex-shrink: 0;
               overflow: hidden;
               display: flex;
               justify-content: center;
@@ -40,9 +39,8 @@
           #MoviesCardContainer .MovieCardThumbnail img {
               width: 340px;
               height: auto;
-              flex-shrink: 0;
               object-fit: cover;
-              /*border-radius: 5px;*/
+              /* border-radius: 5px; */
               transition: transform 0.3s;
               margin-top: -30px; /* Adjust margin to move image up */
           }
@@ -71,9 +69,9 @@
               transform: scale(1.2);
           }
           #MoviesCardContainer .MovieCardDetails p {
-              font-style: italic;
-              text-decoration: underline;
+            font-style: italic;
             text-transform: lowercase;
+            text-decoration: underline;
           }
           .pagination {
               margin-top: 15px;
@@ -113,7 +111,7 @@
               background-color: #e64a19;
           }
           /* Responsive Design */
-          @media screen and (max-width: 940px) {
+          @media screen and (max-width: 1170px) {
           #MoviesCardContainer {
               display: flex;
               justify-content: center;
