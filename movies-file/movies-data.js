@@ -25,7 +25,7 @@
         </h1>
     </div>
 </div>`,
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan",
+        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-9th.css",
         "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js , https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
         "keywords": "Salman Khan , Action Movies",
         "channel": "NiQ",
