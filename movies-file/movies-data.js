@@ -26,7 +26,7 @@
     </div>
 </div>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan",
-        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js",
+        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan.js , https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
         "keywords": "Salman Khan , Action Movies",
         "channel": "NiQ",
     },
@@ -53,7 +53,7 @@
     <span style="display:block; font-family: arial;">PTI's New Surprise For Govt || Govt Losing Majority || Qaidi 804 is Winning || IRK Vlog</span>
 </h2>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.css",
-        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video",
+        "detailPageJS": "https://website2l.github.io/allweb/movies-file/description-css-imran-riaz-khan-video.js",
         "keywords": "Yaadon, Baaraat, Holi, Madhosh, Manzil",
         "channel": "",
     },
