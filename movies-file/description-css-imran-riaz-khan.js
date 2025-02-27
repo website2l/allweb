@@ -1,33 +1,32 @@
 
-// bentoJS coding
-let clickCountmovieCard = 0;
-let timerActive = false; // timer ko check karne ke liye flag
+        let clickCountmovieCard = 0;
+        let timerActive = false;
 
-function resetClicks() {
-    clickCountmovieCard = 0;
-    timerActive = false; // reset karte waqt timer ko bhi stop karna hai
-}
-
-function startTimer() {
-    timerActive = true; // timer shuru hone par flag ko true karenge
-    setTimeout(() => {
-        resetClicks(); // 15 seconds ke baad clicks reset ho jayenge
-    }, 15000); // 15000ms = 15 seconds
-}
-
-function handlemovieCardClick() {
-    clickCountmovieCard++;
-
-    if (clickCountmovieCard === 1) {
-        window.open('https://www.cpmrevenuegate.com/i5w7tfr9r0?key=fce180a281beb7fedb4e1a0fb0558828', '_blank');
-    } else if (clickCountmovieCard === 2) {
-        window.open('', '_blank');
-        if (!timerActive) {
-            startTimer(); // timer sirf 2nd click ke baad shuru hoga
+        function resetClicks() {
+            clickCountmovieCard = 0;
+            timerActive = false;
         }
-    } else if (clickCountmovieCard > 2 && timerActive) {
-        window.open('', '_blank'); // 2nd click ke baad sirf doosra URL open hoga
-    }
-}
 
-document.getElementById('movieCard').addEventListener('click', handlemovieCardClick);
+        function startTimer() {
+            timerActive = true;
+            setTimeout(() => {
+                resetClicks();
+            }, 15000);
+        }
+
+        function handlemovieCardClick() {
+            clickCountmovieCard++;
+
+            if (clickCountmovieCard === 1) {
+                window.open('https://www.effectiveratecpm.com/xj710jzb7?key=23d224ee0269506ce9543fe9f967f092', '_blank');
+            } else if (clickCountmovieCard === 2) {
+                window.open('file:///C:/Users/hp/Downloads/detail-page-description.html?movie=amir-khan/watchV=coZ3ma8jtL', '_blank'); // Dusra URL Yahan Replace Karein
+                if (!timerActive) {
+                    startTimer();
+                }
+            } else if (clickCountmovieCard > 2 && timerActive) {
+                window.open('file:///C:/Users/hp/Downloads/detail-page-description.html?movie=amir-khan/watchV=coZ3ma8jtL', '_blank'); // Ye bhi Dusra URL Hi Rahega
+            }
+        }
+
+        document.getElementById('movieCard').addEventListener('click', handlemovieCardClick);
