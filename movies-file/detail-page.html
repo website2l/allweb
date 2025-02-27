@@ -28,17 +28,31 @@
             return null;
         }
 
+        function loadScripts(jsUrls) {
+            const scriptContainer = document.body;
+            jsUrls.forEach(url => {
+                let script = document.createElement("script");
+                script.src = url.trim(); // Remove unwanted spaces
+                script.id = "dynamicJS";
+                scriptContainer.appendChild(script);
+            });
+        }
+
         function displayDescription() {
             const tiltid = getTILTidFromURL();
             const movie = movies.find(m => m.tiltid === tiltid);
             const descriptionContainer = document.getElementById("DescriptionContainer");
             const dynamicCSS = document.getElementById("dynamicCSS");
-            const dynamicJS = document.getElementById("dynamicJS");
 
             if (movie) {
                 descriptionContainer.innerHTML = movie.description;
-                dynamicCSS.href = movie.detailPageDesignCSS; // CSS File Change Ho Rahi Hai
-                dynamicJS.src = movie.detailPageJS; // JS File Change Ho Rahi Hai
+                dynamicCSS.href = movie.detailPageDesignCSS; // Load specific CSS
+                
+                // Load JS Files Dynamically
+                if (movie.detailPageJS) {
+                    const jsUrls = movie.detailPageJS.split(",");
+                    loadScripts(jsUrls);
+                }
             } else {
                 descriptionContainer.innerHTML = "<p>Description not found.</p>";
             }
