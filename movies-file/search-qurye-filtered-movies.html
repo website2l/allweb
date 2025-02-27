@@ -33,7 +33,7 @@
     <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-4th.css">
     
     <!-- CSS movies-card-5th File Importe -->
-    <link type="text/css" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-5th.css">
+    <link type="text/plain" rel="stylesheet" href="https://website2l.github.io/allweb/movies-file/movies-card-5th.css">
     
     <style type="text/plain">
     </style>
@@ -41,6 +41,33 @@
     </style>
     <style type="text/plain">
     </style>
+    
+    <script>
+        function applyStylesheet() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let stylesheetUrl = "";
+
+            if (urlParams.has("search")) {
+                stylesheetUrl = "https://website2l.github.io/allweb/movies-file/movies-card-one.css";
+            } else if (urlParams.has("category")) {
+                stylesheetUrl = "https://website2l.github.io/allweb/movies-file/movies-card-two.css";
+            } else if (urlParams.has("channel")) {
+                stylesheetUrl = "https://website2l.github.io/allweb/movies-file/movies-card-3rd.css";
+            } else if (urlParams.has("keywords")) {
+                stylesheetUrl = "https://website2l.github.io/allweb/movies-file/movies-card-4th.css";
+            }
+
+            if (stylesheetUrl) {
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = stylesheetUrl;
+                document.head.appendChild(link);
+            }
+        }
+
+        applyStylesheet();
+    </script>
 </head>
 <body>
     <div class="SearchBox">
