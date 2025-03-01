@@ -81,25 +81,36 @@
             "title": "Sultan",
             "Mainimage": "https://upload.wikimedia.org/wikipedia/en/3/3c/Sultan_2016_film_poster.jpg",
             "category": "Action",
-            "description": `<div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/en/3/31/Sultan_film_poster.jpg" alt="Sultan Movie Poster" class="poster">
-        <h1>Sultan - A Bollywood Wrestling Drama</h1>
-        <p class="channel">Channel: Bollywood Cinema</p>
-        <p class="category">Category: Sports, Action, Drama</p>
-
-        <div class="bullet-points">
-            <h2>Movie Highlights:</h2>
-            <ul>
-                <li>Released in 2016, directed by Ali Abbas Zafar.</li>
-                <li>Starring Salman Khan and Anushka Sharma.</li>
-                <li>Story of a wrestler’s journey from struggle to success.</li>
-                <li>Action-packed fights and emotional depth.</li>
-            </ul>
-        </div>
+            "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
+            <div class="MoviePosterImageBox">
+        		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/06/sultan-2.jpg" alt="Sultan Movie Poster" class="poster">
+            </div>
+            
+            <div id="MoviePosterDetailBox" class="MoviePosterDetailBox">
+                <div class="posterHeadingChannelCategoryContainer">
+                    <h1>Sultan - A Bollywood Wrestling Drama</h1>
+                    <p class="channel">Channel: Bollywood Cinema</p>
+                    <p class="category">Category: Sports, Action, Drama</p>
+                </div>
+                <div class="bullet-points">
+                    <h2>Movie Highlights:</h2>
+                    <ul>
+                        <li>Released in 2016, directed by Ali Abbas Zafar.</li>
+                        <li>Starring Salman Khan and Anushka Sharma.</li>
+                        <li>Story of a wrestler’s journey from struggle to success.</li>
+                        <li>Action-packed fights and emotional depth.</li>
+                    </ul>
+                </div>
+             </div>
+          </div>
 
         <div class="movie-images">
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Sultan_2016_film_poster.jpg" alt="Movie Scene 1">
-            <img src="https://upload.wikimedia.org/wikipedia/en/9/9d/Sultan_Salman_Khan_Anushka_Sharma.jpg" alt="Movie Scene 2">
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/07/Sultan-13.jpg" alt="Movie Scene 1">
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2016/07/Sultan-11.jpg" alt="Movie Scene 2">
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2016/07/Sultan-4.jpg" alt="Movie Scene 3">
+            <img src="https://media5.bollywoodhungama.in/wp-content/uploads/2016/05/487992318.jpg" alt="Movie Scene 4">
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2016/05/471327541.jpg" alt="Movie Scene 5">
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/446286976.jpg" alt="Movie Scene 6">
         </div>
 
         <div class="description">
@@ -121,8 +132,7 @@
         <div class="keywords">
             <h2>Keywords:</h2>
             <p>Sultan, Bollywood Movie, Salman Khan, Anushka Sharma, Wrestling, Action Drama, Hindi Cinema, Indian Film, 2016 Movies</p>
-        </div>
-    </div>`,
+        </div>`,
             "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/sultan-movie.css",
             "detailPageJS": "https://example.com/js/sultan.js",
             "keywords": "Sultan, Action, Sports, Salman Khan",
