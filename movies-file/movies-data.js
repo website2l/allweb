@@ -11,6 +11,117 @@
         "keywords": "",
         "channel": "Dezni",
     },
+        {
+            "tiltid": "1Bajra38ngiBha46ijaant8",
+            "title": "Bajrangi Bhaijaan",
+            "Mainimage": "https://upload.wikimedia.org/wikipedia/en/0/0c/Bajrangi_Bhaijaan_poster.jpg",
+            "category": "Drama",
+            "description": `<div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/db/Bajrangi_Bhaijaan_Poster.jpg" alt="Bajrangi Bhaijaan Poster" class="poster">
+        <h1>Bajrangi Bhaijaan - A Heartwarming Bollywood Movie</h1>
+        <p class="channel">Channel: Bollywood Cinema</p>
+        <p class="category">Category: Action, Drama, Adventure</p>
+
+        <div class="bullet-points">
+            <h2>Movie Highlights:</h2>
+            <ul>
+                <li>Released in 2015, directed by Kabir Khan.</li>
+                <li>Starring Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui.</li>
+                <li>Story of a man helping a lost girl find her home in Pakistan.</li>
+                <li>Emotional, thrilling, and filled with humanity.</li>
+            </ul>
+        </div>
+
+        <div class="movie-images">
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/3a/Bajrangi_Bhaijaan_Salman_Khan.jpg" alt="Movie Scene 1">
+            <img src="https://upload.wikimedia.org/wikipedia/en/f/fe/Bajrangi_Bhaijaan_Song.jpg" alt="Movie Scene 2">
+        </div>
+
+        <div class="description">
+            <h2>Movie Description:</h2>
+            <p>Bajrangi Bhaijaan is a Bollywood blockbuster that tells the touching story of Pavan, a devoted Hanuman worshipper, who embarks on a journey to reunite a lost Pakistani girl with her family. Filled with action, drama, and emotional moments, the movie delivers a strong message of love and humanity beyond borders.</p>
+        </div>
+
+        <div class="features">
+            <h2>Features:</h2>
+            <ul>
+                <li>Genre: Action, Drama, Adventure</li>
+                <li>Director: Kabir Khan</li>
+                <li>Starring: Salman Khan, Kareena Kapoor Khan, Nawazuddin Siddiqui, Harshaali Malhotra</li>
+                <li>IMDB Rating: 8.1/10</li>
+                <li>Box Office: ₹969.06 crore</li>
+            </ul>
+        </div>
+
+        <div class="keywords">
+            <h2>Keywords:</h2>
+            <p>Bajrangi Bhaijaan, Bollywood Movie, Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui, Hindi Cinema, Indian Film, Action Drama, 2015 Movies</p>
+        </div>
+    </div>`,
+            "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/bajrangi-bhaijaan.css",
+            "detailPageJS": "https://example.com/js/bajrangi.js",
+            "channel": "Bollywood Hits",
+            "HeaderTitle": "Bajrangi Bhaijaan - Full Movie Details",
+            "MetaDescription": "Bajrangi Bhaijaan - A heartwarming Bollywood movie about love, faith, and humanity. Watch the journey of Bajrangi as he helps a lost girl reunite with her family.",
+            "keywords": "Bajrangi Bhaijaan, Drama, Adventure, Salman Khan",
+            "Auther": "NiQ",
+        },
+        {
+            "tiltid": "2Sultan7g9",
+            "title": "Sultan",
+            "Mainimage": "https://upload.wikimedia.org/wikipedia/en/3/3c/Sultan_2016_film_poster.jpg",
+            "category": "Action",
+            "description": `<div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/31/Sultan_film_poster.jpg" alt="Sultan Movie Poster" class="poster">
+        <h1>Sultan - A Bollywood Wrestling Drama</h1>
+        <p class="channel">Channel: Bollywood Cinema</p>
+        <p class="category">Category: Sports, Action, Drama</p>
+
+        <div class="bullet-points">
+            <h2>Movie Highlights:</h2>
+            <ul>
+                <li>Released in 2016, directed by Ali Abbas Zafar.</li>
+                <li>Starring Salman Khan and Anushka Sharma.</li>
+                <li>Story of a wrestler’s journey from struggle to success.</li>
+                <li>Action-packed fights and emotional depth.</li>
+            </ul>
+        </div>
+
+        <div class="movie-images">
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bf/Sultan_2016_film_poster.jpg" alt="Movie Scene 1">
+            <img src="https://upload.wikimedia.org/wikipedia/en/9/9d/Sultan_Salman_Khan_Anushka_Sharma.jpg" alt="Movie Scene 2">
+        </div>
+
+        <div class="description">
+            <h2>Movie Description:</h2>
+            <p>Sultan is a Bollywood sports drama that follows the journey of Sultan Ali Khan, a small-town wrestler who rises to fame, only to fall into despair. The story revolves around his determination, love, and struggles to make a comeback in the wrestling world. With high-octane action and emotional depth, this movie was a major box office success.</p>
+        </div>
+
+        <div class="features">
+            <h2>Features:</h2>
+            <ul>
+                <li>Genre: Sports, Action, Drama</li>
+                <li>Director: Ali Abbas Zafar</li>
+                <li>Starring: Salman Khan, Anushka Sharma, Randeep Hooda</li>
+                <li>IMDB Rating: 7.0/10</li>
+                <li>Box Office: ₹623.33 crore</li>
+            </ul>
+        </div>
+
+        <div class="keywords">
+            <h2>Keywords:</h2>
+            <p>Sultan, Bollywood Movie, Salman Khan, Anushka Sharma, Wrestling, Action Drama, Hindi Cinema, Indian Film, 2016 Movies</p>
+        </div>
+    </div>`,
+            "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/sultan-movie.css",
+            "detailPageJS": "https://example.com/js/sultan.js",
+            "keywords": "Sultan, Action, Sports, Salman Khan",
+            "channel": "Bollywood Hits",
+            "HeaderTitle": "Sultan - Full Movie Details",
+            "MetaDescription": "Sultan - A Bollywood sports drama about a wrestler's comeback journey. Starring Salman Khan and Anushka Sharma.",
+            "keywords": "Salman Khan, Anushka Sharma, Bollywood, Wrestling, Sports Drama, Hindi Movies, 2016 Movies, Action Movies",
+            "Auther": "NiQ",
+        },
     {
         "tiltid": "gfx6tx9grokX7mak",
         "title": "Salman Khan",
@@ -353,28 +464,6 @@
   </tbody>
 </table>`,
         "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-14th.css",
-        "detailPageJS": "",
-        "keywords": "",
-        "channel": "",
-    },
-    {
-        "tiltid": "P7kj9oN6",
-        "title": "Dood Khan",
-        "Mainimage": "https://via.placeholder.com/200",
-        "category": "Action",
-        "description": `<p>Sivaji: The Boss is a 2007 Indian Tamil-language Hindi-language action film co-written and directed by S. Shankar and produced by AVM Productions. The film stars Rajinikanth in the titular role alongside Shriya Saran, Vivek and Suman playing pivotal roles with an ensemble supporting cast. In the film, Sivaji is a software systems architect, who returns to India from the US in order to provide free medical treatment and education, but has to face hurdles from the system and Aathisheshan, an influential political leader.</p><br><p>Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125—160 crore worldwide. It emerged as one of the highest-grossing Indian films at the time of its release and went on to win a National Film Award, three Filmfare Awards and two Vijay Awards. The film was converted into 3D and released on 12 December 2012 as Sivaji 3D. The runtime of the 3D version was shorter than the original, cut to 155 minutes. It also emerged as the first Tamil film to enter the 100 crore club in the history of Kollywood.</p><table><tr><td><span class='bold'>Directed by</span></td><td>S. Shankar</td></tr><tr><td><span class='bold'>Written by</span></td><td>S. Shankar (Story & Screenplay) Sujatha (Dialogues)</td></tr><tr><td><span class='bold'>Produced by</span></td><td>M. S. Guhan M. Saravanan</td></tr><tr><td><span class='bold'>Starring</span></td><td>Rajnikanth Shriya Saran Vivek Suman</td></tr><tr><td><span class='bold'>Cinematography</span></td><td>K. V. Anand</td></tr><tr><td><span class='bold'>Edited by</span></td><td>Anthony</td></tr><tr><td><span class='bold'>Music by</span></td><td>A. R. Rahman</td></tr><tr><td><span class='bold'>Production company</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Distributed by</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Release dates</span></td><td>14 June 2007 (premiere) 15 June 2007 (India)</td></tr><tr><td><span class='bold'>Running time</span></td><td>188 minutes</td></tr><tr><td><span class='bold'>Country</span></td><td>India</td></tr><tr><td><span class='bold'>Language</span></td><td>Tamil</td></tr><tr><td><span class='bold'>Budget</span></td><td>₹60-89 crore</td></tr><tr><td><span class='bold'>Box office</span></td><td>₹125—160 crore</td></tr></table>`,
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-1st.css",
-        "detailPageJS": "",
-        "keywords": "",
-        "channel": "",
-    },
-    {
-        "tiltid": "M7M9caseoN6",
-        "title": "Lal Pati",
-        "Mainimage": "https://via.placeholder.com/200",
-        "category": "Action",
-        "description": `<p>Sivaji: The Boss is a 2007 Indian Tamil-language Hindi-language action film co-written and directed by S. Shankar and produced by AVM Productions. The film stars Rajinikanth in the titular role alongside Shriya Saran, Vivek and Suman playing pivotal roles with an ensemble supporting cast. In the film, Sivaji is a software systems architect, who returns to India from the US in order to provide free medical treatment and education, but has to face hurdles from the system and Aathisheshan, an influential political leader.</p><br><p>Released on 15 June 2007, Sivaji received positive reviews from critics and became a commercial success by grossing ₹125—160 crore worldwide. It emerged as one of the highest-grossing Indian films at the time of its release and went on to win a National Film Award, three Filmfare Awards and two Vijay Awards. The film was converted into 3D and released on 12 December 2012 as Sivaji 3D. The runtime of the 3D version was shorter than the original, cut to 155 minutes. It also emerged as the first Tamil film to enter the 100 crore club in the history of Kollywood.</p><table><tr><td><span class='bold'>Directed by</span></td><td>S. Shankar</td></tr><tr><td><span class='bold'>Written by</span></td><td>S. Shankar (Story & Screenplay) Sujatha (Dialogues)</td></tr><tr><td><span class='bold'>Produced by</span></td><td>M. S. Guhan M. Saravanan</td></tr><tr><td><span class='bold'>Starring</span></td><td>Rajnikanth Shriya Saran Vivek Suman</td></tr><tr><td><span class='bold'>Cinematography</span></td><td>K. V. Anand</td></tr><tr><td><span class='bold'>Edited by</span></td><td>Anthony</td></tr><tr><td><span class='bold'>Music by</span></td><td>A. R. Rahman</td></tr><tr><td><span class='bold'>Production company</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Distributed by</span></td><td>AVM Productions</td></tr><tr><td><span class='bold'>Release dates</span></td><td>14 June 2007 (premiere) 15 June 2007 (India)</td></tr><tr><td><span class='bold'>Running time</span></td><td>188 minutes</td></tr><tr><td><span class='bold'>Country</span></td><td>India</td></tr><tr><td><span class='bold'>Language</span></td><td>Tamil</td></tr><tr><td><span class='bold'>Budget</span></td><td>₹60-89 crore</td></tr><tr><td><span class='bold'>Box office</span></td><td>₹125—160 crore</td></tr></table>`,
-        "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-1st.css",
         "detailPageJS": "",
         "keywords": "",
         "channel": "",
