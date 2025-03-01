@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Duration</title>
+<meta http-equiv="refresh" content="1">
+</head>
+<body>
+    <h1>Movie Duration Tracking</h1>
+    <div id="movie-details"></div>
+<button class="" onclick="resetBtn()">Reset</button>
+    
+    <script defer src="file:///C:/Users/hp/Downloads/storing.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const storageKey = "movie_tracking_data";
+        let trackingData = JSON.parse(localStorage.getItem(storageKey)) || {};
+        
+        const container = document.getElementById("movie-details");
+        
+        if (Object.keys(trackingData).length === 0) {
+            container.innerHTML = "<p>No movie data found.</p>";
+            return;
+        }
+        
+        let htmlContent = "<table border='1'><tr><th>Title ID</th><th>Title</th><th>Duration (Seconds)</th><th>Opened Count</th></tr>";
+        
+        for (const tiltid in trackingData) {
+            htmlContent += `<tr>
+                <td>${tiltid}</td>
+                <td>${trackingData[tiltid].title ? trackingData[tiltid].title : "Unknown"}</td>
+                <td>${trackingData[tiltid].duration}</td>
+                <td>${trackingData[tiltid].count}</td>
+            </tr>`;
+        }
+        
+        htmlContent += "</table>";
+        container.innerHTML = htmlContent;
+    });
+</script>
+
+<script>
+    function resetBtn() {
+        // ✅ Local Storage se movie data remove karna
+        localStorage.removeItem("movie_tracking_data");
+
+        // ✅ Page ko reload karna taake sab kuch fresh start ho
+        location.reload();
+    }
+</script>
+
+
+</body>
+</html>
