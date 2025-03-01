@@ -14,27 +14,38 @@
         {
             "tiltid": "1Bajra38ngiBha46ijaant8",
             "title": "Bajrangi Bhaijaan",
-            "Mainimage": "https://upload.wikimedia.org/wikipedia/en/0/0c/Bajrangi_Bhaijaan_poster.jpg",
+            "Mainimage": "https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg",
             "category": "Drama",
-            "description": `<div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/en/d/db/Bajrangi_Bhaijaan_Poster.jpg" alt="Bajrangi Bhaijaan Poster" class="poster">
-        <h1>Bajrangi Bhaijaan - A Heartwarming Bollywood Movie</h1>
-        <p class="channel">Channel: Bollywood Cinema</p>
-        <p class="category">Category: Action, Drama, Adventure</p>
-
-        <div class="bullet-points">
-            <h2>Movie Highlights:</h2>
-            <ul>
-                <li>Released in 2015, directed by Kabir Khan.</li>
-                <li>Starring Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui.</li>
-                <li>Story of a man helping a lost girl find her home in Pakistan.</li>
-                <li>Emotional, thrilling, and filled with humanity.</li>
-            </ul>
-        </div>
+            "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
+            <div class="MoviePosterImageBox">
+        		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg" alt="Bajrangi Bhaijaan Poster" class="poster">
+            </div>
+            
+            <div id="MoviePosterDetailBox" class="MoviePosterDetailBox">
+                <div class="posterHeadingChannelCategoryContainer">
+                    <h1>Bajrangi Bhaijaan - A Heartwarming Bollywood Movie</h1>
+                    <p class="channel">Channel: Bollywood Cinema</p>
+                    <p class="category">Category: Action, Drama, Adventure</p>
+                </div>
+                <div class="bullet-points">
+                    <h2>Movie Highlights:</h2>
+                    <ul>
+                        <li>Released in 2015, directed by Kabir Khan.</li>
+                        <li>Starring Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui.</li>
+                        <li>Story of a man helping a lost girl find her home in Pakistan.</li>
+                        <li>Emotional, thrilling, and filled with humanity.</li>
+                    </ul>
+                </div>
+             </div>
+          </div>
 
         <div class="movie-images">
-            <img src="https://upload.wikimedia.org/wikipedia/en/3/3a/Bajrangi_Bhaijaan_Salman_Khan.jpg" alt="Movie Scene 1">
-            <img src="https://upload.wikimedia.org/wikipedia/en/f/fe/Bajrangi_Bhaijaan_Song.jpg" alt="Movie Scene 2">
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429675229-504x300.jpg" alt="Movie Scene 1">
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429854458-507x300.jpg" alt="Movie Scene 2">
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2016/05/429099990-450x300.jpg" alt="Movie Scene 3">
+            <img src="https://media5.bollywoodhungama.in/wp-content/uploads/2016/05/429971841-450x300.jpg" alt="Movie Scene 4">
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429531405-533x300.jpg" alt="Movie Scene 5">
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2016/05/429419238-450x300.jpg" alt="Movie Scene 6">
         </div>
 
         <div class="description">
@@ -56,8 +67,7 @@
         <div class="keywords">
             <h2>Keywords:</h2>
             <p>Bajrangi Bhaijaan, Bollywood Movie, Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui, Hindi Cinema, Indian Film, Action Drama, 2015 Movies</p>
-        </div>
-    </div>`,
+        </div>`,
             "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/bajrangi-bhaijaan.css",
             "detailPageJS": "https://example.com/js/bajrangi.js",
             "channel": "Bollywood Hits",
