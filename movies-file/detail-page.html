@@ -24,62 +24,7 @@
     
     <script src="https://website2l.github.io/allweb/movies-file/movies-data.js"></script>
     
-    <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieQuery = urlParams.get("movie") || '';
-    const titleQuery = urlParams.get("title") || '';
-    const descriptionQuery = urlParams.get("description") || '';
-
-    const container = document.getElementById("MoviesCardContainer");
-
-    function normalizeText(text) {
-        return text.toLowerCase().replace(/[-\s]+/g, " ");
-    }
-
-    function renderMovies() {
-        container.innerHTML = "";
-
-        if (!movieQuery && !titleQuery && !descriptionQuery) {
-            container.innerHTML = "<p>Please enter a valid query in the URL.</p>";
-            return;
-        }
-
-        const lowerCaseMovieQuery = decodeURIComponent(movieQuery).toLowerCase();
-        const lowerCaseTitleQuery = decodeURIComponent(titleQuery).toLowerCase();
-        const lowerCaseDescriptionQuery = decodeURIComponent(descriptionQuery).toLowerCase();
-
-        let filteredMovies = movies.filter(movie =>
-            movie.title.toLowerCase().includes(lowerCaseTitleQuery) ||
-            movie.description.toLowerCase().includes(lowerCaseDescriptionQuery) ||
-            normalizeText(movie.category).includes(normalizeText(lowerCaseTitleQuery)) ||
-            movie.keywords.toLowerCase().includes(lowerCaseDescriptionQuery) ||
-            movie.channel.toLowerCase().includes(lowerCaseMovieQuery)
-        );
-
-        if (filteredMovies.length === 0) {
-            container.innerHTML = "<p>No results found!</p>";
-            return;
-        }
-
-        filteredMovies.forEach(movie => {
-            const movieCard = document.createElement("a");
-            movieCard.className = "MoviesCards";
-            movieCard.href = `https://website2l.github.io/allweb/movies-file/detail-page.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
-            movieCard.innerHTML = `
-                <div class="MovieCardThumbnail">
-                    <img src="${movie.Mainimage}" alt="${movie.title}">
-                </div>
-                <div class="MovieCardDetails">
-                    <h3>${movie.title}</h3>
-                    <p>${movie.category}</p>
-                </div>
-            `;
-            container.appendChild(movieCard);
-        });
-    }
-
-    renderMovies();
-</script>
+    <script defer src="https://website2l.github.io/allweb/movies-file/movie-detail-page-storing.js"></script>
 
     <script>
         function getTILTidFromURL() {
@@ -163,6 +108,63 @@
 // Call function on page load
 updateMovieURL();
     </script>
+    
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieQuery = urlParams.get("movie") || '';
+    const titleQuery = urlParams.get("title") || '';
+    const descriptionQuery = urlParams.get("description") || '';
+
+    const container = document.getElementById("MoviesCardContainer");
+
+    function normalizeText(text) {
+        return text.toLowerCase().replace(/[-\s]+/g, " ");
+    }
+
+    function renderMovies() {
+        container.innerHTML = "";
+
+        if (!movieQuery && !titleQuery && !descriptionQuery) {
+            container.innerHTML = "<p>Please enter a valid query in the URL.</p>";
+            return;
+        }
+
+        const lowerCaseMovieQuery = decodeURIComponent(movieQuery).toLowerCase();
+        const lowerCaseTitleQuery = decodeURIComponent(titleQuery).toLowerCase();
+        const lowerCaseDescriptionQuery = decodeURIComponent(descriptionQuery).toLowerCase();
+
+        let filteredMovies = movies.filter(movie =>
+            movie.title.toLowerCase().includes(lowerCaseTitleQuery) ||
+            movie.description.toLowerCase().includes(lowerCaseDescriptionQuery) ||
+            normalizeText(movie.category).includes(normalizeText(lowerCaseTitleQuery)) ||
+            movie.keywords.toLowerCase().includes(lowerCaseDescriptionQuery) ||
+            movie.channel.toLowerCase().includes(lowerCaseMovieQuery)
+        );
+
+        if (filteredMovies.length === 0) {
+            container.innerHTML = "<p>No results found!</p>";
+            return;
+        }
+
+        filteredMovies.forEach(movie => {
+            const movieCard = document.createElement("a");
+            movieCard.className = "MoviesCards";
+            movieCard.href = `https://website2l.github.io/allweb/movies-file/detail-page.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+            movieCard.innerHTML = `
+                <div class="MovieCardThumbnail">
+                    <img src="${movie.Mainimage}" alt="${movie.title}">
+                </div>
+                <div class="MovieCardDetails">
+                    <h3>${movie.title}</h3>
+                    <p>${movie.category}</p>
+                </div>
+            `;
+            container.appendChild(movieCard);
+        });
+    }
+
+    renderMovies();
+</script>
 
 </body>
 </html>
