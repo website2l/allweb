@@ -79,8 +79,8 @@
         {
             "tiltid": "2Sultan7g9",
             "title": "Sultan",
-            "Mainimage": "https://upload.wikimedia.org/wikipedia/en/3/3c/Sultan_2016_film_poster.jpg",
-            "category": "Action",
+            "Mainimage": "https://stat5.bollywoodhungama.in/wp-content/uploads/2016/06/sultan-2.jpg",
+            "category": "Sports , Action , Drama",
             "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
             <div class="MoviePosterImageBox">
         		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/06/sultan-2.jpg" alt="Sultan Movie Poster" class="poster">
