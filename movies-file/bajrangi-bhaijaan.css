@@ -25,17 +25,18 @@
         }
         
         .PosterDetailContainer {
-        	display: grid;
-  			grid-template-columns: repeat(2, 1fr);
-            justify-content: center;
+        	display: flex;
+        	flex-direction: row;
+            justify-content: flex-start;
             align-items: flex-start;
+            flex-wrap: nowrap;
             gap: 15px;
         }
         
         #PosterDetailContainer .MoviePosterImageBox img {
-        	width: 100%;
-            max-width: 400px;
-            height: auto;
+        	height: 100%;
+            width: auto;
+            max-height: 400px;
         }
         
         #MoviePosterDetailBox {
@@ -58,38 +59,57 @@
         }
         .movie-images img {
             width: 48%;
-            border-radius: 10px;
+            border-radius: 8px;
+        }
+        .bullet-points ul {
+            list-style-type: square;
+            padding-left: 15px;
         }
         .description {
-            margin-top: 15px;
+            margin-top: 0px;
             font-size: 16px;
             line-height: 1.6;
         }
         .features {
-            margin-top: 15px;
+            margin-top: 0px;
         }
         .features ul {
             list-style-type: square;
-            padding-left: 20px;
+            padding-left: 15px;
         }
         .keywords {
             margin-top: 15px;
             font-weight: bold;
             color: #0288d1;
         }
-        @media (max-width: 656px) {
+        @media (max-width: 650px) {
             .PosterDetailContainer {
-                display: flex;
-                flex-wrap: wrap;
+            	display: flex;
+            	flex-direction: row;
                 justify-content: center;
                 align-items: flex-start;
+                flex-wrap: wrap;
                 gap: 15px;
             }
-        
             #PosterDetailContainer .MoviePosterImageBox img {
+                height: 100%;
                 width: 100%;
-                max-width: 656px;
-                height: auto;
+                max-height: 800px;
+            }
+            .posterHeadingChannelCategoryContainer h1, .description h2, .bullet-points h2, .features h2, .keywords h2 {
+              font-size: 1.5rem;
+            }
+            .posterHeadingChannelCategoryContainer p, .description p, .keywords p  {
+              font-size: 0.7rem;
+            }
+            .bullet-points ul, .features ul {
+              font-size: 0.7rem;
+            }
+            .movie-images {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              justify-content: center;
+              align-items: center;
             }
             .movie-images img {
                 width: 100%;
