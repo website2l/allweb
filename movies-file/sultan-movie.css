@@ -18,32 +18,37 @@
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease-in-out;
+            display: block;
+            justify-content: center;
+            align-items: center;
         }
-        .poster {
-            width: 100%;
-            border-radius: 10px;
+        
+        .PosterDetailContainer {
+        	display: flex;
+        	flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+            gap: 15px;
         }
-        h1 {
-            font-size: 24px;
-            color: #d32f2f;
-            margin-top: 10px;
+        
+        #PosterDetailContainer .MoviePosterImageBox img {
+        	height: 100%;
+            width: auto;
+            max-height: 400px;
         }
-        .channel {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
+        
+        #MoviePosterDetailBox {
+        	display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        	text-align: left;
+            height: 100%;
         }
-        .category {
-            font-weight: bold;
-            color: #1976d2;
-            margin: 10px 0;
-        }
-        .bullet-points {
-            margin-top: 10px;
-        }
-        .bullet-points ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        
+        #MoviePosterDetailBox .bullet-points {
+        	text-align: left;
         }
         .movie-images {
             display: flex;
@@ -53,27 +58,79 @@
         }
         .movie-images img {
             width: 48%;
-            border-radius: 10px;
+            border-radius: 8px;
+        }
+        .posterHeadingChannelCategoryContainer h1 {
+          color: #d32f2f;
+        }
+        .channel {
+          color: #555;
+        }
+        .category {
+          color: #1976d2;
+        }
+        .bullet-points ul {
+            padding-left: 15px;
         }
         .description {
-            margin-top: 15px;
+            margin-top: 0px;
             font-size: 16px;
             line-height: 1.6;
         }
         .features {
-            margin-top: 15px;
+            margin-top: 0px;
         }
         .features ul {
             list-style-type: square;
-            padding-left: 20px;
+            padding-left: 15px;
         }
         .keywords {
             margin-top: 15px;
             font-weight: bold;
             color: #0288d1;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
+            .PosterDetailContainer {
+            	display: flex;
+            	flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            #PosterDetailContainer .MoviePosterImageBox img {
+                height: 100%;
+                width: 100%;
+                max-height: 800px;
+            }
+            .posterHeadingChannelCategoryContainer h1, .description h2, .bullet-points h2, .features h2, .keywords h2 {
+              font-size: 1.5rem;
+            }
+            .posterHeadingChannelCategoryContainer p, .description p, .keywords p  {
+              font-size: 0.7rem;
+            }
+            .bullet-points ul, .features ul {
+              font-size: 0.7rem;
+            }
+            .movie-images {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              justify-content: center;
+              align-items: center;
+            }
             .movie-images img {
                 width: 100%;
+            }
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
