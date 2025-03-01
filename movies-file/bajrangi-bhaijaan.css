@@ -2,7 +2,7 @@
         /* Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #1e1e2e;
+            background: radial-gradient(circle, #1a1a2e, #16213e);
             color: #fff;
             margin: 0;
             padding: 20px;
@@ -11,58 +11,44 @@
         /* Main Description Box */
         .DescriptionBox {
             max-width: 900px;
-            background: rgba(30, 30, 46, 0.9);
-            border: 2px solid transparent;
-            border-radius: 15px;
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
             margin: auto;
-            box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
-            transition: all 0.3s ease-in-out;
-            position: relative;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
+            border: 2px solid rgba(0, 255, 255, 0.8);
+            transition: 0.3s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
+        	display: block;
+            justify-content: center;
+            align-items: center;
         }
-
-        .DescriptionBox:hover {
-            border-color: #ff69b4;
-            box-shadow: 0px 0px 30px rgba(255, 105, 180, 0.8);
-            transform: translateY(-5px);
+        
+        .PosterDetailContainer {
+        	display: grid;
+  			grid-template-columns: repeat(2, 1fr);
+            justify-content: center;
+            align-items: flex-start;
+            gap: 15px;
         }
-
-        /* Glowing Border Effect */
-        .DescriptionBox::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 15px;
-            z-index: -1;
-        }}
-        .poster {
-            width: 100%;
-            border-radius: 10px;
+        
+        #PosterDetailContainer .MoviePosterImageBox img {
+        	width: 100%;
+            max-width: 400px;
+            height: auto;
         }
-        h1 {
-            font-size: 24px;
-            color: #d32f2f;
-            margin-top: 10px;
+        
+        #MoviePosterDetailBox {
+        	display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        	text-align: left;
+            height: 100%;
         }
-        .channel {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .category {
-            font-weight: bold;
-            color: #1976d2;
-            margin: 10px 0;
-        }
-        .bullet-points {
-            margin-top: 10px;
-        }
-        .bullet-points ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        
+        #MoviePosterDetailBox .bullet-points {
+        	text-align: left;
         }
         .movie-images {
             display: flex;
@@ -91,8 +77,33 @@
             font-weight: bold;
             color: #0288d1;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 656px) {
+            .PosterDetailContainer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        
+            #PosterDetailContainer .MoviePosterImageBox img {
+                width: 100%;
+                max-width: 656px;
+                height: auto;
+            }
             .movie-images img {
                 width: 100%;
+            }
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
