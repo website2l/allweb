@@ -17,12 +17,12 @@
             "Mainimage": "https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg",
             "category": "Drama",
             "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
-            <div class="MoviePosterImageBox">
+            <div id="MoviePosterImageBox" class="MoviePosterImageBox">
         		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg" alt="Bajrangi Bhaijaan Poster" class="poster">
             </div>
             
             <div id="MoviePosterDetailBox" class="MoviePosterDetailBox">
-                <div class="posterHeadingChannelCategoryContainer">
+                <div id="posterHeadingChannelCategoryContainer" class="posterHeadingChannelCategoryContainer">
                     <h1>Bajrangi Bhaijaan - A Heartwarming Bollywood Movie</h1>
                     <p class="channel">Channel: Bollywood Cinema</p>
                     <p class="category">Category: Action, Drama, Adventure</p>
