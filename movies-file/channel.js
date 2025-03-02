@@ -32,7 +32,7 @@
 
                 return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
             }
-			// Yiahan se end hoti hai
+			// Yiahan end hoti hai
 
             uniqueChannels.forEach(channel => {
                 const encodedChannel = encodeURIComponent(channel); // URL mein "%20" use hoga
@@ -43,7 +43,7 @@
                 link.className = className;
                 link.textContent = channel; // EXACT same format as given in data
 
-                // **Random HEX colors apply hota hai yiahan se start hoti hai**
+                // optional ye yiahan se start hoti hai** coding **Random HEX colors apply hota hai 
                 const bgColor = getRandomHexColor(220);  // Normal brightness
                 const hoverColor = darkenHexColor(bgColor, 15); // Darker shade for hover
 
@@ -59,7 +59,7 @@
                     link.style.backgroundColor = bgColor;
                     link.style.color = "#fff";
                 });
-				// Yiahan se end hoti hai
+				// Yiahan end hoti hai
 
                 channelContainer.appendChild(link);
             });
