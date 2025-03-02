@@ -53,6 +53,7 @@
         }
         #MoviePosterDetailBox .posterHeadingChannelCategoryContainer h1 {
           color: #d32f2f;
+          margin: 0px;
         }
         #posterHeadingChannelCategoryContainer .channel {
           color: #555;
@@ -102,15 +103,6 @@
                 height: 100%;
                 width: 100%;
                 max-height: 800px;
-            }
-            .posterHeadingChannelCategoryContainer h1, .description h2, .bullet-points h2, .features h2, .keywords h2 {
-              font-size: 1.5rem;
-            }
-            .posterHeadingChannelCategoryContainer p, .description p, .keywords p  {
-              font-size: 0.7rem;
-            }
-            .bullet-points ul, .features ul {
-              font-size: 0.7rem;
             }
             .movie-images img {
                 width: 100%;
