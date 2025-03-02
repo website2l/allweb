@@ -26,17 +26,17 @@
         .PosterDetailContainer {
         	display: flex;
             gap: 15px;
-            border: 1px solid red;
+            /* border: 1px solid red; */
         }
         #PosterDetailContainer .MoviePosterImageBox {
-            border: 1px solid green;
+            /* border: 1px solid green; */
         }
         #PosterDetailContainer .MoviePosterDetailBox {
         	display: flex;
             flex-direction: column;
         	text-align: left;
             height: 100%;
-            border: 1px solid green;
+            /* border: 1px solid green; */
         }
         #MoviePosterImageBox img {
         	height: 100%;
@@ -44,11 +44,11 @@
             max-height: 400px;
         }
         #MoviePosterDetailBox .posterHeadingChannelCategoryContainer {
-            border: 1px solid red;
+            /* border: 1px solid red; */
         }
         
         #MoviePosterDetailBox .bullet-points {
-            border: 1px solid black;
+            /* border: 1px solid black; */
         	text-align: left;
         }
         #MoviePosterDetailBox .posterHeadingChannelCategoryContainer h1 {
