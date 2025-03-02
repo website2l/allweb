@@ -32,7 +32,7 @@
 
                 return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
             }
-			// Yiahan se end hoti hai
+			// Yiahan end hoti hai
 
             // Ab har unique category ka `a` tag banayein
             uniqueCategories.forEach(category => {
@@ -60,7 +60,7 @@
                     link.style.backgroundColor = bgColor;
                     link.style.color = "#fff";
                 });
-				// Yiahan se end hoti hai
+				// Yiahan end hoti hai
 
                 container.appendChild(link);
             });
