@@ -82,12 +82,12 @@
             "Mainimage": "https://stat5.bollywoodhungama.in/wp-content/uploads/2016/06/sultan-2.jpg",
             "category": "Sports , Action , Drama",
             "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
-            <div class="MoviePosterImageBox">
+            <div id="MoviePosterImageBox" class="MoviePosterImageBox">
         		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/06/sultan-2.jpg" alt="Sultan Movie Poster" class="poster">
             </div>
             
             <div id="MoviePosterDetailBox" class="MoviePosterDetailBox">
-                <div class="posterHeadingChannelCategoryContainer">
+                <div id="posterHeadingChannelCategoryContainer" class="posterHeadingChannelCategoryContainer">
                     <h1>Sultan - A Bollywood Wrestling Drama</h1>
                     <p class="channel">Channel: Bollywood Cinema</p>
                     <p class="category">Category: Sports, Action, Drama</p>
