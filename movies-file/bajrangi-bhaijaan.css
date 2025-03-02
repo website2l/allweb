@@ -1,55 +1,67 @@
 
-        /* Body Styling */
+        /* Overall Page Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle, #1a1a2e, #16213e);
+            background: linear-gradient(to right, #ff9966, #ff5e62);
             color: #fff;
             margin: 0;
             padding: 20px;
         }
 
-        /* Main Description Box */
+        /* Description Box */
         .DescriptionBox {
             max-width: 900px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.2);
             margin: auto;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
-            border: 2px solid rgba(0, 255, 255, 0.8);
-            transition: 0.3s ease-in-out;
-            animation: fadeIn 1s ease-in-out;
-        	display: block;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+            display: block;
             justify-content: center;
             align-items: center;
         }
         
         .PosterDetailContainer {
         	display: flex;
-        	flex-direction: row;
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-wrap: nowrap;
             gap: 15px;
+            border: 1px solid red;
         }
-        
-        #PosterDetailContainer .MoviePosterImageBox img {
+        #PosterDetailContainer .MoviePosterImageBox {
+            border: 1px solid green;
+        }
+        #PosterDetailContainer .MoviePosterDetailBox {
+        	display: flex;
+            flex-direction: column;
+        	text-align: left;
+            height: 100%;
+            border: 1px solid green;
+        }
+        #MoviePosterImageBox img {
         	height: 100%;
             width: auto;
             max-height: 400px;
         }
-        
-        #MoviePosterDetailBox {
-        	display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-        	text-align: left;
-            height: 100%;
+        #MoviePosterDetailBox .posterHeadingChannelCategoryContainer {
+            border: 1px solid red;
         }
         
         #MoviePosterDetailBox .bullet-points {
+            border: 1px solid black;
         	text-align: left;
+        }
+        #MoviePosterDetailBox .posterHeadingChannelCategoryContainer h1 {
+          color: #d32f2f;
+        }
+        #posterHeadingChannelCategoryContainer .channel {
+          color: #555;
+        }
+        #posterHeadingChannelCategoryContainer .category {
+          color: #1976d2;
+        }
+        .bullet-points ul {
+            padding-left: 15px;
         }
         .movie-images {
             display: flex;
@@ -60,12 +72,6 @@
         .movie-images img {
             width: 48%;
             border-radius: 8px;
-        }
-        .posterHeadingChannelCategoryContainer h1 {
-          color: #d32f2f;
-        }
-        .bullet-points ul {
-            padding-left: 15px;
         }
         .description {
             margin-top: 0px;
@@ -87,7 +93,6 @@
         @media (max-width: 650px) {
             .PosterDetailContainer {
             	display: flex;
-            	flex-direction: row;
                 justify-content: center;
                 align-items: flex-start;
                 flex-wrap: wrap;
@@ -107,17 +112,10 @@
             .bullet-points ul, .features ul {
               font-size: 0.7rem;
             }
-            .movie-images {
-              display: grid;
-              grid-template-columns: repeat(2, 1fr);
-              justify-content: center;
-              align-items: center;
-            }
             .movie-images img {
                 width: 100%;
             }
         }
-
         /* Fade-in Animation */
         @keyframes fadeIn {
             from {
