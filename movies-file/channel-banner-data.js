@@ -7,7 +7,7 @@
                     <h1>Dezni Channel</h1>
                     <p>Subscribe for amazing content!</p>
                 </div>`,
-                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-Dezni.css",
+                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css-channel.css",
             },
             {
                 "channel": "Bollywood Hits",
@@ -16,7 +16,7 @@
                     <h1>Bollywood Hits</h1>
                     <p>Enjoy the Best Songs!</p>
                 </div>`,
-                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/description-css-Bollywood.css",
+                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css.css",
             },
             {
                 "channel": "T-Sires",
