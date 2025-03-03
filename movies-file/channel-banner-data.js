@@ -7,7 +7,7 @@
                     <h1>Dezni Channel</h1>
                     <p>Subscribe for amazing content!</p>
                 </div>`,
-                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css-channel.css",
+                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/denzi-channel.css",
             },
             {
                 "channel": "Bollywood Hits",
