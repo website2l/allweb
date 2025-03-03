@@ -1,5 +1,5 @@
 
-        const movies = [
+        const channels = [
             {
                 "channel": "Dezni",
                 "channelBanner": `<div class="overlay"></div>
@@ -43,18 +43,18 @@
             return params.get("channel");
         }
 
-        function displayBanner() {
+        function displayChannelBanner() {
             const channelName = getChannelFromURL();
-            const movie = movies.find(m => m.channel === channelName);
+            const selectedChannel = channels.find(c => c.channel === channelName);
             const bannerBox = document.getElementById("bannerBox");
             const dynamicCSS = document.getElementById("dynamicCSS");
 
-            if (movie) {
-                bannerBox.innerHTML = movie.channelBanner;
-                dynamicCSS.href = movie.channelBannerDesignCSS; // Inject CSS
+            if (selectedChannel) {
+                bannerBox.innerHTML = selectedChannel.channelBanner;
+                dynamicCSS.href = selectedChannel.channelBannerDesignCSS;
             } else {
-                bannerBox.innerHTML = "<p>Banner Not Found</p>";
+                bannerBox.innerHTML = `<div class="content"><h1>Channel Not Found</h1></div>`;
             }
         }
 
-        window.onload = displayBanner;
+        window.onload = displayChannelBanner;
