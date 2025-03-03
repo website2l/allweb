@@ -16,7 +16,7 @@
                     <h1>Bollywood Hits</h1>
                     <p>Enjoy the Best Songs!</p>
                 </div>`,
-                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css.css",
+                "channelBannerDesignCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css",
             },
             {
                 "channel": "T-Sires",
