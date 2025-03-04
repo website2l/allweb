@@ -135,7 +135,7 @@
             grid-template-columns: repeat(2, 1fr); /* Three equal columns */
             justify-content: center;
             align-items: center;
-            grid-gap: 10px;
+            grid-gap: 0px;
             padding: 0px;
             margin: auto;
         }
