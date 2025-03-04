@@ -125,6 +125,9 @@
               color: white;
               border-radius: 8px;
           }
+          .pagination .last:hover {
+              background-color: #e64a19;
+          }
           /* Responsive Design */
           @media screen and (max-width: 600px) {
         #MoviesCardContainer {
@@ -136,7 +139,4 @@
             padding: 0px;
             margin: auto;
         }
-          }
-          .pagination .last:hover {
-              background-color: #e64a19;
           }
