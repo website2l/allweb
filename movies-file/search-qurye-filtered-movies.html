@@ -116,8 +116,143 @@
     
     <script src="https://website2l.github.io/allweb/movies-file/channels-banner-data.js"></script>
 
-
+    <!-- Movies Search & Pagination Script -->
     <script>
+        (function() {
+            const moviesPerPage = 2;
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get("search") || urlParams.get("category") || urlParams.get("keywords") || urlParams.get("channel");
+            let currentPage = parseInt(urlParams.get("page")) || 1;
+
+            const container = document.getElementById("MoviesCardContainer");
+            const pagination = document.getElementById("pagination");
+
+            function normalizeText(text) {
+                return text.toLowerCase().replace(/[-\s]+/g, " ");
+            }
+
+            function renderMovies() {
+                container.innerHTML = "";
+
+                if (!searchQuery) {
+                    container.innerHTML = "<p>Please enter a search query in the URL.</p>";
+                    return;
+                }
+
+                const lowerCaseQueryWords = decodeURIComponent(searchQuery).toLowerCase().split(" ");
+
+                let filteredMovies = [];
+                lowerCaseQueryWords.forEach(word => {
+                    let matchingMovies = movies.filter(movie =>
+                        movie.title.toLowerCase().includes(word) ||
+                        movie.description.toLowerCase().includes(word) ||
+                        normalizeText(movie.category).includes(normalizeText(word)) ||
+                        movie.keywords.toLowerCase().includes(word) ||
+                        movie.channel.toLowerCase().includes(word)
+                    );
+
+                    matchingMovies.forEach(movie => {
+                        if (!filteredMovies.some(m => m.tiltid === movie.tiltid)) {
+                            filteredMovies.push(movie);
+                        }
+                    });
+                });
+
+                if (filteredMovies.length === 0) {
+                    container.innerHTML = "<p>No results found!</p>";
+                    return;
+                }
+
+                const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+                if (currentPage > totalPages) currentPage = totalPages;
+
+                const start = (currentPage - 1) * moviesPerPage;
+                const end = start + moviesPerPage;
+                const paginatedMovies = filteredMovies.slice(start, end);
+
+                paginatedMovies.forEach(movie => {
+                    const movieCard = document.createElement("a");
+                    movieCard.className = "MoviesCards";
+                    movieCard.href = `https://website2l.github.io/allweb/movies-file/detail-page.html?movie=${movie.title.replace(/\s+/g, '-').toLowerCase()}/watchV=${movie.tiltid}`;
+                    movieCard.innerHTML = `
+                        <div class="MovieCardThumbnail">
+                            <img src="${movie.Mainimage}" alt="${movie.title}">
+                        </div>
+                        <div class="MovieCardDetails">
+                            <h3>${movie.title}</h3>
+                            <p>${movie.category}</p>
+                        </div>
+                    `;
+                    container.appendChild(movieCard);
+                });
+
+                renderPagination(totalPages);
+            }
+
+            function renderPagination(totalPages) {
+                pagination.innerHTML = "";
+
+                if (totalPages <= 1) return;
+
+                let queryParams = new URLSearchParams(window.location.search);
+                let searchParam = queryParams.get("search") ? `search=${queryParams.get("search")}&` : "";
+                let keywordsParam = queryParams.get("keywords") ? `keywords=${queryParams.get("keywords")}&` : "";
+                let categoryParam = queryParams.get("category") ? `category=${queryParams.get("category")}&` : "";
+                let channelParam = queryParams.get("channel") ? `channel=${queryParams.get("channel")}&` : "";
+
+                if (currentPage > 1) {
+                    pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+                }
+
+                let startPage = Math.max(1, currentPage - 1);
+                let endPage = Math.min(totalPages, startPage + 3);
+                if (endPage - startPage < 3) {
+                    startPage = Math.max(1, endPage - 3);
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${i}" class="${i === currentPage ? "active" : ""}">${i}</a>`;
+                }
+
+                if (currentPage < totalPages) {
+                    pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${currentPage + 1}" class="next">Next &gt;</a>`;
+                }
+
+                if (currentPage < totalPages) {
+                    pagination.innerHTML += `<a href="?${searchParam}${keywordsParam}${categoryParam}${channelParam}page=${totalPages}" class="last">Last ${totalPages}</a>`;
+                }
+            }
+
+            renderMovies();
+        })();
+    </script>
+
+    <!-- Channel Banner Script -->
+    <script>
+    (function() {
+        // ✅ Current URL se parameters extract karna
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelParam = urlParams.get("channel"); // Sirf channel param lena
+
+        // ✅ Valid Channels List
+        const validChannels = {
+            "Dezni": "https://website2l.github.io/allweb/movies-file/denzi-channel.css",
+            "Bollywood Hits": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css",
+        };
+
+        // ✅ Agar `channel` param ho aur valid ho to banner dikhaye, warna hide kare
+        if (channelParam && validChannels[channelParam]) {
+            document.getElementById('bannerBox').style.display = "block";
+            document.getElementById('bannerTitle').innerText = channelParam + " Channel";
+            document.getElementById('channelCSS').setAttribute("href", validChannels[channelParam]);
+        } else {
+            document.getElementById('bannerBox').style.display = "none";
+        }
+    })();
+</script>
+
+
+    <script type="text/plain">
         const moviesPerPage = 2;
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get("search") || urlParams.get("category") || urlParams.get("keywords") || urlParams.get("channel");
@@ -225,7 +360,7 @@
         renderMovies();
     </script>
 
-    <script>
+    <script type="text/plain">
         // Current URL se parameters extract karna
         const urlParams = new URLSearchParams(window.location.search);
         const fullQueryString = window.location.search;
