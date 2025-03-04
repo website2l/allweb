@@ -67,6 +67,8 @@
               border-bottom: 1px solid red;
               border-left: 1px solid red;
               border-right: 1px solid red;
+            text-align: center;
+            transition: max-height 0.3s ease-in-out;
           }
           #MoviesCardContainer .MovieCardDetails:hover {
               cursor: pointer;
