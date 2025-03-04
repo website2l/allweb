@@ -224,3 +224,7 @@
               gap: 5px;
           }
           }
+        /* Default Hidden Banner */
+        #bannerBox {
+            display: none;
+        }
