@@ -86,7 +86,14 @@
         <div id="KeywordsContainer"></div> <!-- Dynamic keywords yahan add hongi -->
     </div>
 
-    <div id="bannerBox" class="banner">Loading...</div> <!-- Channel Banner Box -->
+    <!-- Channel Banner Box -->
+    <div id="bannerBox" class="banner">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 id="bannerTitle">Channel Name</h1>
+            <p>Subscribe for amazing content!</p>
+        </div>
+    </div>
     
     <div id="main-container">
         <div id="MoviesCardContainer"></div> <!-- Dynamic Movies Links yahan add honge -->
@@ -103,7 +110,7 @@
     
     <script src="https://website2l.github.io/allweb/movies-file/channel.js"></script>
     
-    <script src="https://website2l.github.io/allweb/movies-file/channel-banner-data.js"></script>
+    <script type="text/plain" src="https://website2l.github.io/allweb/movies-file/channel-banner-data.js"></script>
     
     <script src="https://website2l.github.io/allweb/movies-file/keywords.js"></script>
 
@@ -213,6 +220,42 @@
         }
 
         renderMovies();
+    </script>
+
+    <script>
+        // ✅ Valid Channels List
+        const validChannels = {
+            "Dezni": "https://website2l.github.io/allweb/movies-file/denzi-channel.css",
+            "Bollywood Hits": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css",
+        };
+    </script>
+
+    <script>
+        // Current URL se parameters extract karna
+        const urlParams = new URLSearchParams(window.location.search);
+        const fullQueryString = window.location.search;
+
+        // ✅ Strict Check: Sirf ek hi parameter ho aur wo `?channel=` ho
+        const onlyChannelParam = fullQueryString.match(/^\?channel=[^&]+$/);
+
+        // Agar sirf channel hai to uski value lo warna null
+        const channelParam = onlyChannelParam ? urlParams.get('channel') : null;
+
+        // ✅ Valid Channels List
+        // const validChannels = {
+            // "Dezni": "https://website2l.github.io/allweb/movies-file/denzi-channel.css",
+            // "Bollywood Hits": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css",
+        // };
+
+        // ✅ Agar sirf `channel` ho aur valid ho tabhi banner show kare
+        if (channelParam && validChannels[channelParam]) {
+            document.getElementById('bannerBox').style.display = "block";
+            document.getElementById('bannerTitle').innerText = channelParam + " Channel";
+            document.getElementById('channelCSS').setAttribute("href", validChannels[channelParam]);
+        } else {
+            // ❌ Agar channel parameter nahi hai ya invalid hai to `bannerBox` hide kar do
+            document.getElementById('bannerBox').style.display = "none";
+        }
     </script>
 
 </body>
