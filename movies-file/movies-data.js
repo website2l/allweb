@@ -15,7 +15,7 @@
             "tiltid": "1Bajra38ngiBha46ijaant8",
             "title": "Bajrangi Bhaijaan",
             "Mainimage": "https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg",
-            "category": "Drama",
+            "category": "Action , Drama , Adventure",
             "description": `<div id="PosterDetailContainer" class="PosterDetailContainer">
             <div id="MoviePosterImageBox" class="MoviePosterImageBox">
         		<img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2016/05/429188525-553x800.jpg" alt="Bajrangi Bhaijaan Poster" class="poster">
@@ -70,10 +70,10 @@
         </div>`,
             "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/bajrangi-bhaijaan.css",
             "detailPageJS": "https://example.com/js/bajrangi.js",
-            "channel": "Bollywood Hits",
+            "channel": "Bollywood Cinema",
             "HeaderTitle": "Bajrangi Bhaijaan - Full Movie Details",
             "MetaDescription": "Bajrangi Bhaijaan - A heartwarming Bollywood movie about love, faith, and humanity. Watch the journey of Bajrangi as he helps a lost girl reunite with her family.",
-            "keywords": "Bajrangi Bhaijaan, Drama, Adventure, Salman Khan",
+            "keywords": "Bajrangi Bhaijaan, Bollywood Movie, Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui, Hindi Cinema, Indian Film, Action Drama, 2015 Movies",
             "Auther": "NiQ",
         },
         {
