@@ -86,7 +86,7 @@
               transition: background 0.3s ease-in-out;
           }
           /* CSS Classes */
-          .action-movies { background: #e63946; }
+          /* .action-movies { background: #e63946; }
           .action-movies:hover { background: #c32f3a; }
           .love-movies { background: #f4a261; }
           .love-movies:hover { background: #d48850; }
@@ -99,7 +99,7 @@
           .action-comedy-movies { background: #ff6f00; }
           .action-comedy-movies:hover { background: #cc5800; }
           .comedy-action-movies { background: #264653; }
-          .comedy-action-movies:hover { background: #1f3a44; }
+          .comedy-action-movies:hover { background: #1f3a44; } */
 
           .ChannelBtnBox {
             margin-top: 5px;
