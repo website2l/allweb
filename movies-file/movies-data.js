@@ -24,8 +24,8 @@
             <div id="MoviePosterDetailBox" class="MoviePosterDetailBox">
                 <div id="posterHeadingChannelCategoryContainer" class="posterHeadingChannelCategoryContainer">
                     <h1>Bajrangi Bhaijaan - A Heartwarming Bollywood Movie</h1>
-                    <p class="channel">Channel: Bollywood Cinema</p>
-                    <p class="category">Category: Action, Drama, Adventure</p>
+                    <div class="ChannelBox"> <p class="channel">Channel:</p><p id="DetailPageChannelContainer"></p> </div>
+                    <div class="CategoryBox"> <p class="category">Category:</p><p id="DetailPageCategoryContainer"></p> </div>
                 </div>
                 <div class="bullet-points">
                     <h2>Movie Highlights:</h2>
@@ -66,7 +66,7 @@
 
         <div class="keywords">
             <h2>Keywords:</h2>
-            <p>Bajrangi Bhaijaan, Bollywood Movie, Salman Khan, Kareena Kapoor, Nawazuddin Siddiqui, Hindi Cinema, Indian Film, Action Drama, 2015 Movies</p>
+            <p id="DetailPageKeywordsContainer"></p>
         </div>`,
             "detailPageDesignCSS": "https://website2l.github.io/allweb/movies-file/bajrangi-bhaijaan.css",
             "detailPageJS": "https://example.com/js/bajrangi.js",
