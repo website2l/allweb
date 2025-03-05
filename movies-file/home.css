@@ -228,3 +228,19 @@
         #bannerBox {
             display: none;
         }
+          .ChannelBox, .CategoryBox {
+            display: flex;
+            gap: 5px;
+          }
+          #DetailPageChannelContainer a {
+              text-decoration: none;
+              color: #555;
+          }
+          #DetailPageCategoryContainer a {
+              text-decoration: none;
+              color: #1976d2;
+          }
+          #DetailPageKeywordsContainer a {
+              text-decoration: none;
+              color: #0288d1;
+          }
