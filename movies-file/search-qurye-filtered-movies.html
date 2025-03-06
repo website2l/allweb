@@ -231,17 +231,17 @@
 
     <!-- Channel Banner Script -->
     <script>
-    (function() {
+    window.onload = function() {
     // ✅ Current URL se parameters extract karna
     const urlParams = new URLSearchParams(window.location.search);
-    const channelParam = urlParams.get("channel");
+    const channelParams = urlParams.get("channel");
+
+    // ✅ Agar multiple channels diye gaye hain, to pehla channel select kare
+    const selectedChannel = channelParams ? channelParams.split(",")[0].trim() : null;
 
     // ✅ Page Auto-Detection Logic
     const isFirstType = document.getElementById('bannerBox') !== null;
     const isSecondType = document.getElementById('ChannelLogoDP') !== null;
-
-    // ✅ Agar channelParam null nahi hai toh usko split karke pehla channel select karein
-    let firstChannel = channelParam ? decodeURIComponent(channelParam).split(",")[0].trim() : null;
 
     // ✅ Channel Data List
     const newChannelDataList = [
@@ -262,7 +262,7 @@
         },
         {
             "ChannelName": "T-Sires",
-            "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/T-Sires.css",
+            "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/T-Sires-Channel-Benner.css",
             "ChannelLogoImage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIgRGh6SG9VR28iO67htmsv8p2SG972zGbsL-UQh6JtSGVkL7GQmMH3wtGqYMJJwetQwy7tb2c7DmBfJteL7Y2E_sC13RXB-sSi9dDUtGffZcbGwTUoruOioNy9ZDxp_fDevgm7r6yG6HmFrOrJGT6oRLt7GnSYAIIZfcW9FPTUbEQO65Uuk0DVI4AaSY/s1600/1000105563.png"
         },
         {
@@ -277,28 +277,38 @@
         },
     ];
 
-    // ✅ Pehla match hone wala channel dhoondhna
-    const matchedChannel = newChannelDataList.find(channel => channel.ChannelName === firstChannel);
+    // ✅ Agar `channel` param ho aur valid ho to data fetch kare
+    const matchedChannel = newChannelDataList.find(channel => channel.ChannelName === selectedChannel);
 
     if (matchedChannel) {
         // ✅ Agar page 1st type ka hai to banner dikhaye aur CSS apply kare
         if (isFirstType) {
-            document.getElementById('bannerBox').style.display = "block";
-            document.getElementById('bannerTitle').innerText = firstChannel + " Channel";
-            document.getElementById('channelCSS').setAttribute("href", matchedChannel.ChannelBannerCSS);
+            const bannerBox = document.getElementById('bannerBox');
+            const bannerTitle = document.getElementById('bannerTitle');
+            const channelCSS = document.getElementById('channelCSS');
+
+            if (bannerBox) bannerBox.style.display = "block";
+            if (bannerTitle) bannerTitle.innerText = selectedChannel + " Channel";
+            if (channelCSS) channelCSS.setAttribute("href", matchedChannel.ChannelBannerCSS);
         }
 
         // ✅ Agar page 2nd type ka hai to sirf logo update kare
         if (isSecondType) {
-            document.getElementById('ChannelLogoDP').setAttribute("src", matchedChannel.ChannelLogoImage);
+            setTimeout(() => { // Delay taake ensure ho ke DOM properly load ho
+                const channelLogoDP = document.getElementById('ChannelLogoDP');
+                if (channelLogoDP) {
+                    channelLogoDP.setAttribute("src", matchedChannel.ChannelLogoImage);
+                }
+            }, 500); // 500ms ka chhota sa delay DOM load hone ke baad kaam karega
         }
     } else {
         // ✅ Default behavior agar channel match na ho
         if (isFirstType) {
-            document.getElementById('bannerBox').style.display = "none";
+            const bannerBox = document.getElementById('bannerBox');
+            if (bannerBox) bannerBox.style.display = "none";
         }
     }
-})();
+};
     </script>
 
     <script type="text/plain">
