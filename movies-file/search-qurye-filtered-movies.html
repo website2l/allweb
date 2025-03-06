@@ -116,7 +116,7 @@
     
     <script src="https://website2l.github.io/allweb/movies-file/keywords.js"></script>
     
-    <script src="https://website2l.github.io/allweb/movies-file/channels-banner-data.js"></script>
+    <script src=""></script>
 
     <!-- Movies Search & Pagination Script -->
     <script>
@@ -230,7 +230,51 @@
     </script>
 
     <!-- Channel Banner Script -->
-    <script>
+<script>
+(function() {
+    // ✅ Current URL se parameters extract karna
+    const urlParams = new URLSearchParams(window.location.search);
+    const channelParam = urlParams.get("channel"); // Sirf channel param lena
+
+    // ✅ New Channel Data List
+    const newChannelDataList = [
+        {
+        "ChannelName": "Dezni",
+        "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/denzi-channel.css"
+        },
+        {
+        "ChannelName": "Bollywood Hits",
+        "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/Bollywood-Hits.css"
+        },
+        {
+        "ChannelName": "T-Sires",
+        "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/T-Sires-Channel-Benner.css"
+        },
+        {
+        "ChannelName": "ARY NEWS",
+        "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/ARY-NEWS-Channel-Banner.css"
+        },
+        {
+        "ChannelName": "Green-TV",
+        "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/Green-TV-Channel-Banner.css"
+        }
+    ];
+
+    // ✅ Agar `channel` param ho aur valid ho to banner dikhaye, warna hide kare
+    const matchedChannel = newChannelDataList.find(channel => channel.ChannelName === channelParam);
+
+    if (matchedChannel) {
+        document.getElementById('bannerBox').style.display = "block";
+        document.getElementById('bannerTitle').innerText = channelParam + " Channel";
+        document.getElementById('channelCSS').setAttribute("href", matchedChannel.ChannelBannerCSS);
+    } else {
+        document.getElementById('bannerBox').style.display = "none";
+    }
+})();
+</script>
+
+    <!-- Channel Banner Script -->
+    <script type="text/plain>
     (function() {
         // ✅ Current URL se parameters extract karna
         const urlParams = new URLSearchParams(window.location.search);
