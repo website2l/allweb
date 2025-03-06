@@ -97,6 +97,8 @@
         </div>
     </div>
     
+    <img id="ChannelLogoDPimage" src="" alt="Channel Logo" style="max-width: 100px;">
+    
     <div id="main-container">
         <div id="MoviesCardContainer"></div> <!-- Dynamic Movies Links yahan add honge -->
         <div class="pagination" id="pagination"></div>
@@ -116,7 +118,7 @@
     
     <script src="https://website2l.github.io/allweb/movies-file/keywords.js"></script>
     
-    <script src=""></script>
+    <script src="https://website2l.github.io/allweb/movies-file/Channel-Baner-And-Logo_data.js"></script>
 
     <!-- Movies Search & Pagination Script -->
     <script>
@@ -231,6 +233,74 @@
 
     <!-- Channel Banner Script -->
     <script>
+    	window.onload = function() {
+    // ✅ Current URL se parameters extract karna
+    const urlParams = new URLSearchParams(window.location.search);
+    const channelParams = urlParams.get("channel");
+
+    // ✅ Agar multiple channels diye gaye hain, to pehla channel select kare
+    const selectedChannel = channelParams ? channelParams.split(",")[0].trim() : null;
+
+    // ✅ Page Auto-Detection Logic
+    const isFirstType = document.getElementById('bannerBox') !== null;
+    const isSecondType = document.getElementById('ChannelLogoDP') !== null;
+    const isThirdType = document.getElementById('ChannelLogoDPimage') !== null; // ✅ New condition
+
+    // ✅ Channel Data List
+    // const newChannelDataList = [
+        // {
+            // "ChannelName": "Dezni",
+            // "ChannelBannerCSS": "https://website2l.github.io/allweb/movies-file/denzi-channel.css",
+            // "ChannelLogoImage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjzcWtwkPV2QQ84E6-TdNVTpnp85-UtdNXusspkntJoakvoXFxaD1mSIvzpYy0MjE-99jOstup_tqw1rTYFc7vWLBGLeIvYYcoPXNoJL1Pcs-o3JAlBEmPHTXui3TAuMzY2DkR9FlyLMJd4jhIZNieBVJrIEA74gzhSy7hxb-LhomebV2ApfpXWtwKpu7M/s1600/Untitled-modified.png"
+        // },
+    // ];
+
+    // ✅ Agar `channel` param ho aur valid ho to data fetch kare
+    const matchedChannel = newChannelDataList.find(channel => channel.ChannelName === selectedChannel);
+
+    if (matchedChannel) {
+        // ✅ Agar page 1st type ka hai to banner dikhaye aur CSS apply kare
+        if (isFirstType) {
+            const bannerBox = document.getElementById('bannerBox');
+            const bannerTitle = document.getElementById('bannerTitle');
+            const channelCSS = document.getElementById('channelCSS');
+
+            if (bannerBox) bannerBox.style.display = "block";
+            if (bannerTitle) bannerTitle.innerText = selectedChannel + " Channel";
+            if (channelCSS) channelCSS.setAttribute("href", matchedChannel.ChannelBannerCSS);
+        }
+
+        // ✅ Agar page 2nd type ka hai to sirf logo update kare
+        if (isSecondType) {
+            setTimeout(() => { // Delay taake ensure ho ke DOM properly load ho
+                const channelLogoDP = document.getElementById('ChannelLogoDP');
+                if (channelLogoDP) {
+                    channelLogoDP.setAttribute("src", matchedChannel.ChannelLogoImage);
+                }
+            }, 500); // 500ms ka chhota sa delay DOM load hone ke baad kaam karega
+        }
+
+        // ✅ Agar page 3rd type ka hai to bhi logo update kare
+        if (isThirdType) {
+            setTimeout(() => { 
+                const channelLogoDPimage = document.getElementById('ChannelLogoDPimage');
+                if (channelLogoDPimage) {
+                    channelLogoDPimage.setAttribute("src", matchedChannel.ChannelLogoImage);
+                }
+            }, 500);
+        }
+    } else {
+        // ✅ Default behavior agar channel match na ho
+        if (isFirstType) {
+            const bannerBox = document.getElementById('bannerBox');
+            if (bannerBox) bannerBox.style.display = "none";
+        }
+    }
+};
+    </script>
+
+    <!-- Channel Banner Script -->
+    <script type="text/plain">
     window.onload = function() {
     // ✅ Current URL se parameters extract karna
     const urlParams = new URLSearchParams(window.location.search);
