@@ -130,6 +130,11 @@
           .pagination .last:hover {
               background-color: #e64a19;
           }
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
           /* Responsive Design */
           @media screen and (max-width: 600px) {
         #MoviesCardContainer {
