@@ -32,10 +32,15 @@
         function renderPagination() {
             pagination.innerHTML = "";
 
+        // Previous Button - Always Visible but Disabled on First Page
+        pagination.innerHTML += `<a href="${currentPage > 1 ? '?page=' + (currentPage - 1) : '#'}" 
+            class="prev ${currentPage === 1 ? 'disabled' : ''}">&lt; Previous</a>`;
+
+
             // Previous Button
-            if (currentPage > 1) {
-                pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
-            }
+            // if (currentPage > 1) {
+                // pagination.innerHTML += `<a href="?page=${currentPage - 1}" class="prev">&lt; Previous</a>`;
+            // }
 
             // Page Numbers - Only 4 Buttons
             let startPage = Math.max(1, currentPage - 1);
