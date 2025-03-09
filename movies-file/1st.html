@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Responsive Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .parent {
+            display: grid;
+            grid-template-columns: 250px auto 250px;
+            grid-template-rows: repeat(10, 1fr);
+            gap: 8px;
+            padding: 10px;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .div1 {
+            grid-column: span 3 / span 3;
+            background: #3498db;
+        }
+
+        .div2 {
+            grid-column: 2 / 3;
+            grid-row: span 7 / span 7;
+            grid-row-start: 2;
+            background: #e74c3c;
+            display: flex;
+            justify-content: space-between;
+            lign-items: center;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .div3 {
+            width: 250px;
+            grid-column: 1 / 2;
+            grid-row: span 7 / span 7;
+            grid-row-start: 2;
+            background: #34495e;
+        }
+
+        .div4 {
+            width: 250px;
+            grid-column: 3 / 4;
+            grid-row: span 6 / span 6;
+            grid-row-start: 3;
+            background: #8e44ad;
+        }
+
+        .div6 {
+            width: 250px;
+            grid-column: 3 / 4;
+            grid-row-start: 2;
+            background: #f1c40f;
+        }
+
+        .div7 {
+            grid-column: span 3 / span 3;
+            grid-row-start: 9;
+            background: #9b59b6;
+        }
+
+        .div8 {
+            grid-column: span 3 / span 3;
+            grid-row-start: 10;
+            background: #d35400;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1010px) {
+            .parent {
+                grid-template-columns: 250px auto;
+                /* grid-template-columns: 1fr; */
+                /* grid-template-rows: auto; */
+            }
+
+            .div4, .div6 {
+                display: none;
+            }
+
+            .div2 {
+                grid-column: span 2 / span 2;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .parent {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .div1, .div2, .div3, .div4, .div6, .div7, .div8 {
+                grid-column: span 1 / span 1;
+                grid-row: auto;
+                width: 100%;
+            }
+
+            .div3, .div4, .div6 {
+                display: none;
+            }
+
+            .div2 {
+                height: 100vh;
+            }
+        }
+        #div2 .div2Childe1st {
+        	width: 100%;
+            height: 100%;
+            background: #fff;
+            color: #333;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        #div2 .div2Childe2nd {
+        	width: 100%;
+            background: #fff;
+            color: #333;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="box div1">Header</div>
+        <div class="box div2" id="div2">
+        	<div class="div2Childe1st">Content 1st</div>
+        	<div class="div2Childe2nd">Content 2nd</div>
+        </div>
+        <div class="box div3">Sidebar Left</div>
+        <div class="box div4">Sidebar Right</div>
+        <div class="box div6">250px Box (Right)</div>
+        <div class="box div7">Extra Content (250px Height)</div>
+        <div class="box div8">Footer</div>
+    </div>
+</body>
+</html>
