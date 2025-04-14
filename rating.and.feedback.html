@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Feedback</title>
+  <style>
+    /* ... (same CSS as before, koi change nahi kiya) ... */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #74ebd5, #acb6e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 550px;
+      text-align: left;
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #2d2d2d;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #0077ff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #005fd1;
+    }
+
+    /* Overlay for location access */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .overlay-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    #overlay button {
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    #chooserModal {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .chooserModelSharing {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    #chooserModal button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #emailBtn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #whatsappBtn {
+      background-color: #25d366;
+      color: white;
+    }
+
+    .cancel-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.5rem 1rem;
+      }
+      .card h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Location Permission Overlay -->
+  <div id="overlay">
+    <div class="overlay-content">
+      <h3>Allow Location</h3>
+      <p>Please click the button below to allow location access.</p>
+      <button onclick="detectLocation()">Allow Location Access</button>
+    </div>
+  </div>
+
+  <!-- Main Feedback Card -->
+  <div class="card" id="form-card" style="display: none;">
+    <h2>Service Feedback</h2>
+    <form onsubmit="sendFeedback(event)">
+      <label for="name">Full Naam:</label>
+      <input type="text" id="name" required />
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" required />
+
+      <label for="rating">Rating (1-5):</label>
+      <input type="text" id="rating" required />
+
+      <label for="feedback">Service Feedback:</label>
+      <textarea id="feedback" required></textarea>
+
+      <label for="suggestion">Suggestion/Comments:</label>
+      <textarea id="suggestion" required></textarea>
+
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
+
+  <!-- Sharing Modal -->
+  <div id="chooserModal">
+    <div class="chooserModelSharing">
+      <button id="emailBtn">Send Email</button>
+      <button id="whatsappBtn">Send via WhatsApp</button>
+      <button class="cancel-btn" onclick="closeChooser()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    let userLocation = "Location not detected";
+    let finalMessage = "";
+    let mailtoLink = "";
+    let whatsappLink = "";
+
+    function detectLocation() {
+      const overlay = document.getElementById("overlay");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            userLocation = `Latitude: ${lat}, Longitude: ${lon}`;
+            overlay.style.display = "none";
+            document.getElementById("form-card").style.display = "block";
+          },
+          function () {
+            alert("Location access denied or failed. Please allow to continue.");
+          }
+        );
+      } else {
+        alert("Geolocation not supported in this browser.");
+      }
+    }
+
+    function sendFeedback(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const phone = document.getElementById("phone").value;
+      const rating = document.getElementById("rating").value;
+      const feedback = document.getElementById("feedback").value;
+      const suggestion = document.getElementById("suggestion").value;
+
+      finalMessage = `Full Naam: ${name}\nAge: ${age}\nPhone Number: ${phone}\nRating: ${rating}\nService Feedback: ${feedback}\nSuggestion/Comments: ${suggestion}\nLocation: ${userLocation}`;
+
+      mailtoLink = `mailto:feedbacksharenow@gmail.com?subject=${encodeURIComponent("Service Feedback")}&body=${encodeURIComponent(finalMessage)}`;
+      whatsappLink = `https://wa.me/923093328060?text=${encodeURIComponent(finalMessage)}`;
+
+      document.getElementById("chooserModal").style.display = "flex";
+    }
+
+    document.getElementById("emailBtn").onclick = function () {
+      window.location.href = mailtoLink;
+      closeChooser();
+    };
+
+    document.getElementById("whatsappBtn").onclick = function () {
+      window.location.href = whatsappLink;
+      closeChooser();
+    };
+
+    function closeChooser() {
+      document.getElementById("chooserModal").style.display = "none";
+    }
+
+    // ⭐ CUSTOM SCRIPT for Rating Stars Formatting
+    const ratingInput = document.getElementById("rating");
+    ratingInput.addEventListener("input", function (e) {
+      let value = e.target.value;
+
+      // Remove text (agar user ne dobara likha ho)
+      value = value.replace(/[^1-5]/g, "").trim();
+
+      if (value) {
+        const number = parseInt(value);
+        if (number >= 1 && number <= 5) {
+          const starsText = number === 1 ? " Star" : " Stars";
+
+          // Cursor ko sahi jagah set karna
+          e.target.value = number + starsText;
+
+          // Set cursor after number
+          setTimeout(() => {
+            e.target.setSelectionRange(number.toString().length, number.toString().length);
+          }, 0);
+        }
+      } else {
+        e.target.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
