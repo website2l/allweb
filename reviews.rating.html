@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+  <!-- Apple Touch Icon -->
+  <link id="apple-icon" rel="apple-touch-icon" href="" sizes="180x180">
+    
+  <!-- High-Resolution Icon for Web Apps -->
+  <link id="favicon" rel="icon" href="" sizes="1024x1024" type="image/png">
+    
+  <title>Service Feedback</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #74ebd5, #acb6e5);
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 550px;
+      text-align: left;
+      margin: 10px auto;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .company-name {
+      text-align: center;
+    }
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #2d2d2d;
+    }
+    .card h3 {
+      text-align: left;
+      margin-bottom: 0px;
+      color: #2d2d2d;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 5px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #0077ff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .btn-group h3 {
+      font-size: 1rem;
+      border-radius: 12px;
+      color: #2d2d2d;
+    }
+    .btn-group button {
+      flex: 1;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .btn-email { background-color: #0077ff; }
+    .btn-email:hover { background-color: #005ecb; }
+    .btn-whatsapp { background-color: #25D366; }
+    .btn-whatsapp:hover { background-color: #1ebd56; }
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .overlay-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 350px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+    #overlay button {
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 1.5rem 1rem; }
+      .card h2 { font-size: 1.5rem; }
+      /* .btn-group { flex-direction: column; } */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Location Overlay -->
+  <div id="overlay" style="display: flex;">
+    <div class="overlay-content">
+      <!-- First Display -->
+      <div class="container">
+        <div class="logo">
+          <img id="" src="" alt="2nd Company Logo" style="display: none;">
+          <img id="companyImageLogo" src="default-logo.jpg" alt="Company Logo">
+        </div>
+        <div class="company-name" id="companyNameDisplay" style="display: none;">Loading...</div>
+      </div>
+      <h3 style="display: block;">Allow Location</h3>
+      <p style="display: none;">Please click the button below to allow location access.</p>
+      <button onclick="detectLocation()">Allow Location Access</button>
+    </div>
+  </div>
+
+  <!-- Main Feedback Form -->
+  <div class="card" id="form-card" style="display: none;">
+    <div class="container">
+      <div class="logo">
+        <img id="" src="" alt="2nd Company Logo" style="display: none;">
+        <img id="companyLogo" src="default-logo.jpg" alt="Company Logo">
+      </div>
+      <div class="company-name" id="companyName" style="display: none;">Loading...</div>
+    </div>
+    <h2>Service Feedback</h2>
+    <form id="feedbackForm">
+      <label for="name">Full Naam:</label>
+      <input type="text" id="name" required />
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" required />
+
+      <label for="rating">Rating (1-5):</label>
+      <input type="text" id="rating" required />
+
+      <label for="feedback">Service Feedback:</label>
+      <textarea id="feedback" required></textarea>
+
+      <label for="suggestion">Suggestion/Comments:</label>
+      <textarea id="suggestion" required></textarea>
+
+      
+      <h3>Send via</h3>
+      <div class="btn-group">
+        <button type="button" class="btn-email" onclick="sendEmail()">Email</button>
+        <h3>or</h3>
+        <button type="button" class="btn-whatsapp" onclick="sendWhatsApp()">WhatsApp</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const company = params.get("company");
+
+    const companyLogos = {
+      "blum": "https://website2l.github.io/allweb/FB_IMG_1744138475627.jpg",
+      "double-cheez": "https://website2l.github.io/allweb/double-cheez.jpg",
+      "14th-street": "https://website2l.github.io/allweb/14th-Street.jpg",
+      "kfc": "https://website2l.github.io/allweb/kfc.jpg",
+      "mcdonalds": "https://website2l.github.io/allweb/McDonalds.jpg",
+      "dominos": "https://website2l.github.io/allweb/dominos.jpg",
+      "alkaif": "https://website2l.github.io/allweb/Al-Kaif.jpg"
+    };
+
+    const logo1 = document.getElementById("companyImageLogo");
+    const logo2 = document.getElementById("companyLogo");
+    const name1 = document.getElementById("companyNameDisplay");
+    const name2 = document.getElementById("companyName");
+    const appleIcon = document.getElementById("apple-icon");
+    const favicon = document.getElementById("favicon");
+
+    if (company) {
+      const key = company.toLowerCase();
+      const formattedName = company.charAt(0).toUpperCase() + company.slice(1);
+
+      if (companyLogos[key]) {
+        const logoURL = companyLogos[key];
+        logo1.src = logoURL;
+        logo2.src = logoURL;
+        name1.textContent = formattedName;
+        name2.textContent = formattedName;
+
+        // Dynamic icon set in head
+        appleIcon.href = logoURL;
+        favicon.href = logoURL;
+      } else {
+        name1.textContent = "Company not found";
+        name2.textContent = "Company not found";
+      }
+    } else {
+      name1.textContent = "No company specified";
+      name2.textContent = "No company specified";
+    }
+
+    function detectLocation() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("form-card").style.display = "block";
+    }
+
+    function sendEmail() {
+      alert("Email sent!");
+    }
+
+    function sendWhatsApp() {
+      alert("WhatsApp message sent!");
+    }
+  </script>
+
+  <!-- Location Script -->
+  <script>
+    let userLocation = "Location not detected";
+
+    function detectLocation() {
+      const overlay = document.getElementById("overlay");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            userLocation = `Latitude: ${lat}, Longitude: ${lon}`;
+            overlay.style.display = "none";
+            document.getElementById("form-card").style.display = "block";
+          },
+          function () {
+            alert("Location access denied or failed.");
+          }
+        );
+      } else {
+        alert("Geolocation not supported in this browser.");
+      }
+    }
+  </script>
+
+  <!-- Email Script -->
+  <script>
+    function sendEmail() {
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const phone = document.getElementById("phone").value;
+      const rating = document.getElementById("rating").value;
+      const feedback = document.getElementById("feedback").value;
+      const suggestion = document.getElementById("suggestion").value;
+
+      const message = `Full Naam: ${name}\nAge: ${age}\nPhone: ${phone}\nRating: ${rating}\nFeedback: ${feedback}\nSuggestion: ${suggestion}\nLocation: ${userLocation}`;
+      const subject = "Service Feedback";
+      const mailtoLink = `mailto:feedbacksharenow@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+      window.location.href = mailtoLink;
+    }
+  </script>
+
+  <!-- WhatsApp Script -->
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const phone = document.getElementById("phone").value;
+      const rating = document.getElementById("rating").value;
+      const feedback = document.getElementById("feedback").value;
+      const suggestion = document.getElementById("suggestion").value;
+
+      const message = `Full Naam: ${name}\nAge: ${age}\nPhone: ${phone}\nRating: ${rating}\nFeedback: ${feedback}\nSuggestion: ${suggestion}\nLocation: ${userLocation}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappNumber = "923093328060";
+      const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      window.open(whatsappLink, "_blank");
+    }
+  </script>
+
+  <!-- Rating Stars -->
+  <script>
+    const ratingInput = document.getElementById("rating");
+    ratingInput.addEventListener("input", function (e) {
+      let value = e.target.value;
+      value = value.replace(/[^1-5]/g, "").trim();
+
+      if (value) {
+        const number = parseInt(value);
+        if (number >= 1 && number <= 5) {
+          const starsText = number === 1 ? " Star" : " Stars";
+          e.target.value = number + starsText;
+
+          setTimeout(() => {
+            e.target.setSelectionRange(number.toString().length, number.toString().length);
+          }, 0);
+        }
+      } else {
+        e.target.value = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
