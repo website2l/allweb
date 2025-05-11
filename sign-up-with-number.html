@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phone Number Login 🔐</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 300px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      width: 320px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #user-info {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Phone Number Verification</h1>
+
+  <input type="text" id="phone-number" placeholder="+92XXXXXXXXXX (with country code)">
+  <div id="recaptcha-container"></div>
+  <button id="sendCodeBtn">Send Verification Code</button>
+
+  <input type="text" id="verification-code" placeholder="Enter verification code">
+  <button id="verifyCodeBtn">Verify Code</button>
+
+  <div id="user-info"></div>
+
+  <!-- Firebase JS SDKs -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.firebasestorage.app",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883",
+      measurementId: "G-W9V1GVGNQH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Setup reCAPTCHA
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible',
+      'callback': (response) => {
+        console.log('reCAPTCHA Solved');
+      }
+    }, auth);
+
+    let confirmationResult;
+
+    document.getElementById('sendCodeBtn').addEventListener('click', () => {
+      const phoneNumber = document.getElementById('phone-number').value;
+
+      signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+        .then((result) => {
+          confirmationResult = result;
+          alert('Verification code sent!');
+        })
+        .catch((error) => {
+          console.error('Error:', error.message);
+          alert('Failed to send code: ' + error.message);
+        });
+    });
+
+    document.getElementById('verifyCodeBtn').addEventListener('click', () => {
+      const code = document.getElementById('verification-code').value;
+
+      if (confirmationResult) {
+        confirmationResult.confirm(code)
+          .then((result) => {
+            const user = result.user;
+            document.getElementById('user-info').textContent = `✅ Welcome! Phone: ${user.phoneNumber}`;
+          })
+          .catch((error) => {
+            console.error('Code verification error:', error.message);
+            alert('Incorrect code. Try again.');
+          });
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('User signed in:', user.phoneNumber);
+      } else {
+        console.log('No user signed in');
+      }
+    });
+  </script>
+</body>
+</html>
