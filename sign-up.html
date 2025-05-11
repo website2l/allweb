@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: red;
             margin: 0;
         }
 
@@ -60,6 +60,14 @@
             margin-bottom: 10px;
             color: #333;
         }
+
+        #userImage {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -71,6 +79,7 @@
         </section>
     
         <section id="whenSignedIn" class="dashboard-container" hidden>
+            <img id="userImage" src="" alt="User Profile Image" />
             <div id="userDetails"></div>
             <button id="signOutBtn" class="btn">Sign Out</button>
         </section>
@@ -117,7 +126,8 @@
                 document.getElementById('whenSignedIn').hidden = false;
                 document.getElementById('whenSignedOut').hidden = true;
 
-                // ✅ Only show name and email
+                // ✅ Set profile picture and user info
+                document.getElementById('userImage').src = user.photoURL;
                 document.getElementById('userDetails').innerHTML = `
                     <strong>Welcome,</strong> ${user.displayName}<br>
                     <strong>Email:</strong> ${user.email}
