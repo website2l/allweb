@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phone Number Login 🔐</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 300px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      width: 320px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #user-info {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    #recaptcha-container {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Phone Number Verification</h1>
+
+  <input type="text" id="phone-number" placeholder="+92XXXXXXXXXX (with country code)">
+  <div id="recaptcha-container"></div>
+  <button id="sendCodeBtn">Send Verification Code</button>
+
+  <input type="text" id="verification-code" placeholder="Enter verification code">
+  <button id="verifyCodeBtn">Verify Code</button>
+
+  <div id="user-info"></div>
+
+  <!-- Firebase JS SDKs -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js';
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js';
+
+    // ✅ AAPKA REAL FIREBASE CONFIG
+    const firebaseConfig = {
+      apiKey: "AIzaSyB5GvS5mpjFoMYze_MNLsv2oj-arIw1BA4",
+      authDomain: "phone-number-auther.firebaseapp.com",
+      projectId: "phone-number-auther",
+      storageBucket: "phone-number-auther.appspot.com",
+      messagingSenderId: "784210696730",
+      appId: "1:784210696730:web:d8a4e82a4565f53f358fa3",
+      measurementId: "G-Q3MKNYNFY5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ✅ Visible reCAPTCHA setup
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      'size': 'normal', // normal so it shows up on screen
+      'callback': (response) => {
+        console.log('reCAPTCHA solved');
+      },
+      'expired-callback': () => {
+        alert("reCAPTCHA expired. Please try again.");
+      }
+    }, auth);
+
+    recaptchaVerifier.render().then(widgetId => {
+      window.recaptchaWidgetId = widgetId;
+    });
+
+    let confirmationResult;
+
+    // ✅ Send Code Button
+    document.getElementById('sendCodeBtn').addEventListener('click', () => {
+      const phoneNumber = document.getElementById('phone-number').value;
+
+      signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+        .then((result) => {
+          confirmationResult = result;
+          alert('Verification code sent to ' + phoneNumber);
+        })
+        .catch((error) => {
+          console.error('Error:', error.message);
+          alert('Failed to send code: ' + error.message);
+        });
+    });
+
+    // ✅ Verify Code Button
+    document.getElementById('verifyCodeBtn').addEventListener('click', () => {
+      const code = document.getElementById('verification-code').value;
+
+      if (confirmationResult) {
+        confirmationResult.confirm(code)
+          .then((result) => {
+            const user = result.user;
+            document.getElementById('user-info').textContent = `✅ Welcome! Your Phone: ${user.phoneNumber}`;
+          })
+          .catch((error) => {
+            console.error('Code verification error:', error.message);
+            alert('Incorrect code. Try again.');
+          });
+      }
+    });
+
+    // ✅ Optional: Auto-login detect
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById('user-info').textContent = `✅ You are already logged in with: ${user.phoneNumber}`;
+      }
+    });
+  </script>
+</body>
+</html>
