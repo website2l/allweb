@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login (Google + Apple)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-container, .dashboard-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .apple {
+            background-color: black;
+        }
+
+        img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Page (Google + Apple)</h1>
+    <div class="container">
+        <section id="whenSignedOut" class="form-container">
+            <button id="signInBtn" class="btn">Sign in with Google</button>
+            <button id="appleSignInBtn" class="btn apple">Sign in with Apple</button>
+        </section>
+
+        <section id="whenSignedIn" class="dashboard-container" hidden>
+            <img id="userImage" src="" alt="User DP">
+            <div id="userDetails"></div>
+            <button id="signOutBtn" class="btn">Sign Out</button>
+        </section>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider,
+            OAuthProvider,
+            onAuthStateChanged,
+            signOut
+        } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+            authDomain: "example-sign-up.firebaseapp.com",
+            projectId: "example-sign-up",
+            storageBucket: "example-sign-up.firebasestorage.app",
+            messagingSenderId: "768182895290",
+            appId: "1:768182895290:web:2486660d028269fdc33883",
+            measurementId: "G-W9V1GVGNQH"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const googleProvider = new GoogleAuthProvider();
+        const appleProvider = new OAuthProvider('apple.com');
+
+        // Google Sign-in
+        document.getElementById('signInBtn').addEventListener('click', () => {
+            signInWithPopup(auth, googleProvider)
+                .then((result) => {
+                    console.log(result.user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Apple Sign-in
+        document.getElementById('appleSignInBtn').addEventListener('click', () => {
+            signInWithPopup(auth, appleProvider)
+                .then((result) => {
+                    console.log(result.user);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        });
+
+        // Sign-out
+        document.getElementById('signOutBtn').addEventListener('click', () => {
+            signOut(auth)
+                .then(() => console.log('Signed out'))
+                .catch((error) => console.error(error));
+        });
+
+        // Auth state observer
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('whenSignedIn').hidden = false;
+                document.getElementById('whenSignedOut').hidden = true;
+                document.getElementById('userImage').src = user.photoURL || '';
+                document.getElementById('userDetails').innerHTML = `
+                    <strong>Welcome:</strong> ${user.displayName || 'User'}<br>
+                    <strong>Email:</strong> ${user.email || 'Not provided'}
+                `;
+            } else {
+                document.getElementById('whenSignedIn').hidden = true;
+                document.getElementById('whenSignedOut').hidden = false;
+            }
+        });
+    </script>
+</body>
+</html>
