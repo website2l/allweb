@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Firebase Login (Google + Apple + Facebook)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #userDetails img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔥 Firebase Login (Google, Apple, Facebook)</h1>
+
+  <div class="container">
+    <div id="whenSignedOut">
+      <button id="signInGoogleBtn">Login with Google</button>
+      <button id="signInAppleBtn">Login with Apple</button>
+      <button id="signInFacebookBtn">Login with Facebook</button>
+    </div>
+
+    <div id="whenSignedIn" hidden>
+      <div id="userDetails"></div>
+      <button id="signOutBtn">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ✅ Footer Section -->
+  <footer>
+    <p>
+      <a href="https://website2l.github.io/allweb/privacy-policy.html" target="_blank">Privacy Policy</a> |
+      <a href="https://website2l.github.io/allweb/terms-and-conditions.html" target="_blank">Terms and Conditions</a>
+    </p>
+  </footer>
+
+  <!-- ✅ Firebase Auth Script -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      OAuthProvider,
+      FacebookAuthProvider,
+      onAuthStateChanged,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    // ✅ Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ✅ Providers Setup
+    const googleProvider = new GoogleAuthProvider();
+    const appleProvider = new OAuthProvider('apple.com');
+    const facebookProvider = new FacebookAuthProvider();
+    facebookProvider.addScope('email');
+    facebookProvider.setCustomParameters({ display: 'popup' });
+
+    // ✅ Sign-In Buttons
+    document.getElementById('signInGoogleBtn').addEventListener('click', () => {
+      signInWithPopup(auth, googleProvider)
+        .then(result => console.log("Signed in with Google"))
+        .catch(error => {
+          console.error("Google Sign-In Error:", error.message);
+          alert("Google Sign-In Failed: " + error.message);
+        });
+    });
+
+    document.getElementById('signInAppleBtn').addEventListener('click', () => {
+      signInWithPopup(auth, appleProvider)
+        .then(result => console.log("Signed in with Apple"))
+        .catch(error => {
+          console.error("Apple Sign-In Error:", error.message);
+          alert("Apple Sign-In Failed: " + error.message);
+        });
+    });
+
+    document.getElementById('signInFacebookBtn').addEventListener('click', () => {
+      signInWithPopup(auth, facebookProvider)
+        .then(result => console.log("Signed in with Facebook"))
+        .catch(error => {
+          console.error("Facebook Sign-In Error:", error.message);
+          alert("Facebook Sign-In Failed: " + error.message);
+        });
+    });
+
+    // ✅ Sign-Out
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      signOut(auth)
+        .then(() => console.log("User signed out"))
+        .catch(error => {
+          console.error("Sign-out Error:", error.message);
+          alert("Sign-out Failed: " + error.message);
+        });
+    });
+
+    // ✅ Auth State Monitor
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        document.getElementById('whenSignedIn').hidden = false;
+        document.getElementById('whenSignedOut').hidden = true;
+
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+        document.getElementById('userDetails').innerHTML = `
+          <h3>Welcome, ${name}</h3>
+          <p>${email}</p>
+          <img src="${photo}" alt="Profile Picture">
+        `;
+      } else {
+        document.getElementById('whenSignedIn').hidden = true;
+        document.getElementById('whenSignedOut').hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>
