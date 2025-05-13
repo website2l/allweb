@@ -1,77 +1,67 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Firebase Google Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: red;
-            margin: 0;
-        }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 50%;
-            max-width: 400px;
-            margin: 0 auto;
-        }
+    .container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-        .form-container, .dashboard-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            text-align: center;
-        }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    button:hover {
+      background-color: #0056b3;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    #userDetails img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+    }
 
-        #userDetails {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #333;
-        }
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
 
-        #userImage {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-    </style>
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <h1>My Awesome Sign In Page 🔥</h1>
+    <h1>Sign In with Google</h1>
 
     <div class="container">
         <section id="whenSignedOut" class="form-container">
@@ -84,6 +74,14 @@
             <button id="signOutBtn" class="btn">Sign Out</button>
         </section>
     </div>
+
+  <!-- ✅ Footer Section with dynamic a hrefs -->
+  <footer>
+    <p>
+      <a id="privacyPolicyLink" href="https://website2l.github.io/allweb/privacy-policy.html">Privacy Policy</a> |
+      <a id="termsLink" href="https://website2l.github.io/allweb/terms-and-conditions.html">Terms and Conditions</a>
+    </p>
+  </footer>
 
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
@@ -129,8 +127,9 @@
                 // ✅ Set profile picture and user info
                 document.getElementById('userImage').src = user.photoURL;
                 document.getElementById('userDetails').innerHTML = `
-                    <strong>Welcome,</strong> ${user.displayName}<br>
-                    <strong>Email:</strong> ${user.email}
+                    <strong>Welcome</strong><br>
+                    ${user.displayName}<br>
+                    <strong style="display: none;">Email:</strong> ${user.email}
                 `;
             } else {
                 document.getElementById('whenSignedIn').hidden = true;
