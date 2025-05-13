@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f0fe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+      font-size: 22px;
+    }
+
+    p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    #signOutBtn {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #d93025;
+      color: white;
+      cursor: pointer;
+    }
+
+    #signOutBtn:hover {
+      background-color: #b0201c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="userDetails">
+      <img id="UserProfilePicture" src="" alt="Profile">
+      <h2 id="UserName"></h2>
+      <p id="UserEmail"></p>
+    </div>
+    <button id="signOutBtn">Sign Out</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+        // In teen elements mein data inject karna
+        document.getElementById('UserProfilePicture').src = photo;
+        document.getElementById('UserName').textContent = name;
+        document.getElementById('UserEmail').textContent = email;
+      } else {
+        // Agar user login nahi hai toh redirect karo
+        window.location.href = 'https://website2l.github.io/allweb/sign-in-login-google.html';
+      }
+    });
+
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = 'https://website2l.github.io/allweb/sign-in-login-google.html';
+      });
+    });
+  </script>
+</body>
+</html>
