@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +35,7 @@
       background-color: #0056b3;
     }
 
-    #userDetails img {
+    #whenSignedIn img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -128,8 +127,8 @@
                 document.getElementById('userImage').src = user.photoURL;
                 document.getElementById('userDetails').innerHTML = `
                     <strong>Welcome</strong><br>
-                    ${user.displayName}<br>
-                    <strong style="display: none;">Email:</strong> ${user.email}
+                    <p>${user.displayName}</p>
+                    <strong style="display: none;">Email:</strong> <p>${user.email}</p>
                 `;
             } else {
                 document.getElementById('whenSignedIn').hidden = true;
