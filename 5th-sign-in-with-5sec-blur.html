@@ -253,10 +253,12 @@ onAuthStateChanged(auth, user => {
     });
 
     document.getElementById('signOutBtn').addEventListener('click', () => {
+      firstVisit = false;
       signOut(auth).then(() => {
         window.location.href = location.href;
       });
     });
+
   </script>
 
 </body>
