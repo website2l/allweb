@@ -84,10 +84,54 @@
       text-align: center;
     }
 
-    button {
-      display: block;
+    #signInGoogleBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border: none;
+      background-color: white;
+      color: #444;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
       width: 100%;
-      margin: 10px 0;
+      max-width: 300px;
+      margin: 10px auto;
+    }
+
+    #signInGoogleBtn img {
+      width: 20px;
+      height: 20px;
+      margin: 0px;
+    }
+
+    #signInGoogleBtn:hover {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      #signInGoogleBtn {
+        font-size: 14px;
+        padding: 8px 16px;
+        gap: 8px;
+      }
+
+      #signInGoogleBtn img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
       padding: 12px;
       font-size: 16px;
       border: none;
@@ -143,7 +187,10 @@
   <div class="container" id="signCard">
     <div class="Card-Container-Box" id="whenSignedOut">
       <h2>Welcome! Please Sign In</h2>
-      <button id="signInGoogleBtn">Sign In with Google</button>
+      <button id="signInGoogleBtn">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+        Sign In with Google
+      </button>
     </div>
   </div>
 
