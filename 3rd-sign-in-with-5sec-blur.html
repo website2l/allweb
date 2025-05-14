@@ -21,7 +21,6 @@
       min-height: 100vh;
       background: linear-gradient(135deg, #3498db, #8e44ad);
       color: white;
-      transition: filter 0.5s ease;
     }
 
     .section.blurred {
@@ -57,6 +56,7 @@
       width: 90%;
       max-width: 400px;
       text-align: center;
+      margin: 10px auto;
     }
 
     button {
@@ -111,6 +111,15 @@
     </div>
   </div>
 
+  <div class="main-container" id="signCard">
+    <div class="container">
+      <div id="whenSignedOut">
+        <h2>Welcome! Please Sign In</h2>
+        <button id="signInGoogleBtn">Sign In with Google</button>
+      </div>
+    </div>
+  </div>
+
   <div class="section education" id="education">
     <h2 style="color:white; text-align:center;">My Education</h2>
   </div>
@@ -129,15 +138,6 @@
 
   <div class="section contact" id="contact">
     <h2 style="color:white; text-align:center;">Contact Me</h2>
-  </div>
-
-  <div class="main-container" id="signCard">
-    <div class="container">
-      <div id="whenSignedOut">
-        <h2>Welcome! Please Sign In</h2>
-        <button id="signInGoogleBtn">Sign In with Google</button>
-      </div>
-    </div>
   </div>
 
   <script type="module">
