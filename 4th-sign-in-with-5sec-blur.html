@@ -170,6 +170,7 @@
       if (user) {
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
+        signCard.style.display = "none"; // 👈 Yeh important line thi!
 
         const name = user.displayName || "User";
         const email = user.email || "No Email";
@@ -187,7 +188,7 @@
 
         if (justSignedOut) {
           // Agar abhi user sign out hua hai, turant show karo
-          signCard.style.display = "block";
+          signCard.style.display = "flex";
           sessionStorage.removeItem('justSignedOut');
         } else {
           // Pehli baar aaye hain, 5 seconds delay
