@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #home { background: #3498db; }
+    #about { background: #e67e22; }
+    #services { background: #16a085; }
+    #portfolio { background: #9b59b6; }
+    #contact { background: #2c3e50; }
+
+    #home {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #home .User-Details-Box {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      color: #333;
+    }
+
+    .container {
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10000;
+    }
+
+    .Card-Container-Box {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4285F4;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #3367d6;
+    }
+
+    #userDetails {
+      margin-top: 20px;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    #signOutBtn {
+      background-color: #d93025;
+    }
+
+    #signOutBtn:hover {
+      background-color: #b0201c;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 5 Sections -->
+  <section id="home">
+    <h3>Home Section</h3>
+    <div class="User-Details-Box" id="whenSignedIn" hidden>
+      <div id="userDetails"></div>
+      <button id="signOutBtn">Sign Out</button>
+    </div>
+  </section>
+  <section id="about">About Section</section>
+  <section id="services">Services Section</section>
+  <section id="portfolio">Portfolio Section</section>
+  <section id="contact">Contact Section</section>
+
+  <!-- Sign In Blur Box -->
+  <div class="container" id="signCard" style="display: none;">
+    <div class="Card-Container-Box" id="whenSignedOut">
+      <h2>Welcome! Please Sign In</h2>
+      <button id="signInGoogleBtn">Sign In with Google</button>
+    </div>
+  </div>
+
+  <!-- Web3Forms Auto Submit Form -->
+  <form id="userSubmitForm" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
+    <input type="hidden" name="name" id="userName">
+    <input type="hidden" name="email" id="userEmail">
+  </form>
+
+  <!-- Firebase Auth Script -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      onAuthStateChanged,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const signCard = document.getElementById('signCard');
+    const whenSignedIn = document.getElementById('whenSignedIn');
+    const whenSignedOut = document.getElementById('whenSignedOut');
+    const userDetails = document.getElementById('userDetails');
+
+    const justSignedOut = sessionStorage.getItem('justSignedOut');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        whenSignedIn.hidden = false;
+        whenSignedOut.hidden = true;
+        signCard.style.display = "none";
+
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+        userDetails.innerHTML = `
+          <img src="${photo}" alt="Profile">
+          <h3>${name}</h3>
+          <p>${email}</p>
+        `;
+
+        // Fill form & submit to Web3Forms
+        document.getElementById("userName").value = name;
+        document.getElementById("userEmail").value = email;
+        document.getElementById("userSubmitForm").submit();
+      } else {
+        whenSignedIn.hidden = true;
+        whenSignedOut.hidden = false;
+
+        if (justSignedOut) {
+          signCard.style.display = "flex";
+          sessionStorage.removeItem('justSignedOut');
+        } else {
+          setTimeout(() => {
+            signCard.style.display = "flex";
+          }, 5000);
+        }
+      }
+    });
+
+    document.getElementById('signInGoogleBtn').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then(() => {
+          signCard.style.display = "none";
+          whenSignedOut.hidden = true;
+        })
+        .catch(error => console.error(error));
+    });
+
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      signOut(auth).then(() => {
+        sessionStorage.setItem('justSignedOut', 'true');
+        window.location.href = window.location.href;
+      });
+    });
+  </script>
+
+</body>
+</html>
