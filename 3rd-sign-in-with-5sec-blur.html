@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Firebase Sign In</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #f4f4f4;
+      position: relative;
+    }
+
+.section {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  color: white;
+  transition: filter 0.5s ease;
+}
+
+.section.blurred {
+  filter: blur(10px);
+}
+
+.main-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.main-container.show {
+  opacity: 1;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4285F4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #3367d6;
+}
+
+#signOutBtn {
+  background-color: #d93025;
+}
+
+#signOutBtn:hover {
+  background-color: #b0201c;
+}
+
+img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="section portfolio" id="portfolio">
+    <h2 style="color:white; text-align:center;">My Portfolio</h2>
+    <div class="container">
+      <div id="whenSignedIn" hidden>
+        <div id="userDetails"></div>
+        <button id="signOutBtn">Sign Out</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section education" id="education">
+    <h2 style="color:white; text-align:center;">My Education</h2>
+  </div>
+  
+  <div class="section experience" id="experience">
+    <h2 style="color:white; text-align:center;">My Experience</h2>
+  </div>
+  
+  <div class="section skills" id="skills">
+    <h2 style="color:white; text-align:center;">My Skills</h2>
+  </div>
+  
+  <div class="section services" id="services">
+    <h2 style="color:white; text-align:center;">My Services</h2>
+  </div>
+  
+  <div class="section contact" id="contact">
+    <h2 style="color:white; text-align:center;">Contact Me</h2>
+  </div>
+  
+  <div class="main-container" id="signCard">
+    <div class="container">
+      <div id="whenSignedOut">
+        <h2>Welcome! Please Sign In</h2>
+        <button id="signInGoogleBtn">Sign In with Google</button>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const allSections = document.querySelectorAll(".section");
+    const signCard = document.getElementById("signCard");
+    const whenSignedIn = document.getElementById("whenSignedIn");
+    const whenSignedOut = document.getElementById("whenSignedOut");
+    const userDetails = document.getElementById("userDetails");
+    const justSignedOut = sessionStorage.getItem('justSignedOut');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        sessionStorage.removeItem("justSignedOut");
+        whenSignedIn.hidden = false;
+        whenSignedOut.hidden = true;
+        signCard.style.display = "none";
+        signCard.classList.remove("show");
+
+        allSections.forEach(section => {
+          section.classList.remove("blurred");
+        });
+
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+        userDetails.innerHTML = `
+          <img src="${photo}" alt="Profile" />
+          <h3>${name}</h3>
+          <p>${email}</p>
+        `;
+      } else {
+        whenSignedIn.hidden = true;
+        whenSignedOut.hidden = false;
+
+        if (justSignedOut) {
+          sessionStorage.removeItem('justSignedOut');
+          signCard.style.display = "flex";
+          signCard.classList.add("show");
+          allSections.forEach(section => {
+            section.classList.add("blurred");
+          });
+        } else {
+          setTimeout(() => {
+            signCard.style.display = "flex";
+            signCard.classList.add("show");
+            allSections.forEach(section => {
+              section.classList.add("blurred");
+            });
+          }, 5000);
+        }
+      }
+    });
+
+    document.getElementById("signInGoogleBtn").addEventListener("click", () => {
+      signInWithPopup(auth, provider)
+        .then(result => {
+          console.log("Signed in:", result.user.displayName);
+        })
+        .catch(error => console.error(error));
+    });
+
+    document.getElementById("signOutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        sessionStorage.setItem("justSignedOut", "true");
+        window.location.href = "https://website2l.github.io/allweb/3rd-sign-in-with-5sec-blur.html"; // reload same file
+      });
+    });
+  </script>
+  </body>
+</html>
