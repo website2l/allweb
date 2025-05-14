@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -295,6 +294,7 @@
 </head>
 <body>
 
+  <!-- 5 Sections -->
   <section id="home">
     <h3>Home Section</h3>
     <div class="User-Details-Box" id="whenSignedIn" hidden>
@@ -305,7 +305,6 @@
   <section id="about">About Section</section>
   <section id="services">Services Section</section>
   <section id="portfolio">Portfolio Section</section>
-  
   <section id="contact">
         <div class="contact-form">
           <h2>Contact Us</h2>
@@ -475,61 +474,43 @@
   </script>
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById('form');
-    if (!form) {
-      console.error("❌ Form with ID 'form' not found");
-      return;
-    }
-
-    const submitButton = form.querySelector('button[type="submit"]');
+	const submitButton = form.querySelector('button[type="submit"]');
     const successMessage = document.getElementById('success-message');
     const SuccessMessageImgage = document.querySelector('.success-message-img');
     const goBackContact = document.querySelector('.go-back-contact');
 
-    // 👇 User info fetch karna userDetails se
-    function getUserInfoFromDOM() {
-      const userBox = document.getElementById('userDetails');
-      const name = userBox?.querySelector('h3')?.textContent?.trim() || '';
-      const email = userBox?.querySelector('p')?.textContent?.trim() || '';
-      return { name, email };
+    submitButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    // Get all input fields in the form
+    const inputs = form.querySelectorAll('input, textarea');
+
+    // Flag to check if the form is valid
+    let isFormValid = true;
+
+    inputs.forEach((input) => {
+        // Check each input's validity
+        if (!input.checkValidity()) {
+            input.style.border = '2px solid red'; // Highlight invalid input
+            isFormValid = false;
+        } else {
+            input.style.border = '2px solid #333'; // Reset to original border
+        }
+    });
+
+    // Stop submission if form is invalid
+    if (!isFormValid) {
+        form.reportValidity(); // Show default validation messages
+        return;
     }
 
-    // 👇 Form submit event
-    submitButton.addEventListener('click', async (event) => {
-      event.preventDefault();
-
-      // Auto-fill name & email from logged-in user info
-      const { name, email } = getUserInfoFromDOM();
-      if (name && email) {
-        document.getElementById('name').value = name;
-        document.getElementById('email').value = email;
-      }
-
-      // Validation check
-      const inputs = form.querySelectorAll('input, textarea');
-      let isFormValid = true;
-
-      inputs.forEach((input) => {
-        if (!input.checkValidity()) {
-          input.style.border = '2px solid red';
-          isFormValid = false;
-        } else {
-          input.style.border = '2px solid #333';
-        }
-      });
-
-      if (!isFormValid) {
-        form.reportValidity();
-        return;
-      }
-
-      // Submit the form
-      const formData = new FormData(form);
-      try {
+    // Proceed with form submission if valid
+    const formData = new FormData(form);
+    try {
         const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
+            method: 'POST',
+            body: formData,
         });
 
         if (response.ok) {
@@ -537,30 +518,26 @@
           goBackContact.style.display = 'block';
           SuccessMessageImgage.style.display = 'flex';
           form.style.display = 'none';
-          console.log("✅ Form submitted successfully");
         } else {
-          alert('There was an issue submitting the form. Please try again.');
-          console.error("❌ Form submission failed:", response.status);
+            alert('There was an issue submitting the form. Please try again.');
         }
-      } catch (error) {
+    } catch (error) {
         alert('Error: ' + error.message);
-        console.error("❌ Fetch error:", error);
-      }
-    });
+    }
+});
 
-    // Reset borders on input
-    const formInputs = form.querySelectorAll('input, textarea');
-    formInputs.forEach((input) => {
-      input.addEventListener('input', () => {
+// Reset border color on input event when user fills the input
+const formInputs = form.querySelectorAll('input, textarea');
+formInputs.forEach((input) => {
+    input.addEventListener('input', () => {
         if (input.checkValidity()) {
-          input.style.border = '2px solid #333';
+            input.style.border = '2px solid #333'; // Reset border if valid
         } else {
-          input.style.border = '2px solid red';
+            input.style.border = '2px solid red'; // Keep red border if invalid
         }
-      });
     });
+});
 
-    // Reset function
     function resetForm() {
       successMessage.style.display = 'none';
       goBackContact.style.display = 'none';
@@ -568,12 +545,7 @@
       form.reset();
       form.style.display = 'block';
     }
-
-    // Global access for reset button
-    window.resetForm = resetForm;
-  });
-</script>
-
+  </script>
 
 </body>
 </html>
