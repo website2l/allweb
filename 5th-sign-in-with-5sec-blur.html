@@ -203,62 +203,56 @@
       .catch(error => console.error("❌ Error:", error));
     }
 
-    // Pehle page load par ye variable define karo
-let firstVisit = true;
+        // Auth State Change
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        whenSignedIn.hidden = false;
+        signCard.style.display = "none";
 
-// Auth State Change
-onAuthStateChanged(auth, user => {
-  if (user) {
-    // ✅ User logged in
-    whenSignedIn.hidden = false;
-    signCard.style.display = "none";
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
 
-    const name = user.displayName || "User";
-    const email = user.email || "No Email";
-    const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+        userDetails.innerHTML = `
+          <img src="${photo}" alt="Profile">
+          <h3>${name}</h3>
+          <p>${email}</p>
+        `;
 
-    userDetails.innerHTML = `
-      <img src="${photo}" alt="Profile">
-      <h3>${name}</h3>
-      <p>${email}</p>
-    `;
+        // Auto submit form
+        submitUserForm(name, email);
 
-    // Submit form silently
-    submitUserForm(name, email);
+      } else {
+        whenSignedIn.hidden = true;
+        whenSignedOut.hidden = false;
 
-  } else {
-    // ❌ User not logged in OR logged out
+        const justSignedOut = sessionStorage.getItem('justSignedOut');
+        if (justSignedOut) {
+          signCard.style.display = "flex";
+          sessionStorage.removeItem('justSignedOut');
+        } else {
+          setTimeout(() => {
+            signCard.style.display = "flex";
+          }, 3000);
+        }
+      }
+    });
 
-    whenSignedIn.hidden = true;
-    whenSignedOut.hidden = false;
-
-    // ⏱️ Show signCard after 5s on first visit only
-    if (firstVisit) {
-      setTimeout(() => {
-        signCard.style.display = "flex";
-      }, 5000);
-      firstVisit = false; // Mark as already visited
-    } else {
-      // 👇 Immediately show after logout
-      signCard.style.display = "flex";
-    }
-  }
-});
-
-
+    // Sign In button
     document.getElementById('signInGoogleBtn').addEventListener('click', () => {
       signInWithPopup(auth, provider)
         .then(() => console.log("✅ Signed in"))
         .catch(error => console.error("❌", error));
     });
 
+    // Sign Out button
     document.getElementById('signOutBtn').addEventListener('click', () => {
-      firstVisit = false;
+      sessionStorage.setItem('justSignedOut', 'true');
       signOut(auth).then(() => {
         window.location.href = location.href;
       });
     });
-
+    
   </script>
 
 </body>
