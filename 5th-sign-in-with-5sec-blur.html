@@ -22,7 +22,6 @@
       padding: 20px;
     }
 
-    #home { background: #3498db; }
     #about { background: #e67e22;
       font-size: 2rem; }
     #services { background: #16a085;
@@ -37,6 +36,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background: linear-gradient(135deg, #3498db, #8e44ad);
     }
     
     #home	h3 {
@@ -59,9 +59,9 @@
       align-items: center;
       padding: 20px;
       min-height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
       left: 0;
@@ -78,6 +78,10 @@
       width: 90%;
       max-width: 400px;
       position: relative;
+    }
+
+    .Card-Container-Box h2 {
+      text-align: center;
     }
 
     button {
@@ -199,35 +203,48 @@
       .catch(error => console.error("❌ Error:", error));
     }
 
-    // Auth State Change
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        whenSignedIn.hidden = false;
-      	whenSignedOut.hidden = true;
-        signCard.style.display = "none";
+    // Pehle page load par ye variable define karo
+let firstVisit = true;
 
-        const name = user.displayName || "User";
-        const email = user.email || "No Email";
-        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+// Auth State Change
+onAuthStateChanged(auth, user => {
+  if (user) {
+    // ✅ User logged in
+    whenSignedIn.hidden = false;
+    signCard.style.display = "none";
 
-        userDetails.innerHTML = `
-          <img src="${photo}" alt="Profile">
-          <h3>${name}</h3>
-          <p>${email}</p>
-        `;
+    const name = user.displayName || "User";
+    const email = user.email || "No Email";
+    const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
 
-        // Form auto submit
-        submitUserForm(name, email);
+    userDetails.innerHTML = `
+      <img src="${photo}" alt="Profile">
+      <h3>${name}</h3>
+      <p>${email}</p>
+    `;
 
-      } else {
-        whenSignedIn.hidden = true;
-        whenSignedOut.hidden = false;
+    // Submit form silently
+    submitUserForm(name, email);
 
-        setTimeout(() => {
-          signCard.style.display = "flex";
-        }, 5000);
-      }
-    });
+  } else {
+    // ❌ User not logged in OR logged out
+
+    whenSignedIn.hidden = true;
+    whenSignedOut.hidden = false;
+
+    // ⏱️ Show signCard after 5s on first visit only
+    if (firstVisit) {
+      setTimeout(() => {
+        signCard.style.display = "flex";
+      }, 5000);
+      firstVisit = false; // Mark as already visited
+    } else {
+      // 👇 Immediately show after logout
+      signCard.style.display = "flex";
+    }
+  }
+});
+
 
     document.getElementById('signInGoogleBtn').addEventListener('click', () => {
       signInWithPopup(auth, provider)
