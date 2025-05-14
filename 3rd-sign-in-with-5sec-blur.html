@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,111 +15,119 @@
       position: relative;
     }
 
-    .section {
-      padding: 40px 20px;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #3498db, #8e44ad);
-      color: white;
-      transition: filter 0.5s ease;
-    }
+.section {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  color: white;
+  transition: filter 0.5s ease;
+}
 
-    .section.blurred {
-      filter: blur(10px);
-    }
+.section.blurred {
+  filter: blur(10px);
+}
 
-    .main-container {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10000;
-      transition: opacity 0.5s ease;
-      opacity: 0;
-    }
+.main-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
 
-    .main-container.show {
-      opacity: 1;
-    }
+.main-container.show {
+  opacity: 1;
+}
 
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
 
-    .portfolio .container {
-      display: none; /* default hide */
-    }
+#userDetails h3, #userDetails p {
+  color: #333;
+}
 
-    .portfolio .container.show {
-      display: block; /* show after login */
-    }
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4285F4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #4285F4;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+button:hover {
+  background-color: #3367d6;
+}
 
-    button:hover {
-      background-color: #3367d6;
-    }
+#signOutBtn {
+  background-color: #d93025;
+}
 
-    #signOutBtn {
-      background-color: #d93025;
-    }
+#signOutBtn:hover {
+  background-color: #b0201c;
+}
 
-    #signOutBtn:hover {
-      background-color: #b0201c;
-    }
+img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
 
-    img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
-  <!-- Portfolio Section -->
   <div class="section portfolio" id="portfolio">
     <h2 style="color:white; text-align:center;">My Portfolio</h2>
-    <div class="container" id="portfolioCard">
+    <div class="container" hidden>
       <div id="whenSignedIn" hidden>
         <div id="userDetails"></div>
         <button id="signOutBtn">Sign Out</button>
       </div>
     </div>
   </div>
-
-  <!-- Other Sections -->
-  <div class="section education"><h2 style="text-align:center;">My Education</h2></div>
-  <div class="section experience"><h2 style="text-align:center;">My Experience</h2></div>
-  <div class="section skills"><h2 style="text-align:center;">My Skills</h2></div>
-  <div class="section services"><h2 style="text-align:center;">My Services</h2></div>
-  <div class="section contact"><h2 style="text-align:center;">Contact Me</h2></div>
-
-  <!-- Sign In Modal -->
+  
+  <div class="section education" id="education">
+    <h2 style="color:white; text-align:center;">My Education</h2>
+  </div>
+  
+  <div class="section experience" id="experience">
+    <h2 style="color:white; text-align:center;">My Experience</h2>
+  </div>
+  
+  <div class="section skills" id="skills">
+    <h2 style="color:white; text-align:center;">My Skills</h2>
+  </div>
+  
+  <div class="section services" id="services">
+    <h2 style="color:white; text-align:center;">My Services</h2>
+  </div>
+  
+  <div class="section contact" id="contact">
+    <h2 style="color:white; text-align:center;">Contact Me</h2>
+  </div>
+  
   <div class="main-container" id="signCard">
     <div class="container">
       <div id="whenSignedOut">
@@ -129,8 +136,7 @@
       </div>
     </div>
   </div>
-
-  <!-- Firebase Script -->
+  
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
     import {
@@ -159,23 +165,20 @@
     const whenSignedIn = document.getElementById("whenSignedIn");
     const whenSignedOut = document.getElementById("whenSignedOut");
     const userDetails = document.getElementById("userDetails");
-    const portfolioCard = document.getElementById("portfolioCard");
-    const justSignedOut = sessionStorage.getItem("justSignedOut");
+    const justSignedOut = sessionStorage.getItem('justSignedOut');
 
     onAuthStateChanged(auth, user => {
       if (user) {
         sessionStorage.removeItem("justSignedOut");
-
-        // UI Updates
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
         signCard.style.display = "none";
         signCard.classList.remove("show");
-        portfolioCard.classList.add("show");
 
-        allSections.forEach(section => section.classList.remove("blurred"));
+        allSections.forEach(section => {
+          section.classList.remove("blurred");
+        });
 
-        // User Info
         const name = user.displayName || "User";
         const email = user.email || "No Email";
         const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
@@ -188,25 +191,32 @@
       } else {
         whenSignedIn.hidden = true;
         whenSignedOut.hidden = false;
-        portfolioCard.classList.remove("show");
 
         if (justSignedOut) {
-          sessionStorage.removeItem("justSignedOut");
+          sessionStorage.removeItem('justSignedOut');
           signCard.style.display = "flex";
           signCard.classList.add("show");
-          allSections.forEach(section => section.classList.add("blurred"));
+          allSections.forEach(section => {
+            section.classList.add("blurred");
+          });
         } else {
           setTimeout(() => {
             signCard.style.display = "flex";
             signCard.classList.add("show");
-            allSections.forEach(section => section.classList.add("blurred"));
+            allSections.forEach(section => {
+              section.classList.add("blurred");
+            });
           }, 5000);
         }
       }
     });
 
     document.getElementById("signInGoogleBtn").addEventListener("click", () => {
-      signInWithPopup(auth, provider).catch(error => console.error(error));
+      signInWithPopup(auth, provider)
+        .then(result => {
+          console.log("Signed in:", result.user.displayName);
+        })
+        .catch(error => console.error(error));
     });
 
     document.getElementById("signOutBtn").addEventListener("click", () => {
@@ -216,5 +226,5 @@
       });
     });
   </script>
-</body>
+  </body>
 </html>
