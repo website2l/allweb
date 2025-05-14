@@ -135,82 +135,85 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-    import {
-      getAuth,
-      signInWithPopup,
-      GoogleAuthProvider,
-      onAuthStateChanged,
-      signOut
-    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+  import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signOut
+  } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
-      authDomain: "example-sign-up.firebaseapp.com",
-      projectId: "example-sign-up",
-      storageBucket: "example-sign-up.appspot.com",
-      messagingSenderId: "768182895290",
-      appId: "1:768182895290:web:2486660d028269fdc33883"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+    authDomain: "example-sign-up.firebaseapp.com",
+    projectId: "example-sign-up",
+    storageBucket: "example-sign-up.appspot.com",
+    messagingSenderId: "768182895290",
+    appId: "1:768182895290:web:2486660d028269fdc33883"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
-    const signCard = document.getElementById('signCard');
-    const whenSignedIn = document.getElementById('whenSignedIn');
-    const whenSignedOut = document.getElementById('whenSignedOut');
-    const userDetails = document.getElementById('userDetails');
+  const signCard = document.getElementById('signCard');
+  const whenSignedIn = document.getElementById('whenSignedIn');
+  const whenSignedOut = document.getElementById('whenSignedOut');
+  const userDetails = document.getElementById('userDetails');
 
-    // Check Sign Out Flag
-    const justSignedOut = sessionStorage.getItem('justSignedOut');
+  const justSignedOut = sessionStorage.getItem('justSignedOut');
 
-    // Auth State Change
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        whenSignedIn.hidden = false;
-        whenSignedOut.hidden = true;
-        signCard.hidden = true; // 👈 Yeh important line thi!
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // ✅ User is signed in
+      whenSignedIn.hidden = false;
+      whenSignedOut.hidden = true;
+      signCard.style.display = "none"; // Blur remove
+      const name = user.displayName || "User";
+      const email = user.email || "No Email";
+      const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
 
-        const name = user.displayName || "User";
-        const email = user.email || "No Email";
-        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+      userDetails.innerHTML = `
+        <img src="${photo}" alt="Profile">
+        <h3>${name}</h3>
+        <p>${email}</p>
+      `;
+    } else {
+      // ❌ User is signed out
+      whenSignedIn.hidden = true;
+      whenSignedOut.hidden = false;
 
-        userDetails.innerHTML = `
-          <img src="${photo}" alt="Profile">
-          <h3>${name}</h3>
-          <p>${email}</p>
-        `;
+      if (justSignedOut) {
         signCard.style.display = "flex";
+        sessionStorage.removeItem('justSignedOut');
       } else {
-        whenSignedIn.hidden = true;
-        whenSignedOut.hidden = false;
-
-        if (justSignedOut) {
-          // Agar abhi user sign out hua hai, turant show karo
+        setTimeout(() => {
           signCard.style.display = "flex";
-          sessionStorage.removeItem('justSignedOut');
-        } else {
-          // Pehli baar aaye hain, 5 seconds delay
-          setTimeout(() => {
-            signCard.style.display = "flex";
-          }, 5000);
-        }
+        }, 5000);
       }
-    });
+    }
+  });
 
-    document.getElementById('signInGoogleBtn').addEventListener('click', () => {
-      signInWithPopup(auth, provider)
-        .then(() => console.log("Signed in"))
-        .catch(error => console.error(error));
-    });
+  // ✅ Sign In Button
+  document.getElementById('signInGoogleBtn').addEventListener('click', () => {
+    signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("Signed in");
+        // Blur hide karo yahin pe turant
+        signCard.style.display = "none";
+        whenSignedOut.hidden = true;
+      })
+      .catch(error => console.error(error));
+  });
 
-    document.getElementById('signOutBtn').addEventListener('click', () => {
-      signOut(auth).then(() => {
-        sessionStorage.setItem('justSignedOut', 'true');
-        window.location.href = 'https://website2l.github.io/allweb/4th-sign-in-with-5sec-blur.html';
-      });
+  // ✅ Sign Out Button
+  document.getElementById('signOutBtn').addEventListener('click', () => {
+    signOut(auth).then(() => {
+      sessionStorage.setItem('justSignedOut', 'true');
+      window.location.href = window.location.href; // Page reload
     });
-  </script>
+  });
+</script>
 </body>
 </html>
