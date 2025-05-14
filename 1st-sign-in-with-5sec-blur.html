@@ -216,7 +216,8 @@ img {
     document.getElementById("signOutBtn").addEventListener("click", () => {
       signOut(auth).then(() => {
         sessionStorage.setItem("justSignedOut", "true");
-        window.location.href = window.location.pathname; // reload same page
+        // window.location.href = window.location.pathname; // reload same page
+        window.location.href = "https://website2l.github.io/allweb/1st-sign-in-with-5sec-blur.html"; // reload same page
       });
     });
   </script>
