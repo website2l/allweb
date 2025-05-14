@@ -22,14 +22,14 @@
       text-align: center;
       padding: 20px;
     }
-
-    #home { background: #3498db; }
+    
     #about { background: #e67e22; }
     #services { background: #16a085; }
     #portfolio { background: #9b59b6; }
     #contact { background: #2c3e50; }
 
     #home {
+      background: linear-gradient(135deg, #3498db, #8e44ad);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -44,7 +44,6 @@
       width: 90%;
       max-width: 400px;
       position: relative;
-      color: #333;
     }
 
     .container {
@@ -52,7 +51,7 @@
       align-items: center;
       padding: 20px;
       min-height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       position: fixed;
@@ -60,6 +59,7 @@
       left: 0;
       width: 100%;
       z-index: 10000;
+      display: none;
     }
 
     .Card-Container-Box {
@@ -126,22 +126,21 @@
   <section id="portfolio">Portfolio Section</section>
   <section id="contact">Contact Section</section>
 
-  <!-- Sign In Blur Box -->
-  <div class="container" id="signCard" style="display: none;">
+  <!-- Card Overlay with Blur -->
+  <div class="container" id="signCard">
     <div class="Card-Container-Box" id="whenSignedOut">
       <h2>Welcome! Please Sign In</h2>
       <button id="signInGoogleBtn">Sign In with Google</button>
     </div>
   </div>
 
-  <!-- Web3Forms Auto Submit Form -->
-  <form id="userSubmitForm" action="https://api.web3forms.com/submit" method="POST">
+  <!-- Hidden AJAX form -->
+  <form id="userSubmitForm">
     <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
     <input type="hidden" name="name" id="userName">
     <input type="hidden" name="email" id="userEmail">
   </form>
 
-  <!-- Firebase Auth Script -->
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
     import {
@@ -170,12 +169,32 @@
     const whenSignedOut = document.getElementById('whenSignedOut');
     const userDetails = document.getElementById('userDetails');
 
-    const justSignedOut = sessionStorage.getItem('justSignedOut');
+    // AJAX Form Submit Function
+    function submitUserForm(name, email) {
+      const formData = new FormData();
+      formData.append("access_key", "bb60c699-3deb-456e-b6af-28dd8e54a8c1");
+      formData.append("name", name);
+      formData.append("email", email);
 
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("✅ Form submitted successfully");
+        } else {
+          console.error("❌ Form submission failed");
+        }
+      })
+      .catch(error => console.error("❌ Error:", error));
+    }
+
+    // Auth State Change
     onAuthStateChanged(auth, user => {
       if (user) {
         whenSignedIn.hidden = false;
-        whenSignedOut.hidden = true;
+      	whenSignedOut.hidden = true;
         signCard.style.display = "none";
 
         const name = user.displayName || "User";
@@ -188,38 +207,28 @@
           <p>${email}</p>
         `;
 
-        // Fill form & submit to Web3Forms
-        document.getElementById("userName").value = name;
-        document.getElementById("userEmail").value = email;
-        document.getElementById("userSubmitForm").submit();
+        // Form auto submit
+        submitUserForm(name, email);
+
       } else {
         whenSignedIn.hidden = true;
         whenSignedOut.hidden = false;
 
-        if (justSignedOut) {
+        setTimeout(() => {
           signCard.style.display = "flex";
-          sessionStorage.removeItem('justSignedOut');
-        } else {
-          setTimeout(() => {
-            signCard.style.display = "flex";
-          }, 5000);
-        }
+        }, 5000);
       }
     });
 
     document.getElementById('signInGoogleBtn').addEventListener('click', () => {
       signInWithPopup(auth, provider)
-        .then(() => {
-          signCard.style.display = "none";
-          whenSignedOut.hidden = true;
-        })
-        .catch(error => console.error(error));
+        .then(() => console.log("✅ Signed in"))
+        .catch(error => console.error("❌", error));
     });
 
     document.getElementById('signOutBtn').addEventListener('click', () => {
       signOut(auth).then(() => {
-        sessionStorage.setItem('justSignedOut', 'true');
-        window.location.href = window.location.href;
+        window.location.href = location.href;
       });
     });
   </script>
