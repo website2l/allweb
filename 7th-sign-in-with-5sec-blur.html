@@ -310,7 +310,7 @@
 <section id="contact">
   <div class="contact-form">
     <h2>Contact Us</h2>
-    <form id="form" action="https://api.web3forms.com/submit" method="POST">
+    <form id="form">
       <input type="hidden" name="access_key" value="893d1929-5ca3-473d-88ef-8e0a4a95970c">
       <input type="hidden" name="user_name" id="user_name_hidden">
       <input type="hidden" name="user_email" id="user_email_hidden">
@@ -489,84 +489,80 @@
     
   </script>
 
-  
+  <!-- ✅ Firebase App SDK -->
+  <script type="module">
+    // Firebase Imports
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-<!-- ✅ UPDATED SCRIPT -->
-<script>
-const form = document.getElementById('form');
-const submitButton = document.getElementById('SubmitBtn');
-const successMessage = document.getElementById('success-message');
-const SuccessMessageImgage = document.querySelector('.success-message-img');
-const goBackContact = document.querySelector('.go-back-contact');
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
 
-submitButton.addEventListener('click', async (event) => {
-  event.preventDefault();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
 
-  // ⭐ Add User Details (from h3 and p)
-  const userName = document.querySelector('#userDetails h3')?.textContent.trim();
-  const userEmail = document.querySelector('#userDetails p')?.textContent.trim();
-  document.getElementById('user_name_hidden').value = userName || '';
-  document.getElementById('user_email_hidden').value = userEmail || '';
+    const contactForm = document.getElementById("form");
+    const successMsg = document.getElementById("success-message");
+    const successImg = document.querySelector(".success-message-img");
+    const goBackBtn = document.querySelector(".go-back-contact");
+    const user_name_hidden = document.getElementById("user_name_hidden");
+    const user_email_hidden = document.getElementById("user_email_hidden");
 
-  // ✅ Validate Inputs
-  const inputs = form.querySelectorAll('input, textarea');
-  let isFormValid = true;
+    // Form submission handler
+    if (contactForm) {
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-  inputs.forEach((input) => {
-    if (!input.checkValidity()) {
-      input.style.border = '2px solid red';
-      isFormValid = false;
-    } else {
-      input.style.border = '2px solid #333';
+        const formData = new FormData(contactForm);
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        })
+          .then(response => {
+            if (response.ok) {
+              contactForm.style.display = "none";
+              successMsg.style.display = "block";
+              successImg.style.display = "flex";
+              goBackBtn.style.display = "block";
+              contactForm.reset();
+            } else {
+              alert("❌ Form submission failed. Please try again.");
+            }
+          })
+          .catch(error => {
+            console.error("❌ Error:", error);
+            alert("❌ Something went wrong!");
+          });
+      });
     }
-  });
 
-  if (!isFormValid) {
-    form.reportValidity();
-    return;
-  }
-
-  // ✅ Submit Form
-  const formData = new FormData(form);
-  try {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: formData,
+    // Fill hidden fields with user info
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        user_name_hidden.value = name;
+        user_email_hidden.value = email;
+      }
     });
+  </script>
 
-    if (response.ok) {
-      successMessage.style.display = 'block';
-      goBackContact.style.display = 'block';
-      SuccessMessageImgage.style.display = 'flex';
-      form.style.display = 'none';
-    } else {
-      alert('There was an issue submitting the form. Please try again.');
+  <!-- ✅ Form Reset Function -->
+  <script>
+    function resetForm() {
+      document.querySelector(".contact-form").style.display = "block";
+      document.getElementById("success-message").style.display = "none";
+      document.querySelector(".success-message-img").style.display = "none";
+      document.querySelector(".go-back-contact").style.display = "none";
     }
-  } catch (error) {
-    alert('Error: ' + error.message);
-  }
-});
-
-// ✅ Reset Form on Go Back
-const formInputs = form.querySelectorAll('input, textarea');
-formInputs.forEach((input) => {
-  input.addEventListener('input', () => {
-    if (input.checkValidity()) {
-      input.style.border = '2px solid #333';
-    } else {
-      input.style.border = '2px solid red';
-    }
-  });
-});
-
-function resetForm() {
-  successMessage.style.display = 'none';
-  goBackContact.style.display = 'none';
-  SuccessMessageImgage.style.display = 'none';
-  form.reset();
-  form.style.display = 'block';
-}
-</script>
+  </script>
 
 </body>
 </html>
