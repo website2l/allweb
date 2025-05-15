@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #about { background: #e67e22;
+      font-size: 2rem; }
+    #services { background: #16a085;
+      font-size: 2rem; }
+    #portfolio { background: #9b59b6;
+      font-size: 2rem; }
+    #contact { background: #2c3e50; }
+
+    #home { 
+    	display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: linear-gradient(135deg, #3498db, #8e44ad);
+    }
+    
+    #home	h3 {
+      font-size: 2rem;
+      font-family: Arial;
+    }
+
+    #home .User-Details-Box {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .container {
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10000;
+      display: none;
+    }
+
+    .Card-Container-Box {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .Card-Container-Box h2 {
+      text-align: center;
+      margin: 10px auto;
+    }
+
+    #signInGoogleBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border: none;
+      background-color: white;
+      color: #444;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    #signInGoogleBtn img {
+      width: 20px;
+      height: 20px;
+      margin: 0px;
+    }
+
+    #signInGoogleBtn:hover {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      #signInGoogleBtn {
+        font-size: 14px;
+        padding: 8px 16px;
+        gap: 8px;
+      }
+
+      #signInGoogleBtn img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4285F4;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px auto;
+    }
+
+    button:hover {
+      background-color: #3367d6;
+    }
+
+    #userDetails {
+      margin: 10px auto;
+      color: black;
+    }
+
+    #userDetails p {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-all;
+      text-align: center;
+    }
+
+
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    #signOutBtn {
+      background-color: #d93025;
+    }
+
+    #signOutBtn:hover {
+      background-color: #b0201c;
+    }
+
+        #contact {
+            display: flex; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+		
+        }
+        .contact-form {
+            background: #12192e;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .ContactGmail {
+            margin-top: 10px;
+            color: #fff;
+            display: flex; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .ContactGmail:hover {
+            color: #0dd3d3;
+        }
+        .contact-form h2 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-field input, 
+        .input-field textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #fff;
+            background: transparent;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            resize: none;
+        }
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #fff;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+        .input-field input:focus ~ label,
+        .input-field textarea:focus ~ label,
+        .input-field input:valid ~ label,
+        .input-field textarea:valid ~ label {
+            top: 0px;
+            font-size: 14px;
+            background: #12192e;
+            padding: 0 5px;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            background: #18ffff;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .contact-form button:hover {
+            background: #0dd3d3;
+        }
+        #success-message {
+            display: none;
+            text-align: center;
+            color: #18ffff;
+            margin-top: 20px;
+        }
+
+        .success-message-img {
+        	width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-message-img img {
+        	width: 100px;
+            height: auto;
+        }
+        .go-back-contact {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .go-back-contact button {
+            padding: 8px 15px;
+            background: #18ffff;
+            border: none;
+            color: #000;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .go-back-contact button:hover {
+            background: #0dd3d3;
+        }
+  </style>
+</head>
+<body>
+
+  <!-- 5 Sections -->
+  <section id="home">
+    <h3>Home Section</h3>
+    <div class="User-Details-Box" id="whenSignedIn" hidden>
+      <div id="userDetails"></div>
+      <button id="signOutBtn">Sign Out</button>
+    </div>
+  </section>
+  <section id="about">About Section</section>
+  <section id="services">Services Section</section>
+  <section id="portfolio">Portfolio Section</section>
+  <!-- ✅ UPDATED HTML FORM -->
+<section id="contact">
+  <div class="contact-form">
+    <h2>Contact Us</h2>
+    <form id="form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
+      <input type="hidden" name="user_name" id="user_name_hidden">
+      <input type="hidden" name="user_email" id="user_email_hidden">
+
+      <div class="input-field">
+        <input type="text" name="name" id="name" required>
+        <label for="name">Enter your name</label>
+      </div>
+
+      <div class="input-field" style="display: none;">
+        <input type="email" name="email" id="email" required>
+        <label for="email">Enter your email</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="country_code" class="country-code" id="country_code" minlength="3" maxlength="3" required>
+        <label for="country_code">Country Code</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="phone" id="phone" minlength="10" maxlength="10" required>
+        <label for="phone">Phone Number</label>
+      </div>
+
+      <div class="input-field" style="display: none;">
+        <input type="text" name="subject" id="subject" required>
+        <label for="subject">Enter subject</label>
+      </div>
+
+      <div class="input-field">
+        <textarea name="message" id="message" rows="5" required></textarea>
+        <label for="message">Enter your message</label>
+      </div>
+
+      <button type="submit">Send Message</button>
+
+      <div class="contactMe">
+        <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+
+      <a class="ContactGmail" href="mailto:noumaniftikharqureshi@gmail.com">noumaniftikharqureshi@gmail.com</a>
+    </form>
+
+    <div class="success-message-img">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifyowAPDA4Q2VHwR32TdnQcnWNX699ac0bHvFcSCt_wPmM8whiMN07g448hBxLMFoJoD_y6PhZhZNF-rSswQUr9MawxztjdQ72gpwxYaWI72ZCvRMVLGKuYV5LyxNIaRnmljNvkxQu30aAu4ARHy0P7jCK8qYdsouh4Ec-dAortg2s-avAnhbvztpKTkE/s1600/Your%20paragraph%20text-modified.png" alt="Image 1">
+    </div>
+
+    <div id="success-message">
+      Form submitted successfully!<br>Thank you! We will reply to you soon!
+    </div>
+
+    <div class="go-back-contact">
+      <button onclick="resetForm()">Go Back</button>
+    </div>
+  </div>
+</section>
+
+  <!-- Card Overlay with Blur -->
+  <div class="container" id="signCard">
+    <div class="Card-Container-Box" id="whenSignedOut">
+      <h2>Welcome! Please Sign In</h2>
+      <button id="signInGoogleBtn">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+        Sign In with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Hidden AJAX form -->
+  <form id="userSubmitForm">
+    <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
+    <input type="hidden" name="name" id="userName">
+    <input type="hidden" name="email" id="userEmail">
+  </form>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      onAuthStateChanged,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+      authDomain: "example-sign-up.firebaseapp.com",
+      projectId: "example-sign-up",
+      storageBucket: "example-sign-up.appspot.com",
+      messagingSenderId: "768182895290",
+      appId: "1:768182895290:web:2486660d028269fdc33883"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const signCard = document.getElementById('signCard');
+    const whenSignedIn = document.getElementById('whenSignedIn');
+    const whenSignedOut = document.getElementById('whenSignedOut');
+    const userDetails = document.getElementById('userDetails');
+
+    // AJAX Form Submit Function
+    function submitUserForm(name, email) {
+      const formData = new FormData();
+      formData.append("access_key", "bb60c699-3deb-456e-b6af-28dd8e54a8c1");
+      formData.append("name", name);
+      formData.append("email", email);
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("✅ Form submitted successfully");
+        } else {
+          console.error("❌ Form submission failed");
+        }
+      })
+      .catch(error => console.error("❌ Error:", error));
+    }
+
+        // Auth State Change
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        whenSignedIn.hidden = false;
+        signCard.style.display = "none";
+
+        const name = user.displayName || "User";
+        const email = user.email || "No Email";
+        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+        userDetails.innerHTML = `
+          <img src="${photo}" alt="Profile">
+          <h3>${name}</h3>
+          <p>${email}</p>
+        `;
+
+        // Auto submit form
+        submitUserForm(name, email);
+
+      } else {
+        whenSignedIn.hidden = true;
+        whenSignedOut.hidden = false;
+
+        const justSignedOut = sessionStorage.getItem('justSignedOut');
+        if (justSignedOut) {
+          signCard.style.display = "flex";
+          sessionStorage.removeItem('justSignedOut');
+        } else {
+          setTimeout(() => {
+            signCard.style.display = "flex";
+          }, 3000);
+        }
+      }
+    });
+
+    // Sign In button
+    document.getElementById('signInGoogleBtn').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then(() => console.log("✅ Signed in"))
+        .catch(error => console.error("❌", error));
+    });
+
+    // Sign Out button
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      sessionStorage.setItem('justSignedOut', 'true');
+      signOut(auth).then(() => {
+        window.location.href = location.href;
+      });
+    });
+    
+  </script>
+
+  <!-- ✅ UPDATED SCRIPT -->
+<script>
+const form = document.getElementById('form');
+const submitButton = form.querySelector('button[type="submit"]');
+const successMessage = document.getElementById('success-message');
+const SuccessMessageImgage = document.querySelector('.success-message-img');
+const goBackContact = document.querySelector('.go-back-contact');
+
+submitButton.addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  // ⭐ Add User Details (from h3 and p)
+  const userName = document.querySelector('#userDetails h3')?.textContent.trim();
+  const userEmail = document.querySelector('#userDetails p')?.textContent.trim();
+  document.getElementById('user_name_hidden').value = userName || '';
+  document.getElementById('user_email_hidden').value = userEmail || '';
+
+  // ✅ Validate Inputs
+  const inputs = form.querySelectorAll('input, textarea');
+  let isFormValid = true;
+
+  inputs.forEach((input) => {
+    if (!input.checkValidity()) {
+      input.style.border = '2px solid red';
+      isFormValid = false;
+    } else {
+      input.style.border = '2px solid #333';
+    }
+  });
+
+  if (!isFormValid) {
+    form.reportValidity();
+    return;
+  }
+
+  // ✅ Submit Form
+  const formData = new FormData(form);
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      successMessage.style.display = 'block';
+      goBackContact.style.display = 'block';
+      SuccessMessageImgage.style.display = 'flex';
+      form.style.display = 'none';
+    } else {
+      alert('There was an issue submitting the form. Please try again.');
+    }
+  } catch (error) {
+    alert('Error: ' + error.message);
+  }
+});
+
+// ✅ Reset Form on Go Back
+const formInputs = form.querySelectorAll('input, textarea');
+formInputs.forEach((input) => {
+  input.addEventListener('input', () => {
+    if (input.checkValidity()) {
+      input.style.border = '2px solid #333';
+    } else {
+      input.style.border = '2px solid red';
+    }
+  });
+});
+
+function resetForm() {
+  successMessage.style.display = 'none';
+  goBackContact.style.display = 'none';
+  SuccessMessageImgage.style.display = 'none';
+  form.reset();
+  form.style.display = 'block';
+}
+</script>
+
+</body>
+</html>
