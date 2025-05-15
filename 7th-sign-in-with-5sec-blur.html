@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -305,7 +306,7 @@
   <section id="about">About Section</section>
   <section id="services">Services Section</section>
   <section id="portfolio">Portfolio Section</section>
-  <!-- ✅ UPDATED HTML FORM -->
+  <!-- ✅ UPDATED HTML FORM WITH FIXED SUBMISSION -->
 <section id="contact">
   <div class="contact-form">
     <h2>Contact Us</h2>
@@ -344,7 +345,7 @@
         <label for="message">Enter your message</label>
       </div>
 
-      <button type="submit">Send Message</button>
+      <button id="SubmitBtn">Send</button>
 
       <div class="contactMe">
         <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
@@ -488,10 +489,12 @@
     
   </script>
 
-  <!-- ✅ UPDATED SCRIPT -->
+  
+
+<!-- ✅ UPDATED SCRIPT -->
 <script>
 const form = document.getElementById('form');
-const submitButton = form.querySelector('button[type="submit"]');
+const submitButton = document.getElementById('SubmitBtn');
 const successMessage = document.getElementById('success-message');
 const SuccessMessageImgage = document.querySelector('.success-message-img');
 const goBackContact = document.querySelector('.go-back-contact');
