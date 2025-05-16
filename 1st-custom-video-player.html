@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Video Player</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      background: none;
+      border: 1px solid #fff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+    }
+
+    .seek-bar {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .time {
+      font-size: 14px;
+    }
+
+    /* Drop-up style */
+    .speed-menu {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      background-color: #222;
+      border: 1px solid #888;
+      border-radius: 5px;
+      padding: 5px 0;
+      display: none;
+      z-index: 10;
+    }
+
+    .speed-menu select {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 14px;
+      padding: 5px 10px;
+      outline: none;
+    }
+
+    .speed-menu select option {
+      background: #111;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 500px) {
+      .controls-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .time {
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-container">
+    <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+
+    <div class="controls" id="controls">
+    
+      <input type="range" id="seekBar" class="seek-bar" value="0" />
+      
+      <div class="controls-row">
+      
+        <button id="playPause"><i class="fa-solid fa-play"></i></button>
+        <div class="time" id="timeDisplay">0:00 / 0:00</div>
+
+        <!-- Speed Button with Drop-up Menu -->
+        <div style="position: relative;">
+          <button id="speedBtn"><i class="fa-solid fa-gauge"></i></button>
+          <div class="speed-menu" id="speedMenu">
+            <select id="speedControl">
+              <option value="0.5">0.5x</option>
+              <option value="0.75">0.75x</option>
+              <option value="1" selected>1x (Normal)</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+              <option value="2">2x</option>
+            </select>
+          </div>
+        </div>
+        <button id="fullscreen"><i class="fa-solid fa-expand"></i></button>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const playPauseBtn = document.getElementById("playPause");
+    const seekBar = document.getElementById("seekBar");
+    const timeDisplay = document.getElementById("timeDisplay");
+    const fullscreenBtn = document.getElementById("fullscreen");
+    const speedControl = document.getElementById("speedControl");
+    const speedBtn = document.getElementById("speedBtn");
+    const speedMenu = document.getElementById("speedMenu");
+
+    const playIcon = `<i class="fa-solid fa-play"></i>`;
+    const pauseIcon = `<i class="fa-solid fa-pause"></i>`;
+    const expandIcon = `<i class="fa-solid fa-expand"></i>`;
+    const minimizeIcon = `<i class="fa-solid fa-minimize"></i>`;
+
+    // Play / Pause
+    playPauseBtn.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+        playPauseBtn.innerHTML = pauseIcon;
+      } else {
+        video.pause();
+        playPauseBtn.innerHTML = playIcon;
+      }
+    });
+
+    // Time Update
+    video.addEventListener("timeupdate", () => {
+      const progress = (video.currentTime / video.duration) * 100;
+      seekBar.value = progress || 0;
+      updateTimeDisplay();
+    });
+
+    seekBar.addEventListener("input", () => {
+      video.currentTime = (seekBar.value / 100) * video.duration;
+    });
+
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    }
+
+    function updateTimeDisplay() {
+      const current = formatTime(video.currentTime);
+      const total = formatTime(video.duration || 0);
+      timeDisplay.textContent = `${current} / ${total}`;
+    }
+
+    // Fullscreen
+    fullscreenBtn.addEventListener("click", () => {
+      const container = document.querySelector(".video-container");
+
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        if (container.requestFullscreen) {
+          container.requestFullscreen();
+        }
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      fullscreenBtn.innerHTML = document.fullscreenElement ? minimizeIcon : expandIcon;
+    });
+
+    video.addEventListener("ended", () => {
+      playPauseBtn.innerHTML = playIcon;
+    });
+
+    video.addEventListener("loadedmetadata", updateTimeDisplay);
+
+    speedControl.addEventListener("change", () => {
+      video.playbackRate = parseFloat(speedControl.value);
+    });
+
+    // Drop-up Toggle
+    speedBtn.addEventListener("click", () => {
+      speedMenu.style.display = (speedMenu.style.display === "block") ? "none" : "block";
+    });
+
+    // Hide menu if clicked outside
+    document.addEventListener("click", (e) => {
+      if (!speedBtn.contains(e.target) && !speedMenu.contains(e.target)) {
+        speedMenu.style.display = "none";
+      }
+    });
+
+    // Initial state
+    playPauseBtn.innerHTML = playIcon;
+    fullscreenBtn.innerHTML = expandIcon;
+  </script>
+</body>
+</html>
