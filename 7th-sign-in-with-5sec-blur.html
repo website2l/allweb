@@ -335,12 +335,6 @@
               <label for="message">Enter your message</label>
             </div>
             <button type="submit">Send Message</button>
-            <div class="contactMe">
-            <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i><!--- <p>3700 345 345</p> ---></a>
-            <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i><!--- <p>3700 345 345</p> ---></a>
-            <a class="ContactWhatsaap" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i><!--- <p>3700 345 345</p> ---></a>
-            </div>
-            <a class="ContactGmail" href="mailto:noumaniftikharqureshi@gmail.com">noumaniftikharqureshi@gmail.com</a>
           </form>
           <div class="success-message-img">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifyowAPDA4Q2VHwR32TdnQcnWNX699ac0bHvFcSCt_wPmM8whiMN07g448hBxLMFoJoD_y6PhZhZNF-rSswQUr9MawxztjdQ72gpwxYaWI72ZCvRMVLGKuYV5LyxNIaRnmljNvkxQu30aAu4ARHy0P7jCK8qYdsouh4Ec-dAortg2s-avAnhbvztpKTkE/s1600/Your%20paragraph%20text-modified.png" alt="Image 1">
@@ -363,115 +357,114 @@
         Sign In with Google
       </button>
     </div>
-  </div>
+  </div><!-- Hidden AJAX form -->
+<form id="userSubmitForm" style="display: none;">
+  <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
+  <input type="hidden" name="name" id="userNameInput">
+  <input type="hidden" name="email" id="userEmailInput">
+  <input type="hidden" name="subject" value="New User">
+</form>
 
-  <!-- Hidden AJAX form -->
-  <form id="userSubmitForm">
-    <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
-    <input type="hidden" name="name" id="userName">
-    <input type="hidden" name="email" id="userEmail">
-  </form>
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+  import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signOut
+  } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-    import {
-      getAuth,
-      signInWithPopup,
-      GoogleAuthProvider,
-      onAuthStateChanged,
-      signOut
-    } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
+    authDomain: "example-sign-up.firebaseapp.com",
+    projectId: "example-sign-up",
+    storageBucket: "example-sign-up.appspot.com",
+    messagingSenderId: "768182895290",
+    appId: "1:768182895290:web:2486660d028269fdc33883"
+  };
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBAkyG8_rmdgno1gEnRT8Ixf1eyYS18a0E",
-      authDomain: "example-sign-up.firebaseapp.com",
-      projectId: "example-sign-up",
-      storageBucket: "example-sign-up.appspot.com",
-      messagingSenderId: "768182895290",
-      appId: "1:768182895290:web:2486660d028269fdc33883"
-    };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+  const signCard = document.getElementById('signCard');
+  const whenSignedIn = document.getElementById('whenSignedIn');
+  const whenSignedOut = document.getElementById('whenSignedOut');
+  const userDetails = document.getElementById('userDetails');
 
-    const signCard = document.getElementById('signCard');
-    const whenSignedIn = document.getElementById('whenSignedIn');
-    const whenSignedOut = document.getElementById('whenSignedOut');
-    const userDetails = document.getElementById('userDetails');
+  // 📨 Submit Form via AJAX
+  function submitUserForm(name, email) {
+    const formData = new FormData();
+    formData.append("access_key", "bb60c699-3deb-456e-b6af-28dd8e54a8c1");
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("subject", "New User");
 
-    // AJAX Form Submit Function
-    function submitUserForm(name, email) {
-      const formData = new FormData();
-      formData.append("access_key", "bb60c699-3deb-456e-b6af-28dd8e54a8c1");
-      formData.append("name", name);
-      formData.append("email", email);
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log("✅ Form submitted successfully");
-        } else {
-          console.error("❌ Form submission failed");
-        }
-      })
-      .catch(error => console.error("❌ Error:", error));
-    }
-
-        // Auth State Change
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        whenSignedIn.hidden = false;
-        signCard.style.display = "none";
-
-        const name = user.displayName || "User";
-        const email = user.email || "No Email";
-        const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
-
-        userDetails.innerHTML = `
-          <img src="${photo}" alt="Profile">
-          <h3 id="userName">${name}</h3>
-          <p id="userEmail">${email}</p>
-        `;
-
-        // Auto submit form
-        submitUserForm(name, email);
-
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log("✅ Form submitted successfully");
       } else {
-        whenSignedIn.hidden = true;
-        whenSignedOut.hidden = false;
-
-        const justSignedOut = sessionStorage.getItem('justSignedOut');
-        if (justSignedOut) {
-          signCard.style.display = "flex";
-          sessionStorage.removeItem('justSignedOut');
-        } else {
-          setTimeout(() => {
-            signCard.style.display = "flex";
-          }, 3000);
-        }
+        console.error("❌ Form submission failed");
       }
-    });
+    })
+    .catch(error => console.error("❌ Error:", error));
+  }
 
-    // Sign In button
-    document.getElementById('signInGoogleBtn').addEventListener('click', () => {
-      signInWithPopup(auth, provider)
-        .then(() => console.log("✅ Signed in"))
-        .catch(error => console.error("❌", error));
-    });
+  // 🔄 Auth Listener
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      whenSignedIn.hidden = false;
+      signCard.style.display = "none";
 
-    // Sign Out button
-    document.getElementById('signOutBtn').addEventListener('click', () => {
-      sessionStorage.setItem('justSignedOut', 'true');
-      signOut(auth).then(() => {
-        window.location.href = location.href;
-      });
+      const name = user.displayName || "User";
+      const email = user.email || "No Email";
+      const photo = user.photoURL || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
+      userDetails.innerHTML = `
+        <img src="${photo}" alt="Profile">
+        <h3 id="userName">${name}</h3>
+        <p id="userEmail">${email}</p>
+      `;
+
+      // Auto submit form data
+      submitUserForm(name, email);
+
+    } else {
+      whenSignedIn.hidden = true;
+      whenSignedOut.hidden = false;
+
+      const justSignedOut = sessionStorage.getItem('justSignedOut');
+      if (justSignedOut) {
+        signCard.style.display = "flex"; // 👈 Show immediately
+        sessionStorage.removeItem('justSignedOut');
+      } else {
+        setTimeout(() => {
+          signCard.style.display = "flex";
+        }, 3000);
+      }
+    }
+  });
+
+  // 🔘 Sign In Button
+  document.getElementById('signInGoogleBtn').addEventListener('click', () => {
+    signInWithPopup(auth, provider)
+      .then(() => console.log("✅ Signed in"))
+      .catch(error => console.error("❌", error));
+  });
+
+  // 🚪 Sign Out Button
+  document.getElementById('signOutBtn').addEventListener('click', () => {
+    sessionStorage.setItem('justSignedOut', 'true');
+    signOut(auth).then(() => {
+      window.location.href = location.href;
     });
-    
-  </script>
+  });
+</script>
 
   <script>
     const form = document.getElementById('form');
