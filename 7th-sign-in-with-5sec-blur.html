@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -305,6 +306,7 @@
   <section id="about">About Section</section>
   <section id="services">Services Section</section>
   <section id="portfolio">Portfolio Section</section>
+  
   <!-- ✅ UPDATED HTML FORM -->
 <section id="contact">
   <div class="contact-form">
@@ -320,7 +322,7 @@
       </div>
 
       <div class="input-field" style="display: none;">
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email">
         <label for="email">Enter your email</label>
       </div>
 
@@ -335,7 +337,7 @@
       </div>
 
       <div class="input-field" style="display: none;">
-        <input type="text" name="subject" id="subject" required>
+        <input type="text" name="subject" id="subject">
         <label for="subject">Enter subject</label>
       </div>
 
@@ -488,12 +490,10 @@
     
   </script>
 
-  
-
 <!-- ✅ UPDATED SCRIPT -->
 <script>
 const form = document.getElementById('form');
-const submitButton = document.getElementById('SubmitBtn');
+const submitButton = document.getElementById('button[type="submit"]');
 const successMessage = document.getElementById('success-message');
 const SuccessMessageImgage = document.querySelector('.success-message-img');
 const goBackContact = document.querySelector('.go-back-contact');
