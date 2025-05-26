@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuisine Selector</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    a.cuisine-link {
+      display: block;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      color: #333;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    a.cuisine-link:hover {
+      background-color: #e0f7fa;
+      transform: scale(1.02);
+    }
+
+    @media (min-width: 600px) {
+      .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      a.cuisine-link {
+        flex: 0 1 calc(50% - 20px);
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Select a Cuisine</h1>
+  <div class="container" id="cuisineContainer"></div>
+
+  <script>
+    const data = {
+      "cuisines": [
+        { "name": "Chinese" },
+        { "name": "Italian" },
+        { "name": "Indian" },
+        { "name": "Mexican" },
+        { "name": "Pakistani" }
+      ]
+    };
+
+    const baseURL = "https://def.html/?m=1&section=services/";
+
+    function slugify(text) {
+      return text.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    function renderCuisines() {
+      const container = document.getElementById("cuisineContainer");
+
+      data.cuisines.forEach(cuisine => {
+        const link = document.createElement("a");
+        link.className = "cuisine-link";
+        link.href = baseURL + slugify(cuisine.name) + "-cuisines/";
+        link.textContent = cuisine.name + " Cuisines";
+        container.appendChild(link);
+      });
+    }
+
+    // On page load check URL section
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get("section");
+
+    if (section === "services") {
+      renderCuisines();
+    }
+  </script>
+</body>
+</html>
