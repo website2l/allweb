@@ -1365,10 +1365,6 @@
   </style>
 </head>
 <body>
-    <div class="User-Details-Box" id="whenSignedIn" hidden>
-      <div id="userDetails"></div>
-      <button id="signOutBtn">Sign Out</button>
-    </div>
 	<a class="WhatsappScreenFloat" href="https://wa.me/+923700345345" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
     <button id="OpenMunBtn" class="ClassMenuOpenBtn">
     	<i class="fa-solid fa-bars"></i>
@@ -1422,6 +1418,10 @@
         </div>
       </div>
       <div class="scrolDown"><i class="fa-regular fa-circle-down"></i> <p>Scroll Down</p></div>
+    <div class="User-Details-Box" id="whenSignedIn" hidden>
+      <div id="userDetails"></div>
+      <button id="signOutBtn">Sign Out</button>
+    </div>
   </div>
     
     <div class="section experience" id="experience">
@@ -1572,6 +1572,16 @@
     </div>
   </div>
 
+  <div class="container" id="signCard">
+    <div class="Card-Container-Box" id="whenSignedOut">
+      <h2>Welcome! Please Sign In</h2>
+      <button id="signInGoogleBtn">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+        Sign In with Google
+      </button>
+    </div>
+  </div>
+
     <!-- Navigation Buttons -->
     <div class="navigation-buttons">
         <button id="prevBtn" disabled>
@@ -1591,13 +1601,14 @@
         Sign In with Google
       </button>
     </div>
-  </div><!-- Hidden AJAX form -->
-<form id="userSubmitForm" style="display: none;">
-  <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
-  <input type="hidden" name="name" id="userNameInput">
-  <input type="hidden" name="email" id="userEmailInput">
-  <input type="hidden" name="subject" value="New User">
-</form>
+
+  <!-- Hidden AJAX form -->
+  <form id="userSubmitForm" style="display: none;">
+    <input type="hidden" name="access_key" value="bb60c699-3deb-456e-b6af-28dd8e54a8c1">
+    <input type="hidden" name="name" id="userNameInput">
+    <input type="hidden" name="email" id="userEmailInput">
+    <input type="hidden" name="subject" value="New User">
+  </form>
 
   <!-- JS Firebase + Form handling code same jaise pehle tha, neeche add karein -->
 
